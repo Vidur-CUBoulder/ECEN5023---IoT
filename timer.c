@@ -1,23 +1,24 @@
 #include "letimer.h"
+#include "sleep_modes.h"
 #include "timer.h"
 
-void Disable_Reset_TIMERS(void)
+/* Function: Configure_TIMERS(CMU_Osc_TypeDef clk_type)
+ * Parameters:
+ *    clk_type: the clk type for which the timers should be configured
+ * Return:
+ *    void
+ * Description:
+ *    Configures the TIMER0 and TIMER1 for the specified OSC clk.
+ */
+void Configure_TIMERS(CMU_Osc_TypeDef clk_type)
 {
-  TIMER_Enable(TIMER0, false);
-  TIMER_Enable(TIMER1, false);
-
-  /* Make the counts 0 */
-  TIMER0->CNT = 0x00;
-  TIMER1->CNT = 0x00;
-}
-
-void Configure_TIMERS(void)
-{
+  //LETIMER_ClockSetup(/*cmuOsc_LFXO*/cmuOsc_ULFRCO);
+  LETIMER_ClockSetup(clk_type);
 
   /* Enable the clock for HFPERCO */
   CMU_ClockEnable(cmuClock_HFPER, true);
 
-  /* Enable the clock for TIMER0 */
+  /* Enable the clock for TIMER0  & TIMER1 */
   CMU_ClockEnable(cmuClock_TIMER0, true);
   CMU_ClockEnable(cmuClock_TIMER1, true);
 
@@ -51,11 +52,12 @@ void Configure_TIMERS(void)
     .oneShot    = false, 
     .sync       = true, 
   };
-  
+ 
+  /* Initialize the timers */
   TIMER_Init(TIMER0, &timerInit_TIMER0); 
   TIMER_Init(TIMER1, &timerInit_TIMER1); 
 
   /* The timers should only run in EM1 */
-  blockSleepMode(sleepEM0);
+  //blockSleepMode(sleepEM0);
 
 } 
