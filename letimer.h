@@ -6,6 +6,7 @@
 #include "em_device.h"
 #include "em_rtc.h"
 #include "em_timer.h"
+#include "em_adc.h"
 
 #include "timer.h"
 
