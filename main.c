@@ -50,36 +50,30 @@
 #include "sleep_modes.h"
 #include "letimer.h"
 
-//#include "em_adc.h"
-#include "em_acmp.h"
 #include "em_dma.h"
 #include "dmactrl.h"
+#include "acmp.h"
+#include "gpio.h"
+#include "light_sensor.h"
+#include "em_i2c.h"
 
-//#define WITHOUT_DMA
+#define DEBUG
+
+/* To toggle the DMA transfer routines from the code */
+#define WITHOUT_DMA
 
 /* Macro used to toggle the ULFRCO calibration */
 #define Calibrate_ULFRCO
 
 /* Select the sleep mode to run the MCU in */
-#define SEL_SLEEP_MODE sleepEM3
+#define SEL_SLEEP_MODE sleepEM2
 
-#define LOW_LEVEL 2
 #define HIGH_LEVEL 61
 #define TIMER_PERIOD 2.5
 
-/* LED 0 */
-#define LED_PORT gpioPortE
-#define LED_0_PIN 2
-#define LED_1_PIN 3
-
-/* Light Sensor */
-#define LS_EXCITE_PORT    gpioPortD
-#define LS_SENSE_PORT     gpioPortC
-#define LS_PIN            6
-
 /* Misc. */
-//#define CYCLE_PERIOD      2.5
-#define CYCLE_PERIOD 	  5.5
+
+#define CYCLE_PERIOD 	  4.25
 #define ON_PERIOD         0.004 
 #define LETIMER_MAX_CNT   65535 
 #define IDEAL_ULFRCO_CNT  1000
@@ -87,78 +81,68 @@
 /*DMA*/
 #define ADC0_DMA_Channel 0
 #define MAX_CONVERSION 750
+#define ADC_SLEEP_MODE sleepEM1
+#define DEF_HPROT_VAL 0
+#define CALC_PRESCALE_VAL 49
+#define CONFIG_ADC_CHNL acmpChannel6
+
+/* Temp. Sensor */
+#define LOWER_TEMP_BOUND 15
+#define UPPER_TEMP_BOUND 35
+#define SET_TEMP_GRADIENT (-6.27)
+
+/* I2C Macros */
+#define I2C_READ 1
+#define I2C_WRITE 0
+#define I2C_SLAVE_ADDR 0x39
+#define WAIT_FOR_SLAVE_ACK {\
+                     while((I2C1->IF & I2C_IF_ACK) == 0);\
+                     I2C1->IFC = I2C_IFC_ACK;\
+                     }
+#define MASTER_STOP {\
+                      I2C1->CMD = I2C_CMD_STOP;\
+                      while((I2C1->IF & I2C_IF_MSTOP) == 0);\
+                      I2C1->IFC = 0xFF;\
+                    }
+
+/* Peripheral Macros */
+#define REG_CONTROL 0x00
+#define REG_TIMING 0x01
+#define REG_THRESHLOWLOW 0x02
+#define REG_THRESHLOWHIGH 0x03
+#define REG_THRESHHIGHLOW 0x04
+#define REG_THRESHHIGHHIGH 0x05
+#define REG_INTERRUPT 0x06
+#define REG_CRC 0x08
+#define REG_ID 0xA
+#define REG_DATA0LOW 0xC
+#define REG_DATA0HIGH 0xD
+#define REG_DATA1LOW 0xE
+#define REG_DATA1HIGH 0xF
+
+/* Misc. I2C Macros */
+
 
 /* Global variables for use in the interrupt handler */
 uint16_t irq_flag_set;
 unsigned int acmp_value;
 float output;
 volatile uint16_t ADC0_DMArambuffer[MAX_CONVERSION] = {0};
+int32_t conversion_val = 0;
 
-/* Global structure definition for the Analog Comparator */
-static ACMP_Init_TypeDef acmpinit =
-{
-  .fullBias                 = false,
-  .halfBias                 = true,
-  .biasProg                 = 0x0,
-  .interruptOnFallingEdge   = false,
-  .interruptOnRisingEdge    = false,
-  .warmTime                 = acmpWarmTime256,
-  .hysteresisLevel          = acmpHysteresisLevel4,
-  .inactiveValue            = false,
-  .lowPowerReferenceEnabled = false,
-  .vddLevel                 = LOW_LEVEL,
-  .enable                   = true
-};
+static int8_t cycle_count = 0;
 
-/* Function: GPIO_Init(void)
+/* Function: convertToCelsius(int32_t adcSample)
  * Parameters:
- *    void
+ *    adcSample: pass the value returned by the ADC to this function
  * Return:
- *    void
+ *    - a value of the temperature converted to celsius
  * Description:
- *    Initialize the GPIO pins for LED0.
+ *    - Use this function to convert the value that is read from the 
+ *      adc to a celsius value in floating point.
+ * IP Credits: 
+ *      This routine is credited to Silicon Labs
  */
-void GPIO_Init(void)
-{
-  /* Init the clock */
-  CMU_ClockEnable(cmuClock_GPIO, true);
-
-  /* Setup the config. for LED0 */
-  GPIO_DriveModeSet(LED_PORT, gpioDriveModeStandard);
-  GPIO_PinModeSet(LED_PORT, LED_0_PIN, gpioModePushPull, 1);
-
-  /* Setup the config. for LED1 */
-  GPIO_DriveModeSet(LED_PORT, gpioDriveModeStandard);
-  GPIO_PinModeSet(LED_PORT, LED_1_PIN, gpioModePushPull, 1);
-
-  /* Turn Off the LED for now */
-  GPIO_PinOutToggle(LED_PORT, LED_0_PIN);
-  GPIO_PinOutToggle(LED_PORT, LED_1_PIN);
-
-  return;
-}
-
-/* Function: Light_Sensor_Init(void)
- * Parameters:
- *    void
- * Return:
- *    void
- * Description:
- *    This function initializes the Light Sensor sense and excite paths
- */
-void Light_Sensor_Init(void)
-{
-  GPIO_DriveModeSet(LS_SENSE_PORT, gpioDriveModeStandard);
-  GPIO_DriveModeSet(LS_EXCITE_PORT, gpioDriveModeStandard);
-
-  GPIO_PinModeSet(LS_SENSE_PORT, LS_PIN, gpioModeDisabled, 0);
-  GPIO_PinModeSet(LS_EXCITE_PORT, LS_PIN, gpioModePushPull, 1);
-
-  return;
-}
-
-
-/* credit silicon labs for this function ! */
 float convertToCelsius(int32_t adcSample)
 {
   float temp = 0;
@@ -172,23 +156,33 @@ float convertToCelsius(int32_t adcSample)
                               >> _DEVINFO_ADC0CAL2_TEMP1V25_SHIFT);
 
   /* Temperature gradient(from the datasheet) */
-  float gradient = -6.27;
+  float gradient = SET_TEMP_GRADIENT;
 
   temp = (cal_temp_0 - ((cal_value_0 - adcSample)/gradient));
 
   return temp;
 }
 
+/* Function: Get_Avg_Temperature(void)
+ * Parameters:
+ *    void
+ * Return:
+ *    - The average temperature value from amongst all the 
+ *      values read from the ADC.
+ * Description:
+ *    - Use this function to get an average temperature reading 
+ *      from amongst all the ADC values read. 
+ */
 float Get_Avg_Temperature(void)
 {
 
-  int32_t conversion_val = 0;
   int16_t cnt = 0;
 
   /* Start the ADC count */
   ADC_Start(ADC0, adcStartSingle);
 
   while(cnt != MAX_CONVERSION) {
+	while(!(ADC0->IF & ADC_IFS_SINGLE));
 
     /* Wait for the single conversion to complete */
     while(!(ADC0->IF & ADC_IFS_SINGLE));
@@ -205,6 +199,9 @@ float Get_Avg_Temperature(void)
   /* Stop the ADC conversion */
   ADC0->CMD = ADC_CMD_SINGLESTOP;
 
+  /* ADC work done; Exit EM1 */
+  unblockSleepMode(ADC_SLEEP_MODE);
+
   /* Get the average */
   conversion_val = conversion_val/MAX_CONVERSION;
 
@@ -213,8 +210,18 @@ float Get_Avg_Temperature(void)
 
 }
 
-/*Define the callback function */
-void cb_ADC0_DMA(unsigned int channel, bool primary, void *user) //<--- Check and experiment!!
+/* Function:cb_ADC0_DMA(unsigned int channel, bool primary, void *user)
+ * Parameters:
+ *    - channel - the DMA channel over which the data is being transfered.
+ *    - primary - whether or not the primary channel of the DMA is selected.
+ *    - user - a user defined pointer to provide with the callback function.
+ * Return:
+ *    void
+ * Description:
+ *    This is the callback function that will get called once the DMA transfer
+ *    has completed.
+ */
+void cb_ADC0_DMA(unsigned int channel, bool primary, void *user)
 {
   
   uint16_t cnt = 0;
@@ -225,50 +232,59 @@ void cb_ADC0_DMA(unsigned int channel, bool primary, void *user) //<--- Check an
   /* Clear the DMA interrupt */
   DMA_IntClear(ADC0_DMA_Channel);
 
-  /* Initialize the Single-Stop DMA transfer */
+  /* Stop the ADC */
   ADC0->CMD = ADC_CMD_SINGLESTOP;
-  unblockSleepMode(sleepEM1);
+ 
+  /* unblock the EM1 sleep now, ADC ops done! */
+  unblockSleepMode(ADC_SLEEP_MODE);
 
   /*Store the values in the DMA buffer */
   while(cnt != MAX_CONVERSION) {
-    sum += ADC0_DMArambuffer[cnt];
-    cnt++;
+    sum += ADC0_DMArambuffer[cnt++];
   }
-  //ADC0->CMD = ADC_CMD_SINGLESTOP;
 
   /*Get the average and convert to celsius */
   sum = sum/MAX_CONVERSION;
+
   float C_temp = convertToCelsius(sum);
-#if 0
-  if (C_temp > 23) {
+  
+  if ((C_temp < LOWER_TEMP_BOUND) || (C_temp > UPPER_TEMP_BOUND)) {
     /*Turn on the LED*/
     GPIO_PinOutSet(LED_PORT,LED_1_PIN);
   } else {
     /* Turn off the LED */
     GPIO_PinOutClear(LED_PORT,LED_1_PIN);
   }
-#endif
 
   INT_Enable();
 
   return;
 }
 
-/* Do the callback function configuration */
+/* This is a global definition for the DMA callback function
+ * configuration.
+ */
 static DMA_CB_TypeDef dma_cb_config = {
   .cbFunc = cb_ADC0_DMA,
   .userPtr = NULL,
   .primary = true
 };
 
-
+/* Function: ADC0_DMA_Setup(void)
+ * Parameters:
+ *    void
+ * Return:
+ *    void
+ * Description:
+ *    - config. the ADC0 to run with/without DMA enabled
+ */
 void ADC0_DMA_Setup(void)
 {
   /* Setup the initial DMA configuration */
   static DMA_CfgDescr_TypeDef dma_cfgdescr = {
     .arbRate = dmaArbitrate1,
     .dstInc = dmaDataInc2,
-    .hprot = 0,
+    .hprot = DEF_HPROT_VAL,
     .size = dmaDataSize2,
     .srcInc = dmaDataIncNone
   };
@@ -284,7 +300,6 @@ void ADC0_DMA_Setup(void)
   };
 
   /*Call the initialization functions */
-
   DMA_CfgChannel(ADC0_DMA_Channel, &dma_chnldescr);
 
   /*Clear and enable the DMA interrupt */
@@ -292,30 +307,283 @@ void ADC0_DMA_Setup(void)
   DMA_IntEnable(ADC0_DMA_Channel);
 
   /* Initialize the main DMA setup */
-  //DMA_Initialize();
-  DMA_ActivateBasic(ADC0_DMA_Channel, true, false, (void *)ADC0_DMArambuffer, (void*)&(ADC0->SINGLEDATA), 749);
+  DMA_ActivateBasic(ADC0_DMA_Channel, true, false, (void *)ADC0_DMArambuffer,\
+                      (void*)&(ADC0->SINGLEDATA), (MAX_CONVERSION-1));
 
   return;
 }
 
+/* Function: DMA_Initialize(void)
+ * Parameters:
+ *    void
+ * Return:
+ *    void
+ * Description:
+ *    - Start the initialization process for the DMA.
+ */
 void DMA_Initialize(void)
 {
   /* Initialize the structure */
   static DMA_Init_TypeDef Init_DMA = {
     .controlBlock = dmaControlBlock,
-    .hprot = 0
+    .hprot = DEF_HPROT_VAL
   };
   
   DMA_Init(&Init_DMA);
 
+  /* Setup the ADC to work with DMA */
   ADC0_DMA_Setup();
   
-  /* Enable NVIC */
+  /* Enable NVIC for the DMA*/
   NVIC_EnableIRQ(DMA_IRQn);
-
 
   return;
 }
+
+void Clear_Interrupt_Bit(void)
+{
+  /* Enable the peripheral for writing */
+  I2C1->TXDATA = ((I2C_SLAVE_ADDR << 1) | I2C_WRITE);
+
+  /* Start the communication over the SDA */
+  for(int i=0; i<1000; i++);
+
+  I2C1->CMD = I2C_CMD_START;
+
+  WAIT_FOR_SLAVE_ACK;
+  
+  /* II. Loading the command register */
+  I2C1->TXDATA = (0xC);
+
+  /* Next, wait for the slave to respond */
+  WAIT_FOR_SLAVE_ACK;
+  
+  /* IV. Start the STOP procedure */
+  MASTER_STOP;
+  
+  return;
+}
+
+void Write_to_I2C_Peripheral(uint8_t addr, int8_t write_data)
+{
+
+  /* I.
+   * Put the R/W bit along with the Slave addr. 
+   * on the TXADDR register
+   */
+  I2C1->TXDATA = ((I2C_SLAVE_ADDR << 1) | I2C_WRITE);  
+
+  /* Start the communication over the SDA */
+  for(int i=0; i<1000; i++);
+
+  I2C1->CMD = I2C_CMD_START;
+
+  WAIT_FOR_SLAVE_ACK;
+
+  /* II. Loading the command register */
+  I2C1->TXDATA = (0x80 | addr);
+
+  /* Next, wait for the slave to respond */
+  WAIT_FOR_SLAVE_ACK;
+  
+  /* III. Sending the Data over to the peripheral register */
+  I2C1->TXDATA = write_data;
+
+  /* Next, wait for the slave to respond */
+  WAIT_FOR_SLAVE_ACK;
+ 
+  /* IV. Start the STOP procedure */
+  MASTER_STOP;
+
+  return;
+}
+
+void Power_On_Reset(void)
+{
+  /* Threshold Low register */
+	Write_to_I2C_Peripheral(REG_THRESHLOWLOW, 0x0F);
+  Write_to_I2C_Peripheral(REG_THRESHLOWHIGH, 0x00);
+
+  /* Threshold High register */
+  Write_to_I2C_Peripheral(REG_THRESHHIGHLOW, 0x00);
+  Write_to_I2C_Peripheral(REG_THRESHHIGHHIGH, 0x08);
+
+  /* Set the persistance value to 4 */
+  Write_to_I2C_Peripheral(REG_INTERRUPT, 0x14);
+
+  /* Set the Integration time to 101ms and LOW gain */
+  Write_to_I2C_Peripheral(REG_TIMING, 0x11);
+
+  return;
+}
+
+int8_t Read_from_I2C_Peripheral(int8_t addr)
+{
+  int8_t ret_data = 0;
+
+  /* I. First pass the address of the register that you want to
+   * read the data from */
+  I2C1->TXDATA = ((I2C_SLAVE_ADDR << 1) | I2C_WRITE);
+
+  /* Start the communication */
+  I2C1->CMD = I2C_CMD_START;
+
+  /* Next, wait for the slave to respond */
+  WAIT_FOR_SLAVE_ACK;
+  
+  /* II. Send the address that you want to read */
+  I2C1->TXDATA = (0x80 | addr);
+
+  /* Next, wait for the slave to respond */
+  WAIT_FOR_SLAVE_ACK;
+
+  /* Re-start */
+  I2C1->CMD = I2C_CMD_START;
+
+  /* Change the config for read */
+  I2C1->TXDATA = ((I2C_SLAVE_ADDR << 1) | I2C_READ);
+
+  /* Next, wait for the slave to respond */
+  WAIT_FOR_SLAVE_ACK;
+
+  /*III. Get the data from the RX buffer */
+  while((I2C1->IF & I2C_IF_RXDATAV) == 0);
+  ret_data = I2C1->RXDATA;
+
+  /*IV. Stop the data transfer from the slave */
+  I2C1->CMD = I2C_CMD_NACK;
+
+  MASTER_STOP;
+
+  return ret_data;
+}
+
+
+void Power_Up_Peripheral(void)
+{
+  /* Turn on the GPIO pin */
+  GPIO_PinOutSet(I2C_GPIO_POWER_PORT, I2C_POWER_PIN);
+  
+  /* Wait for some time */
+  for(int i = 0; i<1000; i++);
+
+  /* Do the misc. power on reset config here! */
+
+  /* Write to the command register - peripheral */
+  Write_to_I2C_Peripheral(REG_CONTROL, 0x03);
+
+  Power_On_Reset();
+
+#if 0
+  int8_t read_val = 0;
+  read_val = Read_from_I2C_Peripheral(REG_CONTROL);
+#endif
+
+  return;
+}
+
+void Power_Down_Peripheral(void)
+{
+
+  Clear_Interrupt_Bit();
+  /* Clear the interrupts */
+  //Write_to_I2C_Peripheral(REG_INTERRUPT, CLEAR_INTERRUPT_PIN);
+
+	/* Push the power down to peripheral */
+	Write_to_I2C_Peripheral(REG_CONTROL, 0x00);
+
+	/* Clear the pin */
+	GPIO_PinOutClear(I2C_GPIO_POWER_PORT, I2C_POWER_PIN);
+
+	return;
+}
+
+
+void Setup_I2C_Peripheral(void)
+{
+
+  /* First setup the GPIO pins */
+  //Set_I2C_GPIO_Pins();
+
+  /*Next, enable the I2C clock */
+  CMU_ClockEnable(cmuClock_I2C1, true);
+
+  /* Initialize the I2C structures */
+  I2C_Init_TypeDef init_I2C_1 = {
+    .enable = true,
+    .master = true, 
+    .refFreq = 0,
+    .freq = I2C_FREQ_STANDARD_MAX,
+    .clhr = i2cClockHLRStandard
+  };
+
+  /* Next, set the route for I2C */
+  I2C1->ROUTE = (I2C_ROUTE_SDAPEN | I2C_ROUTE_SCLPEN |\
+		  	  	  I2C_ROUTE_LOCATION_LOC0);
+
+  /* Initialize the I2C peripheral 
+   * NOTE: This will not enable the I2C
+   */
+  I2C_Init(I2C1, &init_I2C_1);
+
+  /*enable the I2C*/
+  I2C_Enable(I2C1, true);
+  
+  /* Check for the busy state and reset the bus if true */
+  if(I2C1->STATE & I2C_STATE_BUSY) {
+    I2C1->CMD = I2C_CMD_ABORT;
+  }
+
+  /* Clear any interrupts from the I2C that may have been
+   * inadvertently set.
+   */
+  I2C1->IFC = 0xFFFF;
+  
+  /* Enable the interrupts */
+  I2C1->IEN = (I2C_IEN_ACK | I2C_IEN_NACK | I2C_IEN_MSTOP);
+  
+  return;
+}
+
+void Setup_GPIO_Interrupts(void)
+{
+  /* Clear all flags */
+  GPIO->IFC = 0xFFFF;
+
+  /* enable the external interrupts for GPIO */
+  GPIO_ExtIntConfig(I2C_GPIO_INT_PORT,\
+                    I2C_INT_PIN,\
+                    1,\
+                    false,\
+                    true,\
+                    true);     
+  
+  /* Enable the interrupt hadler for GPIO */
+  NVIC_EnableIRQ(GPIO_ODD_IRQn);
+
+  return;
+}
+
+void Dump_All_Register_Values(void)
+{
+  int8_t temp_data[15] = {0};
+
+  temp_data[0] = Read_from_I2C_Peripheral(REG_TIMING);
+  temp_data[1] = Read_from_I2C_Peripheral(REG_THRESHLOWLOW);
+  temp_data[2] = Read_from_I2C_Peripheral(REG_THRESHLOWHIGH);
+  temp_data[3] = Read_from_I2C_Peripheral(REG_THRESHHIGHLOW);
+  temp_data[4] = Read_from_I2C_Peripheral(REG_THRESHHIGHHIGH);
+  temp_data[5] = Read_from_I2C_Peripheral(REG_INTERRUPT);
+  temp_data[6] = Read_from_I2C_Peripheral(REG_CRC);
+  temp_data[7] = Read_from_I2C_Peripheral(REG_ID);
+  temp_data[8] = Read_from_I2C_Peripheral(REG_DATA0LOW);
+  temp_data[9] = Read_from_I2C_Peripheral(REG_DATA0HIGH);
+  temp_data[10] = Read_from_I2C_Peripheral(REG_DATA1LOW);
+  temp_data[11] = Read_from_I2C_Peripheral(REG_DATA1HIGH);
+  
+  return;
+}
+
 
 /* Function: LETIMER0_IRQHandler(void)
  * Parameters:
@@ -326,13 +594,12 @@ void DMA_Initialize(void)
  *  - This is the global LETIMER0 IRQ handler definition.
  *  - Handles the general reading of the value from the ACMP 
  *  - Toggles the LED based on the value of the ACMP
+ *  - Handles the toggle to LED1 after sensing the temperature
  */
-
 void LETIMER0_IRQHandler(void)
 {
   INT_Disable();
-
-  /* Find out which interrupt flag is set */
+  
   irq_flag_set = LETIMER_IntGet(LETIMER0);
 
   /* If COMP1 flag is set */
@@ -351,15 +618,16 @@ void LETIMER0_IRQHandler(void)
     while (!(ACMP0->STATUS & ACMP_STATUS_ACMPACT));
   } else { /* COMP0 flag is set */
 
+#ifdef TEMPERATURE_SENSOR_ENABLE
     /* Add the functionality for the temperature sensor */
 #ifdef WITHOUT_DMA
     /*Move out of the EM3 mode */
-    blockSleepMode(sleepEM1);
+    blockSleepMode(ADC_SLEEP_MODE);
     
     /* Get the average temperature of the MCU */
     output = Get_Avg_Temperature();
 
-    if(output > 24) {
+    if ((output < LOWER_TEMP_BOUND) || (output > UPPER_TEMP_BOUND)) {
       /*Turn on LED1 */
       GPIO_PinOutSet(LED_PORT,LED_1_PIN);
     } else {
@@ -367,31 +635,47 @@ void LETIMER0_IRQHandler(void)
       GPIO_PinOutClear(LED_PORT,LED_1_PIN);
     }
 
-    unblockSleepMode(sleepEM1);
+    /* ADC work done; Exit EM1 */
+    unblockSleepMode(ADC_SLEEP_MODE);
 #else
 
     /* Setup the DMA */
-    //ADC0_DMA_Setup();
     DMA_Initialize();
 
     /* Block to EM1 */
-    blockSleepMode(sleepEM1);
+    blockSleepMode(ADC_SLEEP_MODE);
 
     /* Initialize the ADC */
     ADC_Start(ADC0, adcStartSingle);
 
-    /* Activate the DMA conversion with the callback function */
-    //DMA_ActivateBasic(ADC0_DMA_Channel, true, false, (void *)ADC0_DMArambuffer, (void*)&(ADC0->SINGLEDATA), 749);
-    
-    /* Stop the ADC */
-    //ADC0->CMD = ADC_CMD_SINGLESTOP;
+#endif
+#endif
 
+//#ifdef GPIO_INTERRUPT_SET
+#if 1
+    cycle_count++;
+    if(cycle_count == 1){
 
-    /* Get the average temperature of the MCU */
-    //output = Get_Avg_Temperature();
+      /* Setup the Pins and the I2C peripheral */ 
+      Setup_I2C_Peripheral();
+      Setup_GPIO_Interrupts();
 
-    /*Do the Basic DMA Transfer now! */
-    //DMA_ActivateBasic(ADC0_DMA_Channel, true, false, (void *)ADC0_DMArambuffer, (void*)&(ADC0->SINGLEDATA), ADCSAMPLE-1);
+      /* Next power up the peripheral and 
+       * set the registers on it */
+      Power_Up_Peripheral();
+
+      Dump_All_Register_Values();
+
+    } else if (cycle_count == 2) {
+      /* Do nothing here just wait */
+    } else {
+      /* Disable the interrupts and stop the peripheral */
+      Power_Down_Peripheral();
+      
+      /* reset the counter */
+      cycle_count = 0;
+    }
+
 #endif
 
     /* Read the ACMP0 value and disable it */
@@ -409,7 +693,7 @@ void LETIMER0_IRQHandler(void)
         acmpinit.vddLevel = HIGH_LEVEL;
         /* Initialize and set the channel for ACMP */
         ACMP_Init(ACMP0,&acmpinit);		
-        ACMP_ChannelSet(ACMP0, acmpChannelVDD, acmpChannel6);
+        ACMP_ChannelSet(ACMP0, acmpChannelVDD, CONFIG_ADC_CHNL);
         /* Set the LED */
         GPIO_PinOutSet(LED_PORT,LED_0_PIN);
       }
@@ -419,7 +703,7 @@ void LETIMER0_IRQHandler(void)
         acmpinit.vddLevel = LOW_LEVEL;
         /* Initialize and set the channel for the ACMP */
         ACMP_Init(ACMP0,&acmpinit);
-        ACMP_ChannelSet(ACMP0, acmpChannel6, acmpChannelVDD);
+        ACMP_ChannelSet(ACMP0, CONFIG_ADC_CHNL, acmpChannelVDD);
         /* Clear the LED */
         GPIO_PinOutClear(LED_PORT,LED_0_PIN);
       }
@@ -452,37 +736,32 @@ int32_t Calc_Prescaler(int32_t *cycle_period, int32_t *on_period)
   return prescaler;
 }
 
-/* Function: Setup_Enable_ACMP0(void)
+/******************** I2C Light Sensor Functions *****************/
+
+
+
+
+/* Function: LETIMER0_Config_Cluster(void)
  * Parameters:
  *    void
  * Return:
  *    void
  * Description:
- *    Initialize the clock and channel of the ACMP and Enable it 
+ *    - Setup the default configuration of the LETIMER
+ *    - Similar to the configurations done in assignment 3
  */
-void Setup_Enable_ACMP0(void)
+void LETIMER0_Config_Cluster(void)
 {
-  /* Setup the ACMP */
-  CMU_ClockEnable(cmuClock_ACMP0, true);
-  ACMP_Init(ACMP0,&acmpinit);								
-  ACMP_ChannelSet(ACMP0, acmpChannelVDD, acmpChannel6);
-  ACMP_Enable(ACMP0);
-
-  return;
-}
-
-void Assignment3_Cluster(void)
-{
-
+  
   /* Initialize the GPIO and the Ambient Light Sensor */
   GPIO_Init();
   Light_Sensor_Init();
  
   /* Enable the clock for HFPERCO */
-  CMU_ClockEnable(cmuClock_HFPER, true);
+  //CMU_ClockEnable(cmuClock_HFPER, true);
   
+  /*Enable the clock for the DMA */
   CMU_ClockEnable(cmuClock_DMA, true);
-
 
   /* Do the basic clock setup for the LFXO/ULFRCO clock */
 #if (SEL_SLEEP_MODE == sleepEM3)
@@ -495,7 +774,6 @@ void Assignment3_Cluster(void)
   Setup_Enable_ACMP0();
 
   /* Continue with the LETIMER Setup */
-
   /* Disable the LETIMER before initializing it */
   LETIMER_Enable(LETIMER0, false);
 
@@ -530,7 +808,8 @@ void Assignment3_Cluster(void)
 
   int32_t cycle_period = 0;
   int32_t on_period = 0;
-#if 0
+
+#ifdef PRESCALE_LFXO
   int32_t prescaler = Calc_Prescaler(&cycle_period, &on_period);
 
   /* Set the prescaler for the LFXO clk */
@@ -547,7 +826,7 @@ void Assignment3_Cluster(void)
   LETIMER_CompareSet(LETIMER0, 1, on_period);
 
   /* Clear all interrupts */
-  LETIMER0->IFC = 0xFF;
+  LETIMER0->IFC = 0xFFFF;
  
   /* Enable the interrupts for COMP0 and COMP1 */
   LETIMER0->IEN = (LETIMER_IEN_COMP0 | LETIMER_IEN_COMP1);
@@ -558,16 +837,18 @@ void Assignment3_Cluster(void)
   /*Initialize the LETIMER and Enable it */ 
   LETIMER_Init(LETIMER0, &letimerInit);
   LETIMER_Enable(LETIMER0, true);
- 
-#ifdef Legacy_Assignemnt3
-  /* Block in EM3 */
-  blockSleepMode(SEL_SLEEP_MODE);
-#endif
-  blockSleepMode(sleepEM3);
 
   return;
 }
 
+/* Function: ADC0_Init(void)
+ * Parameters:
+ *    void
+ * Return:
+ *    void
+ * Description:
+ *    - Initialize the ADC0 and setup its default configurations
+ */
 void ADC0_Init(void)
 {
 
@@ -585,7 +866,7 @@ void ADC0_Init(void)
     .lpfMode          = adcLPFilterBypass,
     .warmUpMode       = adcWarmupNormal, 
     .timebase         = calc_timebase,
-    .prescale         = 49,
+    .prescale         = CALC_PRESCALE_VAL,
     .tailgate         = false
   };
 
@@ -614,9 +895,34 @@ void ADC0_Init(void)
 
   /* Enabling the requisite interrupts */
   ADC0->IEN = ADC_IFS_SINGLE;//0x1; //set the SINGLE bit in the register  
-  
+
   return;
 }
+
+int8_t GPIO_IRQ_flag = 0;
+int8_t adc_low = 0;
+int8_t adc_high = 0;
+
+void GPIO_ODD_IRQHandler(void)
+{
+  INT_Disable();
+
+  /* Read the GPIO interrupt flags */
+  GPIO_IRQ_flag = GPIO_IntGet();
+
+  if(GPIO_IRQ_flag & 0x2) {
+    /* Read the value from the ADC on the peripheral */
+    adc_low = Read_from_I2C_Peripheral(REG_DATA0LOW);
+    adc_high = Read_from_I2C_Peripheral(REG_DATA0HIGH);
+    
+    /* Clear the GPIO IF flags */
+    GPIO->IFC = 0xFFFF;
+  }
+    
+  INT_Enable();
+}
+
+
 
 /* Function: main(void)
  * Parameters:
@@ -630,13 +936,24 @@ int main(void)
 {
   /* Chip errata */
   CHIP_Init();
+  
+  CMU_ClockEnable(cmuClock_HFPER, true);
+  
+  Set_I2C_GPIO_Pins();
 
-  Assignment3_Cluster();
-
+  LETIMER0_Config_Cluster();
+  
   ADC0_Init();
-  //float output = Get_Avg_Temperature();
 
-  blockSleepMode(sleepEM3);
+  
+
+
+#if 0
+  Write_to_I2C_Peripheral(REG_TIMING, 0x03);
+  int8_t reg_out = Read_from_I2C_Peripheral(REG_TIMING);
+#endif
+
+  blockSleepMode(SEL_SLEEP_MODE);
   
   /* Infinite loop */
   while (1) {
