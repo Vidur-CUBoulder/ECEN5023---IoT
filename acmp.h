@@ -1,6 +1,7 @@
 #include "em_acmp.h"
 
 #define LOW_LEVEL 2
+#define HIGH_LEVEL 61
 
 /* Global structure definition for the Analog Comparator */
 static ACMP_Init_TypeDef acmpinit =

@@ -9,10 +9,10 @@
  * Description:
  *    Initialize the clock and channel of the ACMP and Enable it 
  */
-void Setup_Enable_ACMP0(void)
+void ACMP0_Init_Start(void)
 {
   /* Setup the ACMP */
-  CMU_ClockEnable(cmuClock_ACMP0, true);
+  //CMU_ClockEnable(cmuClock_ACMP0, true);
   ACMP_Init(ACMP0,&acmpinit);								
   ACMP_ChannelSet(ACMP0, acmpChannelVDD, acmpChannel6);
   ACMP_Enable(ACMP0);

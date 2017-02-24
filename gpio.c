@@ -7,7 +7,7 @@
  * Return:
  *    void
  * Description:
- *    Initialize the GPIO pins for LED0.
+ *    Initialize the GPIO pins for LED0 and LED1.
  */
 void GPIO_Init(void)
 {
@@ -16,11 +16,11 @@ void GPIO_Init(void)
 
   /* Setup the config. for LED0 */
   GPIO_DriveModeSet(LED_PORT, gpioDriveModeStandard);
-  GPIO_PinModeSet(LED_PORT, LED_0_PIN, gpioModePushPull, 1);
+  GPIO_PinModeSet(LED_PORT, LED_0_PIN, gpioModePushPull, 0);
 
   /* Setup the config. for LED1 */
   GPIO_DriveModeSet(LED_PORT, gpioDriveModeStandard);
-  GPIO_PinModeSet(LED_PORT, LED_1_PIN, gpioModePushPull, 1);
+  GPIO_PinModeSet(LED_PORT, LED_1_PIN, gpioModePushPull, 0);
 
   /* Turn Off the LED for now */
   GPIO_PinOutToggle(LED_PORT, LED_0_PIN);
@@ -39,7 +39,7 @@ void Set_I2C_GPIO_Pins(void)
 {
 
   /* Enable the GPIO clock */
-  CMU_ClockEnable(cmuClock_GPIO, true);
+  //CMU_ClockEnable(cmuClock_GPIO, true);
   
   /* Set the power pin -- PD0 */
   GPIO_PinModeSet(I2C_GPIO_POWER_PORT, I2C_POWER_PIN, gpioModePushPull, 0);
