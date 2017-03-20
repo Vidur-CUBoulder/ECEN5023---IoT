@@ -1375,7 +1375,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x2aa src/ASF/sam0/boards/samb11_xplained_pro/board_init.o
  .debug_macro   0x00000000      0x6e8 src/ASF/sam0/boards/samb11_xplained_pro/board_init.o
  .debug_line    0x00000000      0x921 src/ASF/sam0/boards/samb11_xplained_pro/board_init.o
- .debug_str     0x00000000    0xe876d src/ASF/sam0/boards/samb11_xplained_pro/board_init.o
+ .debug_str     0x00000000    0xe8771 src/ASF/sam0/boards/samb11_xplained_pro/board_init.o
  .comment       0x00000000       0x5a src/ASF/sam0/boards/samb11_xplained_pro/board_init.o
  .debug_frame   0x00000000       0x20 src/ASF/sam0/boards/samb11_xplained_pro/board_init.o
  .ARM.attributes
@@ -3786,7 +3786,7 @@ Discarded input sections
  .debug_macro   0x00000000       0xe2 src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/button.o
  .debug_macro   0x00000000       0x10 src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/button.o
  .debug_line    0x00000000      0xbc2 src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/button.o
- .debug_str     0x00000000    0xe95ec src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/button.o
+ .debug_str     0x00000000    0xe95f0 src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/button.o
  .comment       0x00000000       0x5a src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/button.o
  .debug_frame   0x00000000       0x5c src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/button.o
  .ARM.attributes
@@ -4000,7 +4000,7 @@ Discarded input sections
  .debug_macro   0x00000000       0xe2 src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/led.o
  .debug_macro   0x00000000       0x10 src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/led.o
  .debug_line    0x00000000      0xb95 src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/led.o
- .debug_str     0x00000000    0xe9354 src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/led.o
+ .debug_str     0x00000000    0xe9358 src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/led.o
  .comment       0x00000000       0x5a src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/led.o
  .debug_frame   0x00000000       0x2c src/ASF/thirdparty/wireless/ble_smart_sdk/services/gpio/led.o
  .ARM.attributes
@@ -5668,89 +5668,89 @@ LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin
  .text.usart_serial_putchar
                 0x1000ae94       0x18 src/ASF/thirdparty/wireless/ble_smart_sdk/services/uart/console_serial.o
  .text.serial_console_init
-                0x1000aeac       0xa8 src/ASF/thirdparty/wireless/ble_smart_sdk/services/uart/console_serial.o
+                0x1000aeac       0xac src/ASF/thirdparty/wireless/ble_smart_sdk/services/uart/console_serial.o
                 0x1000aeac                serial_console_init
  .text._time_start
-                0x1000af54       0x58 src/ASF/thirdparty/wireless/ble_smart_sdk/services/uart/console_serial.o
-                0x1000af54                _time_start
+                0x1000af58       0x58 src/ASF/thirdparty/wireless/ble_smart_sdk/services/uart/console_serial.o
+                0x1000af58                _time_start
  .text._time_done
-                0x1000afac       0x10 src/ASF/thirdparty/wireless/ble_smart_sdk/services/uart/console_serial.o
-                0x1000afac                _time_done
+                0x1000afb0       0x10 src/ASF/thirdparty/wireless/ble_smart_sdk/services/uart/console_serial.o
+                0x1000afb0                _time_done
  .text.getchar_b11_timeout
-                0x1000afbc       0x6c src/ASF/thirdparty/wireless/ble_smart_sdk/services/uart/console_serial.o
-                0x1000afbc                getchar_b11_timeout
+                0x1000afc0       0x6c src/ASF/thirdparty/wireless/ble_smart_sdk/services/uart/console_serial.o
+                0x1000afc0                getchar_b11_timeout
  .text.platform_event_free
-                0x1000b028       0x10 src/ASF/thirdparty/wireless/ble_smart_sdk/src/event_handler.o
-                0x1000b028                platform_event_free
+                0x1000b02c       0x10 src/ASF/thirdparty/wireless/ble_smart_sdk/src/event_handler.o
+                0x1000b02c                platform_event_free
  .text.platform_event_post
-                0x1000b038       0x38 src/ASF/thirdparty/wireless/ble_smart_sdk/src/event_handler.o
-                0x1000b038                platform_event_post
+                0x1000b03c       0x38 src/ASF/thirdparty/wireless/ble_smart_sdk/src/event_handler.o
+                0x1000b03c                platform_event_post
  .text.platform_event_init
-                0x1000b070       0x30 src/ASF/thirdparty/wireless/ble_smart_sdk/src/event_handler.o
-                0x1000b070                platform_event_init
+                0x1000b074       0x30 src/ASF/thirdparty/wireless/ble_smart_sdk/src/event_handler.o
+                0x1000b074                platform_event_init
  .text.at_ke_msg_send
-                0x1000b0a0       0x78 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
+                0x1000b0a4       0x78 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
  .text.samb11_plf_resume_callback
-                0x1000b118       0x2c src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
-                0x1000b118                samb11_plf_resume_callback
+                0x1000b11c       0x2c src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
+                0x1000b11c                samb11_plf_resume_callback
  .text.init_port_list
-                0x1000b144       0x44 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
-                0x1000b144                init_port_list
+                0x1000b148       0x44 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
+                0x1000b148                init_port_list
  .text.init_clock
-                0x1000b188       0x30 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
-                0x1000b188                init_clock
+                0x1000b18c       0x30 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
+                0x1000b18c                init_clock
  .text.platform_driver_init
-                0x1000b1b8      0x244 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
-                0x1000b1b8                platform_driver_init
+                0x1000b1bc      0x244 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
+                0x1000b1bc                platform_driver_init
  .text.platform_register_ble_msg_handler
-                0x1000b3fc       0x1c src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
-                0x1000b3fc                platform_register_ble_msg_handler
+                0x1000b400       0x1c src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
+                0x1000b400                platform_register_ble_msg_handler
  .text.platform_interface_send
-                0x1000b418       0x50 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
-                0x1000b418                platform_interface_send
+                0x1000b41c       0x50 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
+                0x1000b41c                platform_interface_send
  .text.platform_event_wait
-                0x1000b468      0x264 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
-                0x1000b468                platform_event_wait
+                0x1000b46c      0x264 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
+                0x1000b46c                platform_event_wait
  .text.acquire_sleep_lock
-                0x1000b6cc       0x14 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
-                0x1000b6cc                acquire_sleep_lock
+                0x1000b6d0       0x14 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
+                0x1000b6d0                acquire_sleep_lock
  .text.release_message_lock
-                0x1000b6e0       0x14 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
-                0x1000b6e0                release_message_lock
+                0x1000b6e4       0x14 src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
+                0x1000b6e4                release_message_lock
  .text.gpio1_combined_isr_handler
-                0x1000b6f4       0x70 src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
-                0x1000b6f4                gpio1_combined_isr_handler
+                0x1000b6f8       0x70 src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
+                0x1000b6f8                gpio1_combined_isr_handler
  .text.gpio0_combined_isr_handler
-                0x1000b764       0x6c src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
-                0x1000b764                gpio0_combined_isr_handler
+                0x1000b768       0x6c src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
+                0x1000b768                gpio0_combined_isr_handler
  .text.PORT1_COMB_Handler
-                0x1000b7d0       0x44 src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
-                0x1000b7d0                PORT1_COMB_Handler
+                0x1000b7d4       0x44 src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
+                0x1000b7d4                PORT1_COMB_Handler
  .text.wakeup_int_unregister_callback
-                0x1000b814       0x18 src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
-                0x1000b814                wakeup_int_unregister_callback
+                0x1000b818       0x18 src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
+                0x1000b818                wakeup_int_unregister_callback
  .text.wakeup_active_event_callback
-                0x1000b82c       0x5c src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
-                0x1000b82c                wakeup_active_event_callback
+                0x1000b830       0x5c src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
+                0x1000b830                wakeup_active_event_callback
  .text.app_htpt_cfg_indntf_ind_handler
-                0x1000b888       0x38 src/startup_template_app.o
+                0x1000b88c       0x38 src/startup_template_app.o
  .text.transfer_done_rx
-                0x1000b8c0       0x38 src/startup_template_app.o
+                0x1000b8c4       0x38 src/startup_template_app.o
  .text.transfer_done_tx
-                0x1000b8f8       0x14 src/startup_template_app.o
+                0x1000b8fc       0x14 src/startup_template_app.o
  .text.timer_callback_handler
-                0x1000b90c       0x20 src/startup_template_app.o
+                0x1000b910       0x20 src/startup_template_app.o
  .text.ble_advertise
-                0x1000b92c       0x78 src/startup_template_app.o
+                0x1000b930       0x78 src/startup_template_app.o
  .text.ble_disconnected_cb
-                0x1000b9a4       0x1c src/startup_template_app.o
+                0x1000b9a8       0x1c src/startup_template_app.o
  .text.ble_paired_cb
-                0x1000b9c0       0x44 src/startup_template_app.o
+                0x1000b9c4       0x44 src/startup_template_app.o
  .text.configure_gpio_pins
-                0x1000ba04       0x30 src/startup_template_app.o
-                0x1000ba04                configure_gpio_pins
- .text.main     0x1000ba34      0x2d0 src/startup_template_app.o
-                0x1000ba34                main
+                0x1000ba08       0x30 src/startup_template_app.o
+                0x1000ba08                configure_gpio_pins
+ .text.main     0x1000ba38      0x2cc src/startup_template_app.o
+                0x1000ba38                main
  .text.internal_event_post
                 0x1000bd04       0x5c ../src/ASF/thirdparty/wireless/ble_smart_sdk/lib/cm0/gcc\libblusdk.a(event.o)
                 0x1000bd04                internal_event_post
@@ -7212,45 +7212,45 @@ OUTPUT(STARTUP_TEMPLATE_SAMB11_XPLAINED_PRO1_BLE.elf elf32-littlearm)
  .debug_line    0x0000b523      0xa24 src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
  .debug_line    0x0000bf47      0xea0 src/startup_template_app.o
 
-.debug_str      0x00000000   0x10c169
- .debug_str     0x00000000    0xe94ae src/ASF/common2/components/memory/eeprom/at30tse75x/at30tse75x.o
-                              0xe98cc (size before relaxing)
- .debug_str     0x000e94ae     0x4d78 src/ASF/sam0/drivers/dma/dma_sam_b.o
+.debug_str      0x00000000   0x10c16d
+ .debug_str     0x00000000    0xe94b2 src/ASF/common2/components/memory/eeprom/at30tse75x/at30tse75x.o
+                              0xe98d0 (size before relaxing)
+ .debug_str     0x000e94b2     0x4d78 src/ASF/sam0/drivers/dma/dma_sam_b.o
                               0xeb91f (size before relaxing)
- .debug_str     0x000ee226      0x665 src/ASF/sam0/drivers/i2c/i2c_master.o
+ .debug_str     0x000ee22a      0x665 src/ASF/sam0/drivers/i2c/i2c_master.o
                               0xe7e7a (size before relaxing)
- .debug_str     0x000ee88b      0x143 src/ASF/sam0/drivers/i2c/i2c_master_interrupt.o
+ .debug_str     0x000ee88f      0x143 src/ASF/sam0/drivers/i2c/i2c_master_interrupt.o
                               0xe7408 (size before relaxing)
- .debug_str     0x000ee9ce      0x981 src/ASF/sam0/drivers/dualtimer/dualtimer.o
+ .debug_str     0x000ee9d2      0x981 src/ASF/sam0/drivers/dualtimer/dualtimer.o
                               0xea77c (size before relaxing)
- .debug_str     0x000ef34f     0x1330 src/ASF/sam0/drivers/gpio/gpio.o
+ .debug_str     0x000ef353     0x1330 src/ASF/sam0/drivers/gpio/gpio.o
                               0xeb0a6 (size before relaxing)
- .debug_str     0x000f067f      0x9b3 src/ASF/sam0/drivers/system/system_sam_b.o
+ .debug_str     0x000f0683      0x9b3 src/ASF/sam0/drivers/system/system_sam_b.o
                               0xeb236 (size before relaxing)
- .debug_str     0x000f1032      0x6d5 src/ASF/sam0/drivers/uart/uart.o
+ .debug_str     0x000f1036      0x6d5 src/ASF/sam0/drivers/uart/uart.o
                               0xe7f81 (size before relaxing)
- .debug_str     0x000f1707       0x94 src/ASF/sam0/utils/cmsis/samb11/source/gcc/startup_samb11.o
+ .debug_str     0x000f170b       0x94 src/ASF/sam0/utils/cmsis/samb11/source/gcc/startup_samb11.o
                               0xd19ec (size before relaxing)
- .debug_str     0x000f179b       0x3d src/ASF/sam0/utils/stdio/read.o
+ .debug_str     0x000f179f       0x3d src/ASF/sam0/utils/stdio/read.o
                               0xe673b (size before relaxing)
- .debug_str     0x000f17d8       0x2c src/ASF/sam0/utils/stdio/write.o
+ .debug_str     0x000f17dc       0x2c src/ASF/sam0/utils/stdio/write.o
                               0xe673d (size before relaxing)
- .debug_str     0x000f1804      0x73b src/ASF/sam0/utils/syscalls/gcc/syscalls.o
+ .debug_str     0x000f1808      0x73b src/ASF/sam0/utils/syscalls/gcc/syscalls.o
                                0x68a0 (size before relaxing)
- .debug_str     0x000f1f3f     0x7e51 src/ASF/thirdparty/wireless/ble_smart_sdk/ble_services/ble_mgr/ble_manager.o
-                              0xf105b (size before relaxing)
- .debug_str     0x000f9d90      0x1c4 src/ASF/thirdparty/wireless/ble_smart_sdk/services/dualtimer/timer_hw.o
-                              0xe989f (size before relaxing)
- .debug_str     0x000f9f54      0x376 src/ASF/thirdparty/wireless/ble_smart_sdk/services/uart/console_serial.o
-                              0xea280 (size before relaxing)
- .debug_str     0x000fa2ca      0x210 src/ASF/thirdparty/wireless/ble_smart_sdk/src/event_handler.o
+ .debug_str     0x000f1f43     0x7e51 src/ASF/thirdparty/wireless/ble_smart_sdk/ble_services/ble_mgr/ble_manager.o
+                              0xf105f (size before relaxing)
+ .debug_str     0x000f9d94      0x1c4 src/ASF/thirdparty/wireless/ble_smart_sdk/services/dualtimer/timer_hw.o
+                              0xe98a3 (size before relaxing)
+ .debug_str     0x000f9f58      0x376 src/ASF/thirdparty/wireless/ble_smart_sdk/services/uart/console_serial.o
+                              0xea284 (size before relaxing)
+ .debug_str     0x000fa2ce      0x210 src/ASF/thirdparty/wireless/ble_smart_sdk/src/event_handler.o
                                0x5f4f (size before relaxing)
- .debug_str     0x000fa4da    0x1141a src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
+ .debug_str     0x000fa4de    0x1141a src/ASF/thirdparty/wireless/ble_smart_sdk/src/platform_drv.o
                               0xf7f91 (size before relaxing)
- .debug_str     0x0010b8f4      0x226 src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
+ .debug_str     0x0010b8f8      0x226 src/ASF/thirdparty/wireless/ble_smart_sdk/src/port_from_sdk.o
                               0xe7802 (size before relaxing)
- .debug_str     0x0010bb1a      0x64f src/startup_template_app.o
-                              0xf0a52 (size before relaxing)
+ .debug_str     0x0010bb1e      0x64f src/startup_template_app.o
+                              0xf0a56 (size before relaxing)
 
 .debug_frame    0x00000000     0x1fc4
  .debug_frame   0x00000000       0xf4 src/ASF/common2/components/memory/eeprom/at30tse75x/at30tse75x.o

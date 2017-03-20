@@ -124,9 +124,9 @@ static void configure_dma_resource_tx(struct dma_resource *resource)
 	//! [setup_tx_2]
 
 	//! [setup_tx_3]
-	config.des.periph = UART0TX_DMA_PERIPHERAL;
+	config.des.periph = UART1TX_DMA_PERIPHERAL;
 	config.des.enable_inc_addr = false;
-	config.src.periph = UART0TX_DMA_PERIPHERAL;
+	config.src.periph = UART1TX_DMA_PERIPHERAL;
 	//! [setup_tx_3]
 
 	//! [setup_tx_4]
@@ -164,7 +164,7 @@ static void configure_dma_resource_rx(struct dma_resource *resource)
 	//! [setup_rx_2]
 
 	//! [setup_rx_3]
-	config.src.periph = UART0RX_DMA_PERIPHERAL;
+	config.src.periph = UART1RX_DMA_PERIPHERAL;
 	config.src.enable_inc_addr = false;
 	config.src.periph_delay = 1;
 	//! [setup_rx_3]

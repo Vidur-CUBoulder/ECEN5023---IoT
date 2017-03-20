@@ -29,9 +29,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  12 .debug_line   0000cde7  00000000  00000000  0006b4a5  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    0010c169  00000000  00000000  0007828c  2**0
+ 13 .debug_str    0010c16d  00000000  00000000  0007828c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_frame  00001fc4  00000000  00000000  001843f8  2**2
+ 14 .debug_frame  00001fc4  00000000  00000000  001843fc  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -152,7 +152,7 @@ void app_entry(void)
 10008078:	1001235c 	.word	0x1001235c
 1000807c:	100123d4 	.word	0x100123d4
 10008080:	100102ed 	.word	0x100102ed
-10008084:	1000ba35 	.word	0x1000ba35
+10008084:	1000ba39 	.word	0x1000ba39
 
 10008088 <__do_global_dtors_aux>:
 10008088:	b510      	push	{r4, lr}
@@ -9141,7 +9141,7 @@ at_ble_status_t ble_pair_key_request_handler (void *params)
 1000a3a8:	10010499 	.word	0x10010499
 1000a3ac:	10011b08 	.word	0x10011b08
 1000a3b0:	10010379 	.word	0x10010379
-1000a3b4:	1000afbd 	.word	0x1000afbd
+1000a3b4:	1000afc1 	.word	0x1000afc1
 1000a3b8:	10011b30 	.word	0x10011b30
 1000a3bc:	10011b3c 	.word	0x10011b3c
 1000a3c0:	1000ca5d 	.word	0x1000ca5d
@@ -11449,13 +11449,13 @@ void serial_console_init(void)
 	system_clock_config(CLOCK_RESOURCE_XO_26_MHZ, CLOCK_FREQ_26_MHZ);
 1000aeae:	2100      	movs	r1, #0
 1000aeb0:	2000      	movs	r0, #0
-1000aeb2:	4b19      	ldr	r3, [pc, #100]	; (1000af18 <serial_console_init+0x6c>)
+1000aeb2:	4b1a      	ldr	r3, [pc, #104]	; (1000af1c <serial_console_init+0x70>)
 1000aeb4:	4798      	blx	r3
 
 	uart_get_config_defaults(&config_uart);
-1000aeb6:	4c19      	ldr	r4, [pc, #100]	; (1000af1c <serial_console_init+0x70>)
+1000aeb6:	4c1a      	ldr	r4, [pc, #104]	; (1000af20 <serial_console_init+0x74>)
 1000aeb8:	0020      	movs	r0, r4
-1000aeba:	4b19      	ldr	r3, [pc, #100]	; (1000af20 <serial_console_init+0x74>)
+1000aeba:	4b1a      	ldr	r3, [pc, #104]	; (1000af24 <serial_console_init+0x78>)
 1000aebc:	4798      	blx	r3
 
 	config_uart.baud_rate = CONF_STDIO_BAUDRATE;
@@ -11463,2665 +11463,2665 @@ void serial_console_init(void)
 1000aec0:	025b      	lsls	r3, r3, #9
 1000aec2:	6023      	str	r3, [r4, #0]
 	config_uart.pin_number_pad[0] = EDBG_CDC_SERCOM_PIN_PAD0;
-1000aec4:	2302      	movs	r3, #2
+1000aec4:	2306      	movs	r3, #6
 1000aec6:	60a3      	str	r3, [r4, #8]
 	config_uart.pin_number_pad[1] = EDBG_CDC_SERCOM_PIN_PAD1;
-1000aec8:	2203      	movs	r2, #3
-1000aeca:	60e2      	str	r2, [r4, #12]
+1000aec8:	3301      	adds	r3, #1
+1000aeca:	60e3      	str	r3, [r4, #12]
 	config_uart.pin_number_pad[2] = EDBG_CDC_SERCOM_PIN_PAD2;
-1000aecc:	3201      	adds	r2, #1
-1000aece:	6122      	str	r2, [r4, #16]
+1000aecc:	3307      	adds	r3, #7
+1000aece:	6123      	str	r3, [r4, #16]
 	config_uart.pin_number_pad[3] = EDBG_CDC_SERCOM_PIN_PAD3;
-1000aed0:	3201      	adds	r2, #1
-1000aed2:	6162      	str	r2, [r4, #20]
+1000aed0:	3301      	adds	r3, #1
+1000aed2:	6163      	str	r3, [r4, #20]
 	
 	config_uart.pinmux_sel_pad[0] = EDBG_CDC_SERCOM_MUX_PAD0;
-1000aed4:	61a3      	str	r3, [r4, #24]
+1000aed4:	3b0d      	subs	r3, #13
+1000aed6:	61a3      	str	r3, [r4, #24]
 	config_uart.pinmux_sel_pad[1] = EDBG_CDC_SERCOM_MUX_PAD1;
-1000aed6:	61e3      	str	r3, [r4, #28]
+1000aed8:	61e3      	str	r3, [r4, #28]
 	config_uart.pinmux_sel_pad[2] = EDBG_CDC_SERCOM_MUX_PAD2;
-1000aed8:	6223      	str	r3, [r4, #32]
+1000aeda:	6223      	str	r3, [r4, #32]
 	config_uart.pinmux_sel_pad[3] = EDBG_CDC_SERCOM_MUX_PAD3;
-1000aeda:	6263      	str	r3, [r4, #36]	; 0x24
+1000aedc:	6263      	str	r3, [r4, #36]	; 0x24
 static inline void stdio_serial_init(
 		struct uart_module *const module,
 		Uart * const hw,
 		const struct uart_config *const config)
 {
 	stdio_base = (void *)module;
-1000aedc:	4d11      	ldr	r5, [pc, #68]	; (1000af24 <serial_console_init+0x78>)
-1000aede:	4b12      	ldr	r3, [pc, #72]	; (1000af28 <serial_console_init+0x7c>)
-1000aee0:	601d      	str	r5, [r3, #0]
+1000aede:	4d12      	ldr	r5, [pc, #72]	; (1000af28 <serial_console_init+0x7c>)
+1000aee0:	4b12      	ldr	r3, [pc, #72]	; (1000af2c <serial_console_init+0x80>)
+1000aee2:	601d      	str	r5, [r3, #0]
 	ptr_put = (int (*)(void volatile*,char))&usart_serial_putchar;
-1000aee2:	4a12      	ldr	r2, [pc, #72]	; (1000af2c <serial_console_init+0x80>)
-1000aee4:	4b12      	ldr	r3, [pc, #72]	; (1000af30 <serial_console_init+0x84>)
-1000aee6:	601a      	str	r2, [r3, #0]
+1000aee4:	4a12      	ldr	r2, [pc, #72]	; (1000af30 <serial_console_init+0x84>)
+1000aee6:	4b13      	ldr	r3, [pc, #76]	; (1000af34 <serial_console_init+0x88>)
+1000aee8:	601a      	str	r2, [r3, #0]
 	ptr_get = (void (*)(void volatile*,char*))&usart_serial_getchar;
-1000aee8:	4a12      	ldr	r2, [pc, #72]	; (1000af34 <serial_console_init+0x88>)
-1000aeea:	4b13      	ldr	r3, [pc, #76]	; (1000af38 <serial_console_init+0x8c>)
-1000aeec:	601a      	str	r2, [r3, #0]
+1000aeea:	4a13      	ldr	r2, [pc, #76]	; (1000af38 <serial_console_init+0x8c>)
+1000aeec:	4b13      	ldr	r3, [pc, #76]	; (1000af3c <serial_console_init+0x90>)
+1000aeee:	601a      	str	r2, [r3, #0]
 static inline bool usart_serial_init(
 		struct uart_module *const module,
 		Uart * const hw,
 		const struct uart_config *const config)
 {
 	if (uart_init(module, hw, config) == STATUS_OK) {
-1000aeee:	0022      	movs	r2, r4
-1000aef0:	4912      	ldr	r1, [pc, #72]	; (1000af3c <serial_console_init+0x90>)
-1000aef2:	0028      	movs	r0, r5
-1000aef4:	4b12      	ldr	r3, [pc, #72]	; (1000af40 <serial_console_init+0x94>)
-1000aef6:	4798      	blx	r3
+1000aef0:	0022      	movs	r2, r4
+1000aef2:	4913      	ldr	r1, [pc, #76]	; (1000af40 <serial_console_init+0x94>)
+1000aef4:	0028      	movs	r0, r5
+1000aef6:	4b13      	ldr	r3, [pc, #76]	; (1000af44 <serial_console_init+0x98>)
+1000aef8:	4798      	blx	r3
 
 	usart_serial_init(module, hw, config);
 # if defined(__GNUC__)
 	// Specify that stdout and stdin should not be buffered.
 	setbuf(stdout, NULL);
-1000aef8:	4e12      	ldr	r6, [pc, #72]	; (1000af44 <serial_console_init+0x98>)
-1000aefa:	6833      	ldr	r3, [r6, #0]
-1000aefc:	6898      	ldr	r0, [r3, #8]
-1000aefe:	2100      	movs	r1, #0
-1000af00:	4c11      	ldr	r4, [pc, #68]	; (1000af48 <serial_console_init+0x9c>)
-1000af02:	47a0      	blx	r4
+1000aefa:	4e13      	ldr	r6, [pc, #76]	; (1000af48 <serial_console_init+0x9c>)
+1000aefc:	6833      	ldr	r3, [r6, #0]
+1000aefe:	6898      	ldr	r0, [r3, #8]
+1000af00:	2100      	movs	r1, #0
+1000af02:	4c12      	ldr	r4, [pc, #72]	; (1000af4c <serial_console_init+0xa0>)
+1000af04:	47a0      	blx	r4
 	setbuf(stdin, NULL);
-1000af04:	6833      	ldr	r3, [r6, #0]
-1000af06:	6858      	ldr	r0, [r3, #4]
-1000af08:	2100      	movs	r1, #0
-1000af0a:	47a0      	blx	r4
+1000af06:	6833      	ldr	r3, [r6, #0]
+1000af08:	6858      	ldr	r0, [r3, #4]
+1000af0a:	2100      	movs	r1, #0
+1000af0c:	47a0      	blx	r4
 
 	stdio_serial_init(&uart_instance, CONF_STDIO_USART_MODULE, &config_uart);
 	
 	uart_register_callback(&uart_instance, uart_read_complete_callback, UART_RX_COMPLETE);
-1000af0c:	2202      	movs	r2, #2
-1000af0e:	490f      	ldr	r1, [pc, #60]	; (1000af4c <serial_console_init+0xa0>)
-1000af10:	0028      	movs	r0, r5
-1000af12:	4b0f      	ldr	r3, [pc, #60]	; (1000af50 <serial_console_init+0xa4>)
-1000af14:	4798      	blx	r3
+1000af0e:	2202      	movs	r2, #2
+1000af10:	490f      	ldr	r1, [pc, #60]	; (1000af50 <serial_console_init+0xa4>)
+1000af12:	0028      	movs	r0, r5
+1000af14:	4b0f      	ldr	r3, [pc, #60]	; (1000af54 <serial_console_init+0xa8>)
+1000af16:	4798      	blx	r3
 }
-1000af16:	bd70      	pop	{r4, r5, r6, pc}
-1000af18:	10008d95 	.word	0x10008d95
-1000af1c:	10014750 	.word	0x10014750
-1000af20:	10009821 	.word	0x10009821
-1000af24:	1001472c 	.word	0x1001472c
-1000af28:	10013ee8 	.word	0x10013ee8
-1000af2c:	1000ae95 	.word	0x1000ae95
-1000af30:	10013ee4 	.word	0x10013ee4
-1000af34:	1000ae7d 	.word	0x1000ae7d
-1000af38:	10013ee0 	.word	0x10013ee0
-1000af3c:	40004000 	.word	0x40004000
-1000af40:	1000984d 	.word	0x1000984d
-1000af44:	100123cc 	.word	0x100123cc
-1000af48:	10010525 	.word	0x10010525
-1000af4c:	1000ae29 	.word	0x1000ae29
-1000af50:	10009a55 	.word	0x10009a55
+1000af18:	bd70      	pop	{r4, r5, r6, pc}
+1000af1a:	46c0      	nop			; (mov r8, r8)
+1000af1c:	10008d95 	.word	0x10008d95
+1000af20:	10014750 	.word	0x10014750
+1000af24:	10009821 	.word	0x10009821
+1000af28:	1001472c 	.word	0x1001472c
+1000af2c:	10013ee8 	.word	0x10013ee8
+1000af30:	1000ae95 	.word	0x1000ae95
+1000af34:	10013ee4 	.word	0x10013ee4
+1000af38:	1000ae7d 	.word	0x1000ae7d
+1000af3c:	10013ee0 	.word	0x10013ee0
+1000af40:	40005000 	.word	0x40005000
+1000af44:	1000984d 	.word	0x1000984d
+1000af48:	100123cc 	.word	0x100123cc
+1000af4c:	10010525 	.word	0x10010525
+1000af50:	1000ae29 	.word	0x1000ae29
+1000af54:	10009a55 	.word	0x10009a55
 
-1000af54 <_time_start>:
+1000af58 <_time_start>:
 
 void _time_start(unsigned int sec)
 {
-1000af54:	b5f0      	push	{r4, r5, r6, r7, lr}
-1000af56:	b083      	sub	sp, #12
-1000af58:	0005      	movs	r5, r0
+1000af58:	b5f0      	push	{r4, r5, r6, r7, lr}
+1000af5a:	b083      	sub	sp, #12
+1000af5c:	0005      	movs	r5, r0
 	system_clock_get_value();
-1000af5a:	4c0d      	ldr	r4, [pc, #52]	; (1000af90 <_time_start+0x3c>)
-1000af5c:	47a0      	blx	r4
+1000af5e:	4c0d      	ldr	r4, [pc, #52]	; (1000af94 <_time_start+0x3c>)
+1000af60:	47a0      	blx	r4
 	unsigned int main_clk = system_clock_get_value();
-1000af5e:	47a0      	blx	r4
+1000af62:	47a0      	blx	r4
 
 	tick = (((double)(main_clk)) * ((double)0.0000493)) * (sec * 1000);
-1000af60:	4f0c      	ldr	r7, [pc, #48]	; (1000af94 <_time_start+0x40>)
-1000af62:	47b8      	blx	r7
-1000af64:	4e0c      	ldr	r6, [pc, #48]	; (1000af98 <_time_start+0x44>)
-1000af66:	4a0d      	ldr	r2, [pc, #52]	; (1000af9c <_time_start+0x48>)
-1000af68:	4b0d      	ldr	r3, [pc, #52]	; (1000afa0 <_time_start+0x4c>)
-1000af6a:	47b0      	blx	r6
-1000af6c:	9000      	str	r0, [sp, #0]
-1000af6e:	9101      	str	r1, [sp, #4]
-1000af70:	20fa      	movs	r0, #250	; 0xfa
-1000af72:	0080      	lsls	r0, r0, #2
-1000af74:	4368      	muls	r0, r5
-1000af76:	47b8      	blx	r7
-1000af78:	0002      	movs	r2, r0
-1000af7a:	000b      	movs	r3, r1
-1000af7c:	9800      	ldr	r0, [sp, #0]
-1000af7e:	9901      	ldr	r1, [sp, #4]
-1000af80:	47b0      	blx	r6
-1000af82:	4b08      	ldr	r3, [pc, #32]	; (1000afa4 <_time_start+0x50>)
-1000af84:	4798      	blx	r3
-1000af86:	4b08      	ldr	r3, [pc, #32]	; (1000afa8 <_time_start+0x54>)
-1000af88:	6018      	str	r0, [r3, #0]
+1000af64:	4f0c      	ldr	r7, [pc, #48]	; (1000af98 <_time_start+0x40>)
+1000af66:	47b8      	blx	r7
+1000af68:	4e0c      	ldr	r6, [pc, #48]	; (1000af9c <_time_start+0x44>)
+1000af6a:	4a0d      	ldr	r2, [pc, #52]	; (1000afa0 <_time_start+0x48>)
+1000af6c:	4b0d      	ldr	r3, [pc, #52]	; (1000afa4 <_time_start+0x4c>)
+1000af6e:	47b0      	blx	r6
+1000af70:	9000      	str	r0, [sp, #0]
+1000af72:	9101      	str	r1, [sp, #4]
+1000af74:	20fa      	movs	r0, #250	; 0xfa
+1000af76:	0080      	lsls	r0, r0, #2
+1000af78:	4368      	muls	r0, r5
+1000af7a:	47b8      	blx	r7
+1000af7c:	0002      	movs	r2, r0
+1000af7e:	000b      	movs	r3, r1
+1000af80:	9800      	ldr	r0, [sp, #0]
+1000af82:	9901      	ldr	r1, [sp, #4]
+1000af84:	47b0      	blx	r6
+1000af86:	4b08      	ldr	r3, [pc, #32]	; (1000afa8 <_time_start+0x50>)
+1000af88:	4798      	blx	r3
+1000af8a:	4b08      	ldr	r3, [pc, #32]	; (1000afac <_time_start+0x54>)
+1000af8c:	6018      	str	r0, [r3, #0]
 }
-1000af8a:	b003      	add	sp, #12
-1000af8c:	bdf0      	pop	{r4, r5, r6, r7, pc}
-1000af8e:	46c0      	nop			; (mov r8, r8)
-1000af90:	10008e19 	.word	0x10008e19
-1000af94:	1000fdd5 	.word	0x1000fdd5
-1000af98:	1000f1cd 	.word	0x1000f1cd
-1000af9c:	19feaec7 	.word	0x19feaec7
-1000afa0:	3f09d8ef 	.word	0x3f09d8ef
-1000afa4:	1000ec19 	.word	0x1000ec19
-1000afa8:	10013cf4 	.word	0x10013cf4
+1000af8e:	b003      	add	sp, #12
+1000af90:	bdf0      	pop	{r4, r5, r6, r7, pc}
+1000af92:	46c0      	nop			; (mov r8, r8)
+1000af94:	10008e19 	.word	0x10008e19
+1000af98:	1000fdd5 	.word	0x1000fdd5
+1000af9c:	1000f1cd 	.word	0x1000f1cd
+1000afa0:	19feaec7 	.word	0x19feaec7
+1000afa4:	3f09d8ef 	.word	0x3f09d8ef
+1000afa8:	1000ec19 	.word	0x1000ec19
+1000afac:	10013cf4 	.word	0x10013cf4
 
-1000afac <_time_done>:
+1000afb0 <_time_done>:
 
 unsigned int _time_done()
 {
 	return --tick;
-1000afac:	4b02      	ldr	r3, [pc, #8]	; (1000afb8 <_time_done+0xc>)
-1000afae:	681a      	ldr	r2, [r3, #0]
-1000afb0:	1e50      	subs	r0, r2, #1
-1000afb2:	6018      	str	r0, [r3, #0]
+1000afb0:	4b02      	ldr	r3, [pc, #8]	; (1000afbc <_time_done+0xc>)
+1000afb2:	681a      	ldr	r2, [r3, #0]
+1000afb4:	1e50      	subs	r0, r2, #1
+1000afb6:	6018      	str	r0, [r3, #0]
 }
-1000afb4:	4770      	bx	lr
-1000afb6:	46c0      	nop			; (mov r8, r8)
-1000afb8:	10013cf4 	.word	0x10013cf4
+1000afb8:	4770      	bx	lr
+1000afba:	46c0      	nop			; (mov r8, r8)
+1000afbc:	10013cf4 	.word	0x10013cf4
 
-1000afbc <getchar_b11_timeout>:
+1000afc0 <getchar_b11_timeout>:
 
 int getchar_b11_timeout(unsigned int sec)
 {
-1000afbc:	b570      	push	{r4, r5, r6, lr}
-1000afbe:	0004      	movs	r4, r0
+1000afc0:	b570      	push	{r4, r5, r6, lr}
+1000afc2:	0004      	movs	r4, r0
 	read_status = UART_READ_WAITING;
-1000afc0:	2201      	movs	r2, #1
-1000afc2:	4b11      	ldr	r3, [pc, #68]	; (1000b008 <getchar_b11_timeout+0x4c>)
-1000afc4:	701a      	strb	r2, [r3, #0]
+1000afc4:	2201      	movs	r2, #1
+1000afc6:	4b11      	ldr	r3, [pc, #68]	; (1000b00c <getchar_b11_timeout+0x4c>)
+1000afc8:	701a      	strb	r2, [r3, #0]
 	
 	if(user_callback_func == NULL)
-1000afc6:	4b11      	ldr	r3, [pc, #68]	; (1000b00c <getchar_b11_timeout+0x50>)
-1000afc8:	681b      	ldr	r3, [r3, #0]
-1000afca:	2b00      	cmp	r3, #0
-1000afcc:	d103      	bne.n	1000afd6 <getchar_b11_timeout+0x1a>
+1000afca:	4b11      	ldr	r3, [pc, #68]	; (1000b010 <getchar_b11_timeout+0x50>)
+1000afcc:	681b      	ldr	r3, [r3, #0]
+1000afce:	2b00      	cmp	r3, #0
+1000afd0:	d103      	bne.n	1000afda <getchar_b11_timeout+0x1a>
 		uart_enable_callback(&uart_instance, UART_RX_COMPLETE);
-1000afce:	2102      	movs	r1, #2
-1000afd0:	480f      	ldr	r0, [pc, #60]	; (1000b010 <getchar_b11_timeout+0x54>)
-1000afd2:	4b10      	ldr	r3, [pc, #64]	; (1000b014 <getchar_b11_timeout+0x58>)
-1000afd4:	4798      	blx	r3
+1000afd2:	2102      	movs	r1, #2
+1000afd4:	480f      	ldr	r0, [pc, #60]	; (1000b014 <getchar_b11_timeout+0x54>)
+1000afd6:	4b10      	ldr	r3, [pc, #64]	; (1000b018 <getchar_b11_timeout+0x58>)
+1000afd8:	4798      	blx	r3
 
 	_time_start(sec);
-1000afd6:	0020      	movs	r0, r4
-1000afd8:	4b0f      	ldr	r3, [pc, #60]	; (1000b018 <getchar_b11_timeout+0x5c>)
-1000afda:	4798      	blx	r3
+1000afda:	0020      	movs	r0, r4
+1000afdc:	4b0f      	ldr	r3, [pc, #60]	; (1000b01c <getchar_b11_timeout+0x5c>)
+1000afde:	4798      	blx	r3
 	
 	string_input[0] = 0;
-1000afdc:	490f      	ldr	r1, [pc, #60]	; (1000b01c <getchar_b11_timeout+0x60>)
-1000afde:	2300      	movs	r3, #0
-1000afe0:	700b      	strb	r3, [r1, #0]
+1000afe0:	490f      	ldr	r1, [pc, #60]	; (1000b020 <getchar_b11_timeout+0x60>)
+1000afe2:	2300      	movs	r3, #0
+1000afe4:	700b      	strb	r3, [r1, #0]
 	uart_read_buffer_job(&uart_instance, string_input, sizeof(string_input));
-1000afe2:	2201      	movs	r2, #1
-1000afe4:	480a      	ldr	r0, [pc, #40]	; (1000b010 <getchar_b11_timeout+0x54>)
-1000afe6:	4b0e      	ldr	r3, [pc, #56]	; (1000b020 <getchar_b11_timeout+0x64>)
-1000afe8:	4798      	blx	r3
+1000afe6:	2201      	movs	r2, #1
+1000afe8:	480a      	ldr	r0, [pc, #40]	; (1000b014 <getchar_b11_timeout+0x54>)
+1000afea:	4b0e      	ldr	r3, [pc, #56]	; (1000b024 <getchar_b11_timeout+0x64>)
+1000afec:	4798      	blx	r3
 	
 	while (read_status != UART_READ_DONE && _time_done() > 0 );
-1000afea:	4c07      	ldr	r4, [pc, #28]	; (1000b008 <getchar_b11_timeout+0x4c>)
-1000afec:	4d0d      	ldr	r5, [pc, #52]	; (1000b024 <getchar_b11_timeout+0x68>)
-1000afee:	7823      	ldrb	r3, [r4, #0]
-1000aff0:	2b02      	cmp	r3, #2
-1000aff2:	d002      	beq.n	1000affa <getchar_b11_timeout+0x3e>
-1000aff4:	47a8      	blx	r5
-1000aff6:	2800      	cmp	r0, #0
-1000aff8:	d1f9      	bne.n	1000afee <getchar_b11_timeout+0x32>
+1000afee:	4c07      	ldr	r4, [pc, #28]	; (1000b00c <getchar_b11_timeout+0x4c>)
+1000aff0:	4d0d      	ldr	r5, [pc, #52]	; (1000b028 <getchar_b11_timeout+0x68>)
+1000aff2:	7823      	ldrb	r3, [r4, #0]
+1000aff4:	2b02      	cmp	r3, #2
+1000aff6:	d002      	beq.n	1000affe <getchar_b11_timeout+0x3e>
+1000aff8:	47a8      	blx	r5
+1000affa:	2800      	cmp	r0, #0
+1000affc:	d1f9      	bne.n	1000aff2 <getchar_b11_timeout+0x32>
 	
 	read_status = UART_READ_NONE;
-1000affa:	2200      	movs	r2, #0
-1000affc:	4b02      	ldr	r3, [pc, #8]	; (1000b008 <getchar_b11_timeout+0x4c>)
-1000affe:	701a      	strb	r2, [r3, #0]
+1000affe:	2200      	movs	r2, #0
+1000b000:	4b02      	ldr	r3, [pc, #8]	; (1000b00c <getchar_b11_timeout+0x4c>)
+1000b002:	701a      	strb	r2, [r3, #0]
 
 	return string_input[0];
-1000b000:	4b06      	ldr	r3, [pc, #24]	; (1000b01c <getchar_b11_timeout+0x60>)
-1000b002:	7818      	ldrb	r0, [r3, #0]
+1000b004:	4b06      	ldr	r3, [pc, #24]	; (1000b020 <getchar_b11_timeout+0x60>)
+1000b006:	7818      	ldrb	r0, [r3, #0]
 }
-1000b004:	bd70      	pop	{r4, r5, r6, pc}
-1000b006:	46c0      	nop			; (mov r8, r8)
-1000b008:	10013cf8 	.word	0x10013cf8
-1000b00c:	10013d00 	.word	0x10013d00
-1000b010:	1001472c 	.word	0x1001472c
-1000b014:	10009a69 	.word	0x10009a69
-1000b018:	1000af55 	.word	0x1000af55
-1000b01c:	10013cfc 	.word	0x10013cfc
-1000b020:	10009a2d 	.word	0x10009a2d
-1000b024:	1000afad 	.word	0x1000afad
+1000b008:	bd70      	pop	{r4, r5, r6, pc}
+1000b00a:	46c0      	nop			; (mov r8, r8)
+1000b00c:	10013cf8 	.word	0x10013cf8
+1000b010:	10013d00 	.word	0x10013d00
+1000b014:	1001472c 	.word	0x1001472c
+1000b018:	10009a69 	.word	0x10009a69
+1000b01c:	1000af59 	.word	0x1000af59
+1000b020:	10013cfc 	.word	0x10013cfc
+1000b024:	10009a2d 	.word	0x10009a2d
+1000b028:	1000afb1 	.word	0x1000afb1
 
-1000b028 <platform_event_free>:
+1000b02c <platform_event_free>:
 void platform_event_free(struct platform_event* event);
 //struct str_watched_event watched_event;
 
 void platform_event_free(struct platform_event* event)
 {
 	event->next = platform_event_free_list;
-1000b028:	4b02      	ldr	r3, [pc, #8]	; (1000b034 <platform_event_free+0xc>)
-1000b02a:	681a      	ldr	r2, [r3, #0]
-1000b02c:	6002      	str	r2, [r0, #0]
+1000b02c:	4b02      	ldr	r3, [pc, #8]	; (1000b038 <platform_event_free+0xc>)
+1000b02e:	681a      	ldr	r2, [r3, #0]
+1000b030:	6002      	str	r2, [r0, #0]
 	platform_event_free_list = event;
-1000b02e:	6018      	str	r0, [r3, #0]
+1000b032:	6018      	str	r0, [r3, #0]
 }
-1000b030:	4770      	bx	lr
-1000b032:	46c0      	nop			; (mov r8, r8)
-1000b034:	10013d08 	.word	0x10013d08
+1000b034:	4770      	bx	lr
+1000b036:	46c0      	nop			; (mov r8, r8)
+1000b038:	10013d08 	.word	0x10013d08
 
-1000b038 <platform_event_post>:
+1000b03c <platform_event_post>:
 
 void platform_event_post(uint16_t event_type, void * data, uint16_t data_len)
 {
-1000b038:	b530      	push	{r4, r5, lr}
+1000b03c:	b530      	push	{r4, r5, lr}
 	// get a free event object
 	struct platform_event* evt = platform_event_free_list;
-1000b03a:	4b0b      	ldr	r3, [pc, #44]	; (1000b068 <platform_event_post+0x30>)
-1000b03c:	681c      	ldr	r4, [r3, #0]
+1000b03e:	4b0b      	ldr	r3, [pc, #44]	; (1000b06c <platform_event_post+0x30>)
+1000b040:	681c      	ldr	r4, [r3, #0]
 	if(evt != NULL)
-1000b03e:	2c00      	cmp	r4, #0
-1000b040:	d011      	beq.n	1000b066 <platform_event_post+0x2e>
+1000b042:	2c00      	cmp	r4, #0
+1000b044:	d011      	beq.n	1000b06a <platform_event_post+0x2e>
 	{
 		platform_event_free_list = evt->next;
-1000b042:	6825      	ldr	r5, [r4, #0]
-1000b044:	601d      	str	r5, [r3, #0]
+1000b046:	6825      	ldr	r5, [r4, #0]
+1000b048:	601d      	str	r5, [r3, #0]
 		
 		evt->next = NULL;
-1000b046:	2300      	movs	r3, #0
-1000b048:	6023      	str	r3, [r4, #0]
+1000b04a:	2300      	movs	r3, #0
+1000b04c:	6023      	str	r3, [r4, #0]
 		evt->data = data;
-1000b04a:	60a1      	str	r1, [r4, #8]
+1000b04e:	60a1      	str	r1, [r4, #8]
 		evt->data_len = data_len;
-1000b04c:	80e2      	strh	r2, [r4, #6]
+1000b050:	80e2      	strh	r2, [r4, #6]
 		evt->event_type = event_type;
-1000b04e:	80a0      	strh	r0, [r4, #4]
+1000b052:	80a0      	strh	r0, [r4, #4]
 
 		if(platform_event_pending_list == NULL)
-1000b050:	4b06      	ldr	r3, [pc, #24]	; (1000b06c <platform_event_post+0x34>)
-1000b052:	681a      	ldr	r2, [r3, #0]
-1000b054:	2a00      	cmp	r2, #0
-1000b056:	d102      	bne.n	1000b05e <platform_event_post+0x26>
+1000b054:	4b06      	ldr	r3, [pc, #24]	; (1000b070 <platform_event_post+0x34>)
+1000b056:	681a      	ldr	r2, [r3, #0]
+1000b058:	2a00      	cmp	r2, #0
+1000b05a:	d102      	bne.n	1000b062 <platform_event_post+0x26>
 		{
 			platform_event_pending_list = evt;
-1000b058:	601c      	str	r4, [r3, #0]
-1000b05a:	e004      	b.n	1000b066 <platform_event_post+0x2e>
+1000b05c:	601c      	str	r4, [r3, #0]
+1000b05e:	e004      	b.n	1000b06a <platform_event_post+0x2e>
 		else
 		{
 			struct platform_event* cur = platform_event_pending_list;
 			while(cur->next != NULL)
 			{
 				cur = cur->next;
-1000b05c:	001a      	movs	r2, r3
+1000b060:	001a      	movs	r2, r3
 			platform_event_pending_list = evt;
 		}
 		else
 		{
 			struct platform_event* cur = platform_event_pending_list;
 			while(cur->next != NULL)
-1000b05e:	6813      	ldr	r3, [r2, #0]
-1000b060:	2b00      	cmp	r3, #0
-1000b062:	d1fb      	bne.n	1000b05c <platform_event_post+0x24>
+1000b062:	6813      	ldr	r3, [r2, #0]
+1000b064:	2b00      	cmp	r3, #0
+1000b066:	d1fb      	bne.n	1000b060 <platform_event_post+0x24>
 			{
 				cur = cur->next;
 			}
 			cur->next = evt;
-1000b064:	6014      	str	r4, [r2, #0]
+1000b068:	6014      	str	r4, [r2, #0]
 		}
 		
 		//platform_event_signal();
 	}
 	
 }
-1000b066:	bd30      	pop	{r4, r5, pc}
-1000b068:	10013d08 	.word	0x10013d08
-1000b06c:	10013d04 	.word	0x10013d04
+1000b06a:	bd30      	pop	{r4, r5, pc}
+1000b06c:	10013d08 	.word	0x10013d08
+1000b070:	10013d04 	.word	0x10013d04
 
-1000b070 <platform_event_init>:
+1000b074 <platform_event_init>:
 	return status;
 	
 }
 
 void platform_event_init()
 {
-1000b070:	b570      	push	{r4, r5, r6, lr}
+1000b074:	b570      	push	{r4, r5, r6, lr}
 	uint32_t i;
 	platform_event_free_list = NULL;
-1000b072:	2300      	movs	r3, #0
-1000b074:	4a06      	ldr	r2, [pc, #24]	; (1000b090 <platform_event_init+0x20>)
-1000b076:	6013      	str	r3, [r2, #0]
-	platform_event_pending_list = NULL;
-1000b078:	4a06      	ldr	r2, [pc, #24]	; (1000b094 <platform_event_init+0x24>)
+1000b076:	2300      	movs	r3, #0
+1000b078:	4a06      	ldr	r2, [pc, #24]	; (1000b094 <platform_event_init+0x20>)
 1000b07a:	6013      	str	r3, [r2, #0]
-1000b07c:	4c06      	ldr	r4, [pc, #24]	; (1000b098 <platform_event_init+0x28>)
-1000b07e:	0026      	movs	r6, r4
-1000b080:	3678      	adds	r6, #120	; 0x78
+	platform_event_pending_list = NULL;
+1000b07c:	4a06      	ldr	r2, [pc, #24]	; (1000b098 <platform_event_init+0x24>)
+1000b07e:	6013      	str	r3, [r2, #0]
+1000b080:	4c06      	ldr	r4, [pc, #24]	; (1000b09c <platform_event_init+0x28>)
+1000b082:	0026      	movs	r6, r4
+1000b084:	3678      	adds	r6, #120	; 0x78
 	//memset(&watched_event,0,sizeof(struct str_watched_event));
 	for(i = 0; i < PLATFORM_EVENT_POOL_DEPTH; i++)
 	{
 		platform_event_free(&platform_event_pool[i]);
-1000b082:	4d06      	ldr	r5, [pc, #24]	; (1000b09c <platform_event_init+0x2c>)
-1000b084:	0020      	movs	r0, r4
-1000b086:	47a8      	blx	r5
-1000b088:	340c      	adds	r4, #12
+1000b086:	4d06      	ldr	r5, [pc, #24]	; (1000b0a0 <platform_event_init+0x2c>)
+1000b088:	0020      	movs	r0, r4
+1000b08a:	47a8      	blx	r5
+1000b08c:	340c      	adds	r4, #12
 {
 	uint32_t i;
 	platform_event_free_list = NULL;
 	platform_event_pending_list = NULL;
 	//memset(&watched_event,0,sizeof(struct str_watched_event));
 	for(i = 0; i < PLATFORM_EVENT_POOL_DEPTH; i++)
-1000b08a:	42b4      	cmp	r4, r6
-1000b08c:	d1fa      	bne.n	1000b084 <platform_event_init+0x14>
+1000b08e:	42b4      	cmp	r4, r6
+1000b090:	d1fa      	bne.n	1000b088 <platform_event_init+0x14>
 	{
 		platform_event_free(&platform_event_pool[i]);
 	}
 }
-1000b08e:	bd70      	pop	{r4, r5, r6, pc}
-1000b090:	10013d08 	.word	0x10013d08
-1000b094:	10013d04 	.word	0x10013d04
-1000b098:	10013d0c 	.word	0x10013d0c
-1000b09c:	1000b029 	.word	0x1000b029
+1000b092:	bd70      	pop	{r4, r5, r6, pc}
+1000b094:	10013d08 	.word	0x10013d08
+1000b098:	10013d04 	.word	0x10013d04
+1000b09c:	10013d0c 	.word	0x10013d0c
+1000b0a0:	1000b02d 	.word	0x1000b02d
 
-1000b0a0 <at_ke_msg_send>:
+1000b0a4 <at_ke_msg_send>:
 	}
 	return status;
 }
 
 static void at_ke_msg_send(void const * param_ptr)
 {
-1000b0a0:	b570      	push	{r4, r5, r6, lr}
-1000b0a2:	0004      	movs	r4, r0
+1000b0a4:	b570      	push	{r4, r5, r6, lr}
+1000b0a6:	0004      	movs	r4, r0
 	struct ke_msg *kemsg;
 	uint8_t osc_en = REG_PL_RD(0x4000B1EC)&0x01;
-1000b0a4:	4b13      	ldr	r3, [pc, #76]	; (1000b0f4 <at_ke_msg_send+0x54>)
-1000b0a6:	681d      	ldr	r5, [r3, #0]
+1000b0a8:	4b13      	ldr	r3, [pc, #76]	; (1000b0f8 <at_ke_msg_send+0x54>)
+1000b0aa:	681d      	ldr	r5, [r3, #0]
 	ke_msg_send(param_ptr);
-1000b0a8:	4b13      	ldr	r3, [pc, #76]	; (1000b0f8 <at_ke_msg_send+0x58>)
-1000b0aa:	681b      	ldr	r3, [r3, #0]
-1000b0ac:	4798      	blx	r3
+1000b0ac:	4b13      	ldr	r3, [pc, #76]	; (1000b0fc <at_ke_msg_send+0x58>)
+1000b0ae:	681b      	ldr	r3, [r3, #0]
+1000b0b0:	4798      	blx	r3
 	kemsg = ke_param2msg(param_ptr);
 
 	if((kemsg != NULL) && (kemsg->dest_id != TASK_INTERNAL_APP)) {
-1000b0ae:	2c0c      	cmp	r4, #12
-1000b0b0:	d01f      	beq.n	1000b0f2 <at_ke_msg_send+0x52>
-1000b0b2:	3c0c      	subs	r4, #12
-1000b0b4:	88e3      	ldrh	r3, [r4, #6]
-1000b0b6:	2b05      	cmp	r3, #5
-1000b0b8:	d01b      	beq.n	1000b0f2 <at_ke_msg_send+0x52>
+1000b0b2:	2c0c      	cmp	r4, #12
+1000b0b4:	d01f      	beq.n	1000b0f6 <at_ke_msg_send+0x52>
+1000b0b6:	3c0c      	subs	r4, #12
+1000b0b8:	88e3      	ldrh	r3, [r4, #6]
+1000b0ba:	2b05      	cmp	r3, #5
+1000b0bc:	d01b      	beq.n	1000b0f6 <at_ke_msg_send+0x52>
 		if(osc_en == 0)
-1000b0ba:	07eb      	lsls	r3, r5, #31
-1000b0bc:	d414      	bmi.n	1000b0e8 <at_ke_msg_send+0x48>
+1000b0be:	07eb      	lsls	r3, r5, #31
+1000b0c0:	d414      	bmi.n	1000b0ec <at_ke_msg_send+0x48>
 		{
 			/* BLE Core is off, issue a wakeup request*/
 			/* First, make sure PD4 is powered up and out of reset */
 			pwr_enable_arm_wakeup(1<<1);
-1000b0be:	4b0f      	ldr	r3, [pc, #60]	; (1000b0fc <at_ke_msg_send+0x5c>)
-1000b0c0:	681b      	ldr	r3, [r3, #0]
-1000b0c2:	2002      	movs	r0, #2
-1000b0c4:	4798      	blx	r3
+1000b0c2:	4b0f      	ldr	r3, [pc, #60]	; (1000b100 <at_ke_msg_send+0x5c>)
+1000b0c4:	681b      	ldr	r3, [r3, #0]
+1000b0c6:	2002      	movs	r0, #2
+1000b0c8:	4798      	blx	r3
 			pwr_arm_wakeup_req();
-1000b0c6:	4b0e      	ldr	r3, [pc, #56]	; (1000b100 <at_ke_msg_send+0x60>)
-1000b0c8:	681b      	ldr	r3, [r3, #0]
-1000b0ca:	4798      	blx	r3
+1000b0ca:	4b0e      	ldr	r3, [pc, #56]	; (1000b104 <at_ke_msg_send+0x60>)
+1000b0cc:	681b      	ldr	r3, [r3, #0]
+1000b0ce:	4798      	blx	r3
 			while (pwr_wait_BLE_out_of_reset(3));
-1000b0cc:	4c0d      	ldr	r4, [pc, #52]	; (1000b104 <at_ke_msg_send+0x64>)
-1000b0ce:	2003      	movs	r0, #3
-1000b0d0:	6823      	ldr	r3, [r4, #0]
-1000b0d2:	4798      	blx	r3
-1000b0d4:	2800      	cmp	r0, #0
-1000b0d6:	d1fa      	bne.n	1000b0ce <at_ke_msg_send+0x2e>
+1000b0d0:	4c0d      	ldr	r4, [pc, #52]	; (1000b108 <at_ke_msg_send+0x64>)
+1000b0d2:	2003      	movs	r0, #3
+1000b0d4:	6823      	ldr	r3, [r4, #0]
+1000b0d6:	4798      	blx	r3
+1000b0d8:	2800      	cmp	r0, #0
+1000b0da:	d1fa      	bne.n	1000b0d2 <at_ke_msg_send+0x2e>
 			pwr_disable_arm_wakeup(1<<1);
-1000b0d8:	4b0b      	ldr	r3, [pc, #44]	; (1000b108 <at_ke_msg_send+0x68>)
-1000b0da:	681b      	ldr	r3, [r3, #0]
-1000b0dc:	3002      	adds	r0, #2
-1000b0de:	4798      	blx	r3
+1000b0dc:	4b0b      	ldr	r3, [pc, #44]	; (1000b10c <at_ke_msg_send+0x68>)
+1000b0de:	681b      	ldr	r3, [r3, #0]
+1000b0e0:	3002      	adds	r0, #2
+1000b0e2:	4798      	blx	r3
 			REG_PL_WR(0x4000B020, 1);
-1000b0e0:	2201      	movs	r2, #1
-1000b0e2:	4b0a      	ldr	r3, [pc, #40]	; (1000b10c <at_ke_msg_send+0x6c>)
-1000b0e4:	601a      	str	r2, [r3, #0]
-1000b0e6:	e004      	b.n	1000b0f2 <at_ke_msg_send+0x52>
+1000b0e4:	2201      	movs	r2, #1
+1000b0e6:	4b0a      	ldr	r3, [pc, #40]	; (1000b110 <at_ke_msg_send+0x6c>)
+1000b0e8:	601a      	str	r2, [r3, #0]
+1000b0ea:	e004      	b.n	1000b0f6 <at_ke_msg_send+0x52>
 #endif	//CHIPVERSION_B0
 		}
 		else
 		{
 			/*  */
 			os_sem_up(gstrFwSem);
-1000b0e8:	4b09      	ldr	r3, [pc, #36]	; (1000b110 <at_ke_msg_send+0x70>)
-1000b0ea:	6818      	ldr	r0, [r3, #0]
-1000b0ec:	4b09      	ldr	r3, [pc, #36]	; (1000b114 <at_ke_msg_send+0x74>)
-1000b0ee:	681b      	ldr	r3, [r3, #0]
-1000b0f0:	4798      	blx	r3
+1000b0ec:	4b09      	ldr	r3, [pc, #36]	; (1000b114 <at_ke_msg_send+0x70>)
+1000b0ee:	6818      	ldr	r0, [r3, #0]
+1000b0f0:	4b09      	ldr	r3, [pc, #36]	; (1000b118 <at_ke_msg_send+0x74>)
+1000b0f2:	681b      	ldr	r3, [r3, #0]
+1000b0f4:	4798      	blx	r3
 		}
 	}
 }
-1000b0f2:	bd70      	pop	{r4, r5, r6, pc}
-1000b0f4:	4000b1ec 	.word	0x4000b1ec
-1000b0f8:	10013db4 	.word	0x10013db4
-1000b0fc:	10013dac 	.word	0x10013dac
-1000b100:	10013dc0 	.word	0x10013dc0
-1000b104:	10013d98 	.word	0x10013d98
-1000b108:	10013da0 	.word	0x10013da0
-1000b10c:	4000b020 	.word	0x4000b020
-1000b110:	10013da4 	.word	0x10013da4
-1000b114:	10013d94 	.word	0x10013d94
+1000b0f6:	bd70      	pop	{r4, r5, r6, pc}
+1000b0f8:	4000b1ec 	.word	0x4000b1ec
+1000b0fc:	10013db4 	.word	0x10013db4
+1000b100:	10013dac 	.word	0x10013dac
+1000b104:	10013dc0 	.word	0x10013dc0
+1000b108:	10013d98 	.word	0x10013d98
+1000b10c:	10013da0 	.word	0x10013da0
+1000b110:	4000b020 	.word	0x4000b020
+1000b114:	10013da4 	.word	0x10013da4
+1000b118:	10013d94 	.word	0x10013d94
 
-1000b118 <samb11_plf_resume_callback>:
+1000b11c <samb11_plf_resume_callback>:
 	rwip_prevent_sleep_clear(APP_PREVENT_SLEEP);
 	return status;
 }
 
 void samb11_plf_resume_callback(void)
 {
-1000b118:	b510      	push	{r4, lr}
+1000b11c:	b510      	push	{r4, lr}
 	//spi_flash_turn_off();
 	REG_PL_WR(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_0,default_samb11_clock_init[0]);
-1000b11a:	4b06      	ldr	r3, [pc, #24]	; (1000b134 <samb11_plf_resume_callback+0x1c>)
-1000b11c:	4a06      	ldr	r2, [pc, #24]	; (1000b138 <samb11_plf_resume_callback+0x20>)
-1000b11e:	6819      	ldr	r1, [r3, #0]
-1000b120:	6011      	str	r1, [r2, #0]
+1000b11e:	4b06      	ldr	r3, [pc, #24]	; (1000b138 <samb11_plf_resume_callback+0x1c>)
+1000b120:	4a06      	ldr	r2, [pc, #24]	; (1000b13c <samb11_plf_resume_callback+0x20>)
+1000b122:	6819      	ldr	r1, [r3, #0]
+1000b124:	6011      	str	r1, [r2, #0]
 	REG_PL_WR(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_1,default_samb11_clock_init[1]);
-1000b122:	685a      	ldr	r2, [r3, #4]
-1000b124:	4b05      	ldr	r3, [pc, #20]	; (1000b13c <samb11_plf_resume_callback+0x24>)
-1000b126:	601a      	str	r2, [r3, #0]
+1000b126:	685a      	ldr	r2, [r3, #4]
+1000b128:	4b05      	ldr	r3, [pc, #20]	; (1000b140 <samb11_plf_resume_callback+0x24>)
+1000b12a:	601a      	str	r2, [r3, #0]
 	if(samb11_app_resume_cb != NULL)
-1000b128:	4b05      	ldr	r3, [pc, #20]	; (1000b140 <samb11_plf_resume_callback+0x28>)
-1000b12a:	681b      	ldr	r3, [r3, #0]
-1000b12c:	2b00      	cmp	r3, #0
-1000b12e:	d000      	beq.n	1000b132 <samb11_plf_resume_callback+0x1a>
+1000b12c:	4b05      	ldr	r3, [pc, #20]	; (1000b144 <samb11_plf_resume_callback+0x28>)
+1000b12e:	681b      	ldr	r3, [r3, #0]
+1000b130:	2b00      	cmp	r3, #0
+1000b132:	d000      	beq.n	1000b136 <samb11_plf_resume_callback+0x1a>
 	{
 		samb11_app_resume_cb();
-1000b130:	4798      	blx	r3
+1000b134:	4798      	blx	r3
 	}
 }
-1000b132:	bd10      	pop	{r4, pc}
-1000b134:	10014778 	.word	0x10014778
-1000b138:	4000b00c 	.word	0x4000b00c
-1000b13c:	4000b010 	.word	0x4000b010
-1000b140:	10014a54 	.word	0x10014a54
+1000b136:	bd10      	pop	{r4, pc}
+1000b138:	10014778 	.word	0x10014778
+1000b13c:	4000b00c 	.word	0x4000b00c
+1000b140:	4000b010 	.word	0x4000b010
+1000b144:	10014a54 	.word	0x10014a54
 
-1000b144 <init_port_list>:
+1000b148 <init_port_list>:
 port port_list[LPGPIO_MAX];
 uint32_t default_samb11_clock_init[2];
 void samb11_plf_resume_callback(void);
 
 void init_port_list(void)
 {
-1000b144:	b570      	push	{r4, r5, r6, lr}
+1000b148:	b570      	push	{r4, r5, r6, lr}
 	uint8_t i;
 	memset(port_list,0,sizeof(port_list));
-1000b146:	2232      	movs	r2, #50	; 0x32
-1000b148:	2100      	movs	r1, #0
-1000b14a:	480d      	ldr	r0, [pc, #52]	; (1000b180 <init_port_list+0x3c>)
-1000b14c:	4b0d      	ldr	r3, [pc, #52]	; (1000b184 <init_port_list+0x40>)
-1000b14e:	4798      	blx	r3
-1000b150:	2100      	movs	r1, #0
+1000b14a:	2232      	movs	r2, #50	; 0x32
+1000b14c:	2100      	movs	r1, #0
+1000b14e:	480d      	ldr	r0, [pc, #52]	; (1000b184 <init_port_list+0x3c>)
+1000b150:	4b0d      	ldr	r3, [pc, #52]	; (1000b188 <init_port_list+0x40>)
+1000b152:	4798      	blx	r3
+1000b154:	2100      	movs	r1, #0
 	for(i=0;i<(sizeof(port_list)/sizeof(port_list[0]));i++) {
 		port_list[i].bit.gpio_num = i;
-1000b152:	480b      	ldr	r0, [pc, #44]	; (1000b180 <init_port_list+0x3c>)
+1000b156:	480b      	ldr	r0, [pc, #44]	; (1000b184 <init_port_list+0x3c>)
 		port_list[i].bit.available = 1;
-1000b154:	2501      	movs	r5, #1
+1000b158:	2501      	movs	r5, #1
 		port_list[i].bit.configured = 0;
-1000b156:	2402      	movs	r4, #2
+1000b15a:	2402      	movs	r4, #2
 void init_port_list(void)
 {
 	uint8_t i;
 	memset(port_list,0,sizeof(port_list));
 	for(i=0;i<(sizeof(port_list)/sizeof(port_list[0]));i++) {
 		port_list[i].bit.gpio_num = i;
-1000b158:	004a      	lsls	r2, r1, #1
-1000b15a:	5411      	strb	r1, [r2, r0]
+1000b15c:	004a      	lsls	r2, r1, #1
+1000b15e:	5411      	strb	r1, [r2, r0]
 		port_list[i].bit.available = 1;
-1000b15c:	1882      	adds	r2, r0, r2
-1000b15e:	7853      	ldrb	r3, [r2, #1]
-1000b160:	432b      	orrs	r3, r5
+1000b160:	1882      	adds	r2, r0, r2
+1000b162:	7853      	ldrb	r3, [r2, #1]
+1000b164:	432b      	orrs	r3, r5
 		port_list[i].bit.configured = 0;
-1000b162:	b2db      	uxtb	r3, r3
-1000b164:	43a3      	bics	r3, r4
-1000b166:	7053      	strb	r3, [r2, #1]
-1000b168:	3101      	adds	r1, #1
+1000b166:	b2db      	uxtb	r3, r3
+1000b168:	43a3      	bics	r3, r4
+1000b16a:	7053      	strb	r3, [r2, #1]
+1000b16c:	3101      	adds	r1, #1
 
 void init_port_list(void)
 {
 	uint8_t i;
 	memset(port_list,0,sizeof(port_list));
 	for(i=0;i<(sizeof(port_list)/sizeof(port_list[0]));i++) {
-1000b16a:	2919      	cmp	r1, #25
-1000b16c:	d1f4      	bne.n	1000b158 <init_port_list+0x14>
+1000b16e:	2919      	cmp	r1, #25
+1000b170:	d1f4      	bne.n	1000b15c <init_port_list+0x14>
 		port_list[i].bit.gpio_num = i;
 		port_list[i].bit.available = 1;
 		port_list[i].bit.configured = 0;
 	}
 	//Set the GPIO for SWD is not available
 	port_list[0].bit.available = 0;
-1000b16e:	4b04      	ldr	r3, [pc, #16]	; (1000b180 <init_port_list+0x3c>)
-1000b170:	785a      	ldrb	r2, [r3, #1]
-1000b172:	3918      	subs	r1, #24
-1000b174:	438a      	bics	r2, r1
-1000b176:	705a      	strb	r2, [r3, #1]
+1000b172:	4b04      	ldr	r3, [pc, #16]	; (1000b184 <init_port_list+0x3c>)
+1000b174:	785a      	ldrb	r2, [r3, #1]
+1000b176:	3918      	subs	r1, #24
+1000b178:	438a      	bics	r2, r1
+1000b17a:	705a      	strb	r2, [r3, #1]
 	port_list[1].bit.available = 0;
-1000b178:	78da      	ldrb	r2, [r3, #3]
-1000b17a:	438a      	bics	r2, r1
-1000b17c:	70da      	strb	r2, [r3, #3]
+1000b17c:	78da      	ldrb	r2, [r3, #3]
+1000b17e:	438a      	bics	r2, r1
+1000b180:	70da      	strb	r2, [r3, #3]
 	//GPIO 14 is used for Coex and controlled by Firmware
 	//port_list[14].bit.available = 0;
 }
-1000b17e:	bd70      	pop	{r4, r5, r6, pc}
-1000b180:	10014794 	.word	0x10014794
-1000b184:	10010369 	.word	0x10010369
+1000b182:	bd70      	pop	{r4, r5, r6, pc}
+1000b184:	10014794 	.word	0x10014794
+1000b188:	10010369 	.word	0x10010369
 
-1000b188 <init_clock>:
+1000b18c <init_clock>:
 
 void init_clock(void)
 {
 	uint32_t regval;
 	regval = REG_PL_RD(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_0);
-1000b188:	4a06      	ldr	r2, [pc, #24]	; (1000b1a4 <init_clock+0x1c>)
-1000b18a:	6811      	ldr	r1, [r2, #0]
+1000b18c:	4a06      	ldr	r2, [pc, #24]	; (1000b1a8 <init_clock+0x1c>)
+1000b18e:	6811      	ldr	r1, [r2, #0]
 	regval &= ~(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_0_WATCHDOG_1_CLK_EN);
 	//disable UART core & interface clocks
 	regval &= ~(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_0_UART_CORE_CLK_EN);
 	regval &= ~(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_0_UART_IF_CLK_EN);
 	regval &= ~(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_0_UART_1_CORE_CLK_EN);
 	regval &= ~(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_0_UART_1_IF_CLK_EN);
-1000b18c:	4b06      	ldr	r3, [pc, #24]	; (1000b1a8 <init_clock+0x20>)
-1000b18e:	400b      	ands	r3, r1
+1000b190:	4b06      	ldr	r3, [pc, #24]	; (1000b1ac <init_clock+0x20>)
+1000b192:	400b      	ands	r3, r1
 	//disable I2C core 1 clocks
 	//regval &= ~(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_0_CORTUS_I2C1_CORE_CLK_EN);		//do not disable I2C because I2C driver in ASF will not enable.
 	REG_PL_WR(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_0,regval);
-1000b190:	6013      	str	r3, [r2, #0]
-	default_samb11_clock_init[0] = regval;
-1000b192:	4a06      	ldr	r2, [pc, #24]	; (1000b1ac <init_clock+0x24>)
 1000b194:	6013      	str	r3, [r2, #0]
+	default_samb11_clock_init[0] = regval;
+1000b196:	4a06      	ldr	r2, [pc, #24]	; (1000b1b0 <init_clock+0x24>)
+1000b198:	6013      	str	r3, [r2, #0]
 	
 	regval = REG_PL_RD(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_1);
-1000b196:	4906      	ldr	r1, [pc, #24]	; (1000b1b0 <init_clock+0x28>)
-1000b198:	6808      	ldr	r0, [r1, #0]
+1000b19a:	4906      	ldr	r1, [pc, #24]	; (1000b1b4 <init_clock+0x28>)
+1000b19c:	6808      	ldr	r0, [r1, #0]
 	regval &= ~(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_1_EFUSE_4_CLK_EN);
 	regval &= ~(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_1_EFUSE_5_CLK_EN);
 	regval &= ~(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_1_EFUSE_6_CLK_EN);
 	//disable SPI SCK Phase int clock 
 	regval &= ~(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_1_SPI0_SCK_PHASE_INT_CLK_EN);
 	regval &= ~(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_1_SPI1_SCK_PHASE_INT_CLK_EN);
-1000b19a:	4b06      	ldr	r3, [pc, #24]	; (1000b1b4 <init_clock+0x2c>)
-1000b19c:	4003      	ands	r3, r0
+1000b19e:	4b06      	ldr	r3, [pc, #24]	; (1000b1b8 <init_clock+0x2c>)
+1000b1a0:	4003      	ands	r3, r0
 	REG_PL_WR(LPMCU_CORTEX_MISC_REGS_LPMCU_CLOCK_ENABLES_1,regval);
-1000b19e:	600b      	str	r3, [r1, #0]
+1000b1a2:	600b      	str	r3, [r1, #0]
 	default_samb11_clock_init[1] = regval;
-1000b1a0:	6053      	str	r3, [r2, #4]
+1000b1a4:	6053      	str	r3, [r2, #4]
 	//ARM debugger
 	
 	//store default values
 }
-1000b1a2:	4770      	bx	lr
-1000b1a4:	4000b00c 	.word	0x4000b00c
-1000b1a8:	fffe0fd3 	.word	0xfffe0fd3
-1000b1ac:	10014778 	.word	0x10014778
-1000b1b0:	4000b010 	.word	0x4000b010
-1000b1b4:	ffffe7c0 	.word	0xffffe7c0
+1000b1a6:	4770      	bx	lr
+1000b1a8:	4000b00c 	.word	0x4000b00c
+1000b1ac:	fffe0fd3 	.word	0xfffe0fd3
+1000b1b0:	10014778 	.word	0x10014778
+1000b1b4:	4000b010 	.word	0x4000b010
+1000b1b8:	ffffe7c0 	.word	0xffffe7c0
 
-1000b1b8 <platform_driver_init>:
+1000b1bc <platform_driver_init>:
 
 plf_drv_status platform_driver_init()
 {
-1000b1b8:	b5f0      	push	{r4, r5, r6, r7, lr}
-1000b1ba:	4657      	mov	r7, sl
-1000b1bc:	464e      	mov	r6, r9
-1000b1be:	4645      	mov	r5, r8
-1000b1c0:	b4e0      	push	{r5, r6, r7}
+1000b1bc:	b5f0      	push	{r4, r5, r6, r7, lr}
+1000b1be:	4657      	mov	r7, sl
+1000b1c0:	464e      	mov	r6, r9
+1000b1c2:	4645      	mov	r5, r8
+1000b1c4:	b4e0      	push	{r5, r6, r7}
 	plf_drv_status status = STATUS_NOT_INITIALIZED;
 	if((platform_initialized == 0) || (platform_initialized != 1)) {
-1000b1c2:	4b4f      	ldr	r3, [pc, #316]	; (1000b300 <platform_driver_init+0x148>)
-1000b1c4:	781b      	ldrb	r3, [r3, #0]
-1000b1c6:	2b00      	cmp	r3, #0
-1000b1c8:	d004      	beq.n	1000b1d4 <platform_driver_init+0x1c>
-1000b1ca:	4b4d      	ldr	r3, [pc, #308]	; (1000b300 <platform_driver_init+0x148>)
-1000b1cc:	781b      	ldrb	r3, [r3, #0]
-1000b1ce:	2b01      	cmp	r3, #1
-1000b1d0:	d100      	bne.n	1000b1d4 <platform_driver_init+0x1c>
-1000b1d2:	e08c      	b.n	1000b2ee <platform_driver_init+0x136>
+1000b1c6:	4b4f      	ldr	r3, [pc, #316]	; (1000b304 <platform_driver_init+0x148>)
+1000b1c8:	781b      	ldrb	r3, [r3, #0]
+1000b1ca:	2b00      	cmp	r3, #0
+1000b1cc:	d004      	beq.n	1000b1d8 <platform_driver_init+0x1c>
+1000b1ce:	4b4d      	ldr	r3, [pc, #308]	; (1000b304 <platform_driver_init+0x148>)
+1000b1d0:	781b      	ldrb	r3, [r3, #0]
+1000b1d2:	2b01      	cmp	r3, #1
+1000b1d4:	d100      	bne.n	1000b1d8 <platform_driver_init+0x1c>
+1000b1d6:	e08c      	b.n	1000b2f2 <platform_driver_init+0x136>
 		init_port_list();
-1000b1d4:	4b4b      	ldr	r3, [pc, #300]	; (1000b304 <platform_driver_init+0x14c>)
-1000b1d6:	4798      	blx	r3
-		init_clock();
-1000b1d8:	4b4b      	ldr	r3, [pc, #300]	; (1000b308 <platform_driver_init+0x150>)
+1000b1d8:	4b4b      	ldr	r3, [pc, #300]	; (1000b308 <platform_driver_init+0x14c>)
 1000b1da:	4798      	blx	r3
+		init_clock();
+1000b1dc:	4b4b      	ldr	r3, [pc, #300]	; (1000b30c <platform_driver_init+0x150>)
+1000b1de:	4798      	blx	r3
 		// Initialize the ble stack message handler to NULL
 		ble_stack_message_handler = NULL;
-1000b1dc:	2300      	movs	r3, #0
-1000b1de:	4698      	mov	r8, r3
-1000b1e0:	4b4a      	ldr	r3, [pc, #296]	; (1000b30c <platform_driver_init+0x154>)
-1000b1e2:	4642      	mov	r2, r8
-1000b1e4:	601a      	str	r2, [r3, #0]
+1000b1e0:	2300      	movs	r3, #0
+1000b1e2:	4698      	mov	r8, r3
+1000b1e4:	4b4a      	ldr	r3, [pc, #296]	; (1000b310 <platform_driver_init+0x154>)
+1000b1e6:	4642      	mov	r2, r8
+1000b1e8:	601a      	str	r2, [r3, #0]
 
     \param [in]      IRQn  External interrupt number. Value cannot be negative.
  */
 __STATIC_INLINE void NVIC_DisableIRQ(IRQn_Type IRQn)
 {
   NVIC->ICER[0] = (1 << ((uint32_t)(IRQn) & 0x1F));
-1000b1e6:	4c4a      	ldr	r4, [pc, #296]	; (1000b310 <platform_driver_init+0x158>)
-1000b1e8:	2380      	movs	r3, #128	; 0x80
-1000b1ea:	2280      	movs	r2, #128	; 0x80
-1000b1ec:	0412      	lsls	r2, r2, #16
-1000b1ee:	4692      	mov	sl, r2
-1000b1f0:	50e2      	str	r2, [r4, r3]
-1000b1f2:	2280      	movs	r2, #128	; 0x80
-1000b1f4:	0452      	lsls	r2, r2, #17
-1000b1f6:	4691      	mov	r9, r2
-1000b1f8:	50e2      	str	r2, [r4, r3]
+1000b1ea:	4c4a      	ldr	r4, [pc, #296]	; (1000b314 <platform_driver_init+0x158>)
+1000b1ec:	2380      	movs	r3, #128	; 0x80
+1000b1ee:	2280      	movs	r2, #128	; 0x80
+1000b1f0:	0412      	lsls	r2, r2, #16
+1000b1f2:	4692      	mov	sl, r2
+1000b1f4:	50e2      	str	r2, [r4, r3]
+1000b1f6:	2280      	movs	r2, #128	; 0x80
+1000b1f8:	0452      	lsls	r2, r2, #17
+1000b1fa:	4691      	mov	r9, r2
+1000b1fc:	50e2      	str	r2, [r4, r3]
 #ifdef CHIPVERSION_B0
 		NVIC_DisableIRQ(GPIO0_IRQn);
 		NVIC_DisableIRQ(GPIO1_IRQn);
 		/* NVIC_DisableIRQ(PORT0_COMB_IRQn); */
 		/* NVIC_DisableIRQ(PORT1_COMB_IRQn); */
 		platform_register_isr = (uint8_t (*)(uint8_t ,void *))0x000007d7;
-1000b1fa:	4d46      	ldr	r5, [pc, #280]	; (1000b314 <platform_driver_init+0x15c>)
-1000b1fc:	4b46      	ldr	r3, [pc, #280]	; (1000b318 <platform_driver_init+0x160>)
-1000b1fe:	602b      	str	r3, [r5, #0]
+1000b1fe:	4d46      	ldr	r5, [pc, #280]	; (1000b318 <platform_driver_init+0x15c>)
+1000b200:	4b46      	ldr	r3, [pc, #280]	; (1000b31c <platform_driver_init+0x160>)
+1000b202:	602b      	str	r3, [r5, #0]
 		platform_unregister_isr = (uint8_t (*)(uint8_t ))0x000007bd;
-1000b200:	4b46      	ldr	r3, [pc, #280]	; (1000b31c <platform_driver_init+0x164>)
-1000b202:	4a47      	ldr	r2, [pc, #284]	; (1000b320 <platform_driver_init+0x168>)
-1000b204:	6013      	str	r3, [r2, #0]
+1000b204:	4b46      	ldr	r3, [pc, #280]	; (1000b320 <platform_driver_init+0x164>)
+1000b206:	4a47      	ldr	r2, [pc, #284]	; (1000b324 <platform_driver_init+0x168>)
+1000b208:	6013      	str	r3, [r2, #0]
 		handle_ext_wakeup_isr = (void (*)(void))0x1bc51;
-1000b206:	4947      	ldr	r1, [pc, #284]	; (1000b324 <platform_driver_init+0x16c>)
-1000b208:	4a47      	ldr	r2, [pc, #284]	; (1000b328 <platform_driver_init+0x170>)
-1000b20a:	6011      	str	r1, [r2, #0]
+1000b20a:	4947      	ldr	r1, [pc, #284]	; (1000b328 <platform_driver_init+0x16c>)
+1000b20c:	4a47      	ldr	r2, [pc, #284]	; (1000b32c <platform_driver_init+0x170>)
+1000b20e:	6011      	str	r1, [r2, #0]
 		gapm_get_task_from_id = (ke_task_id_t (*)(ke_msg_id_t))(*((unsigned int *)0x100400bc));
-1000b20c:	4a47      	ldr	r2, [pc, #284]	; (1000b32c <platform_driver_init+0x174>)
-1000b20e:	6811      	ldr	r1, [r2, #0]
-1000b210:	4a47      	ldr	r2, [pc, #284]	; (1000b330 <platform_driver_init+0x178>)
-1000b212:	6011      	str	r1, [r2, #0]
+1000b210:	4a47      	ldr	r2, [pc, #284]	; (1000b330 <platform_driver_init+0x174>)
+1000b212:	6811      	ldr	r1, [r2, #0]
+1000b214:	4a47      	ldr	r2, [pc, #284]	; (1000b334 <platform_driver_init+0x178>)
+1000b216:	6011      	str	r1, [r2, #0]
 		gapm_get_id_from_task = (ke_task_id_t (*)(ke_msg_id_t))(*((unsigned int *)0x100400b8));
-1000b214:	4a47      	ldr	r2, [pc, #284]	; (1000b334 <platform_driver_init+0x17c>)
-1000b216:	6811      	ldr	r1, [r2, #0]
-1000b218:	4a47      	ldr	r2, [pc, #284]	; (1000b338 <platform_driver_init+0x180>)
-1000b21a:	6011      	str	r1, [r2, #0]
+1000b218:	4a47      	ldr	r2, [pc, #284]	; (1000b338 <platform_driver_init+0x17c>)
+1000b21a:	6811      	ldr	r1, [r2, #0]
+1000b21c:	4a47      	ldr	r2, [pc, #284]	; (1000b33c <platform_driver_init+0x180>)
+1000b21e:	6011      	str	r1, [r2, #0]
 		rwip_prevent_sleep_set = (void (*)(uint16_t))0x0001b99f;
-1000b21c:	4947      	ldr	r1, [pc, #284]	; (1000b33c <platform_driver_init+0x184>)
-1000b21e:	4a48      	ldr	r2, [pc, #288]	; (1000b340 <platform_driver_init+0x188>)
-1000b220:	6011      	str	r1, [r2, #0]
+1000b220:	4947      	ldr	r1, [pc, #284]	; (1000b340 <platform_driver_init+0x184>)
+1000b222:	4a48      	ldr	r2, [pc, #288]	; (1000b344 <platform_driver_init+0x188>)
+1000b224:	6011      	str	r1, [r2, #0]
 		rwip_prevent_sleep_clear = (void (*)(uint16_t))0x0001b9db;
-1000b222:	4948      	ldr	r1, [pc, #288]	; (1000b344 <platform_driver_init+0x18c>)
-1000b224:	4a48      	ldr	r2, [pc, #288]	; (1000b348 <platform_driver_init+0x190>)
-1000b226:	6011      	str	r1, [r2, #0]
+1000b226:	4948      	ldr	r1, [pc, #288]	; (1000b348 <platform_driver_init+0x18c>)
+1000b228:	4a48      	ldr	r2, [pc, #288]	; (1000b34c <platform_driver_init+0x190>)
+1000b22a:	6011      	str	r1, [r2, #0]
 		apps_resume_cb = (uint32_t *)0x1004003c;
-1000b228:	4f48      	ldr	r7, [pc, #288]	; (1000b34c <platform_driver_init+0x194>)
-1000b22a:	4a49      	ldr	r2, [pc, #292]	; (1000b350 <platform_driver_init+0x198>)
-1000b22c:	603a      	str	r2, [r7, #0]
+1000b22c:	4f48      	ldr	r7, [pc, #288]	; (1000b350 <platform_driver_init+0x194>)
+1000b22e:	4a49      	ldr	r2, [pc, #292]	; (1000b354 <platform_driver_init+0x198>)
+1000b230:	603a      	str	r2, [r7, #0]
 		actualfreq = (uint32_t *)0x10041FC0; /* set to NULL for now as clock calibration is disabled for the time being */  /*(uint32_t *)0x10006bd8;*/
-1000b22e:	4949      	ldr	r1, [pc, #292]	; (1000b354 <platform_driver_init+0x19c>)
-1000b230:	4a49      	ldr	r2, [pc, #292]	; (1000b358 <platform_driver_init+0x1a0>)
-1000b232:	6011      	str	r1, [r2, #0]
+1000b232:	4949      	ldr	r1, [pc, #292]	; (1000b358 <platform_driver_init+0x19c>)
+1000b234:	4a49      	ldr	r2, [pc, #292]	; (1000b35c <platform_driver_init+0x1a0>)
+1000b236:	6011      	str	r1, [r2, #0]
 		updateuartbr_fp = (void (*)())0x10041FC4;
-1000b234:	4949      	ldr	r1, [pc, #292]	; (1000b35c <platform_driver_init+0x1a4>)
-1000b236:	4a4a      	ldr	r2, [pc, #296]	; (1000b360 <platform_driver_init+0x1a8>)
-1000b238:	6011      	str	r1, [r2, #0]
+1000b238:	4949      	ldr	r1, [pc, #292]	; (1000b360 <platform_driver_init+0x1a4>)
+1000b23a:	4a4a      	ldr	r2, [pc, #296]	; (1000b364 <platform_driver_init+0x1a8>)
+1000b23c:	6011      	str	r1, [r2, #0]
 		wakeup_source_active_cb = (uint32_t *)0x10041FD4;
-1000b23a:	4e4a      	ldr	r6, [pc, #296]	; (1000b364 <platform_driver_init+0x1ac>)
-1000b23c:	4a4a      	ldr	r2, [pc, #296]	; (1000b368 <platform_driver_init+0x1b0>)
-1000b23e:	6032      	str	r2, [r6, #0]
+1000b23e:	4e4a      	ldr	r6, [pc, #296]	; (1000b368 <platform_driver_init+0x1ac>)
+1000b240:	4a4a      	ldr	r2, [pc, #296]	; (1000b36c <platform_driver_init+0x1b0>)
+1000b242:	6032      	str	r2, [r6, #0]
 		wakeup_event_pending = (uint32_t *)0x10041FD8;
-1000b240:	494a      	ldr	r1, [pc, #296]	; (1000b36c <platform_driver_init+0x1b4>)
-1000b242:	4a4b      	ldr	r2, [pc, #300]	; (1000b370 <platform_driver_init+0x1b8>)
-1000b244:	6011      	str	r1, [r2, #0]
+1000b244:	494a      	ldr	r1, [pc, #296]	; (1000b370 <platform_driver_init+0x1b4>)
+1000b246:	4a4b      	ldr	r2, [pc, #300]	; (1000b374 <platform_driver_init+0x1b8>)
+1000b248:	6011      	str	r1, [r2, #0]
 		/* power APIs */
 		pwr_enable_arm_wakeup = (void (*)(uint32_t wakeup_domain))0x0001cbe9;
-1000b246:	494b      	ldr	r1, [pc, #300]	; (1000b374 <platform_driver_init+0x1bc>)
-1000b248:	4a4b      	ldr	r2, [pc, #300]	; (1000b378 <platform_driver_init+0x1c0>)
-1000b24a:	6011      	str	r1, [r2, #0]
+1000b24a:	494b      	ldr	r1, [pc, #300]	; (1000b378 <platform_driver_init+0x1bc>)
+1000b24c:	4a4b      	ldr	r2, [pc, #300]	; (1000b37c <platform_driver_init+0x1c0>)
+1000b24e:	6011      	str	r1, [r2, #0]
 		pwr_disable_arm_wakeup = (void (*)(uint32_t wakeup_domain))0x0001cd8f;
-1000b24c:	494b      	ldr	r1, [pc, #300]	; (1000b37c <platform_driver_init+0x1c4>)
-1000b24e:	4a4c      	ldr	r2, [pc, #304]	; (1000b380 <platform_driver_init+0x1c8>)
-1000b250:	6011      	str	r1, [r2, #0]
+1000b250:	494b      	ldr	r1, [pc, #300]	; (1000b380 <platform_driver_init+0x1c4>)
+1000b252:	4a4c      	ldr	r2, [pc, #304]	; (1000b384 <platform_driver_init+0x1c8>)
+1000b254:	6011      	str	r1, [r2, #0]
 		pwr_arm_wakeup_req = (int (*)(void))0x0001cea3;
-1000b252:	494c      	ldr	r1, [pc, #304]	; (1000b384 <platform_driver_init+0x1cc>)
-1000b254:	4a4c      	ldr	r2, [pc, #304]	; (1000b388 <platform_driver_init+0x1d0>)
-1000b256:	6011      	str	r1, [r2, #0]
+1000b256:	494c      	ldr	r1, [pc, #304]	; (1000b388 <platform_driver_init+0x1cc>)
+1000b258:	4a4c      	ldr	r2, [pc, #304]	; (1000b38c <platform_driver_init+0x1d0>)
+1000b25a:	6011      	str	r1, [r2, #0]
 		pwr_wait_BLE_out_of_reset = (int (*)(uint32_t threshold))0x0001cbcf;
-1000b258:	494c      	ldr	r1, [pc, #304]	; (1000b38c <platform_driver_init+0x1d4>)
-1000b25a:	4a4d      	ldr	r2, [pc, #308]	; (1000b390 <platform_driver_init+0x1d8>)
-1000b25c:	6011      	str	r1, [r2, #0]
+1000b25c:	494c      	ldr	r1, [pc, #304]	; (1000b390 <platform_driver_init+0x1d4>)
+1000b25e:	4a4d      	ldr	r2, [pc, #308]	; (1000b394 <platform_driver_init+0x1d8>)
+1000b260:	6011      	str	r1, [r2, #0]
 		NVIC_DisableIRQ(PORT1_ALL_IRQn);
 		platform_register_isr = register_isr;
 		platform_unregister_isr = unregister_isr;
 		handle_ext_wakeup_isr = (void (*)(void))0x14085;
 #endif
 		platform_unregister_isr(GPIO1_COMBINED_VECTOR_TABLE_INDEX);
-1000b25e:	2028      	movs	r0, #40	; 0x28
-1000b260:	4798      	blx	r3
+1000b262:	2028      	movs	r0, #40	; 0x28
+1000b264:	4798      	blx	r3
 		platform_register_isr(GPIO1_COMBINED_VECTOR_TABLE_INDEX,(void*)PORT1_COMB_Handler);
-1000b262:	494c      	ldr	r1, [pc, #304]	; (1000b394 <platform_driver_init+0x1dc>)
-1000b264:	2028      	movs	r0, #40	; 0x28
-1000b266:	682b      	ldr	r3, [r5, #0]
-1000b268:	4798      	blx	r3
-		platform_register_isr(GPIO0_COMBINED_VECTOR_TABLE_INDEX,(void*)gpio0_combined_isr_handler);
+1000b266:	494c      	ldr	r1, [pc, #304]	; (1000b398 <platform_driver_init+0x1dc>)
+1000b268:	2028      	movs	r0, #40	; 0x28
 1000b26a:	682b      	ldr	r3, [r5, #0]
-1000b26c:	494a      	ldr	r1, [pc, #296]	; (1000b398 <platform_driver_init+0x1e0>)
-1000b26e:	2027      	movs	r0, #39	; 0x27
-1000b270:	4798      	blx	r3
+1000b26c:	4798      	blx	r3
+		platform_register_isr(GPIO0_COMBINED_VECTOR_TABLE_INDEX,(void*)gpio0_combined_isr_handler);
+1000b26e:	682b      	ldr	r3, [r5, #0]
+1000b270:	494a      	ldr	r1, [pc, #296]	; (1000b39c <platform_driver_init+0x1e0>)
+1000b272:	2027      	movs	r0, #39	; 0x27
+1000b274:	4798      	blx	r3
 		//gstrFwSem               = (void *)0x100004e4;
 		//NMI_MsgQueueRecv = (int (*)(void *, void ** )) 0x00017f67;
 		//InternalAppMsgQHandle = (void *)0x10001158;
 		//ke_free = (void (*)(void *)) 0x00015e3d;
 #elif CHIPVERSION_B0
 		ke_msg_send 	= (void (*)(void const *))(*((unsigned int *)0x100400e4));
-1000b272:	4b4a      	ldr	r3, [pc, #296]	; (1000b39c <platform_driver_init+0x1e4>)
-1000b274:	681a      	ldr	r2, [r3, #0]
-1000b276:	4b4a      	ldr	r3, [pc, #296]	; (1000b3a0 <platform_driver_init+0x1e8>)
-1000b278:	601a      	str	r2, [r3, #0]
+1000b276:	4b4a      	ldr	r3, [pc, #296]	; (1000b3a0 <platform_driver_init+0x1e4>)
+1000b278:	681a      	ldr	r2, [r3, #0]
+1000b27a:	4b4a      	ldr	r3, [pc, #296]	; (1000b3a4 <platform_driver_init+0x1e8>)
+1000b27c:	601a      	str	r2, [r3, #0]
 		ke_msg_alloc 	= (void* (*)(ke_msg_id_t const id, ke_task_id_t const dest_id,
-1000b27a:	4a4a      	ldr	r2, [pc, #296]	; (1000b3a4 <platform_driver_init+0x1ec>)
-1000b27c:	4b4a      	ldr	r3, [pc, #296]	; (1000b3a8 <platform_driver_init+0x1f0>)
-1000b27e:	601a      	str	r2, [r3, #0]
+1000b27e:	4a4a      	ldr	r2, [pc, #296]	; (1000b3a8 <platform_driver_init+0x1ec>)
+1000b280:	4b4a      	ldr	r3, [pc, #296]	; (1000b3ac <platform_driver_init+0x1f0>)
+1000b282:	601a      	str	r2, [r3, #0]
 										ke_task_id_t const src_id, uint16_t const param_len) )0x00019fe9;
 		os_sem_up 		= (int (*)(void*))0x0001dbdd;
-1000b280:	4a4a      	ldr	r2, [pc, #296]	; (1000b3ac <platform_driver_init+0x1f4>)
-1000b282:	4b4b      	ldr	r3, [pc, #300]	; (1000b3b0 <platform_driver_init+0x1f8>)
-1000b284:	601a      	str	r2, [r3, #0]
+1000b284:	4a4a      	ldr	r2, [pc, #296]	; (1000b3b0 <platform_driver_init+0x1f4>)
+1000b286:	4b4b      	ldr	r3, [pc, #300]	; (1000b3b4 <platform_driver_init+0x1f8>)
+1000b288:	601a      	str	r2, [r3, #0]
 		os_sem_down		= (int (*)(void*))0x0001dc5b;
-1000b286:	4a4b      	ldr	r2, [pc, #300]	; (1000b3b4 <platform_driver_init+0x1fc>)
-1000b288:	4b4b      	ldr	r3, [pc, #300]	; (1000b3b8 <platform_driver_init+0x200>)
-1000b28a:	601a      	str	r2, [r3, #0]
+1000b28a:	4a4b      	ldr	r2, [pc, #300]	; (1000b3b8 <platform_driver_init+0x1fc>)
+1000b28c:	4b4b      	ldr	r3, [pc, #300]	; (1000b3bc <platform_driver_init+0x200>)
+1000b28e:	601a      	str	r2, [r3, #0]
 		gstrFwSem 		= (void*)0x100405ec;
-1000b28c:	4a4b      	ldr	r2, [pc, #300]	; (1000b3bc <platform_driver_init+0x204>)
-1000b28e:	4b4c      	ldr	r3, [pc, #304]	; (1000b3c0 <platform_driver_init+0x208>)
-1000b290:	601a      	str	r2, [r3, #0]
+1000b290:	4a4b      	ldr	r2, [pc, #300]	; (1000b3c0 <platform_driver_init+0x204>)
+1000b292:	4b4c      	ldr	r3, [pc, #304]	; (1000b3c4 <platform_driver_init+0x208>)
+1000b294:	601a      	str	r2, [r3, #0]
 		NMI_MsgQueueRecv = (int(*)(void*, void ** ))0x0001d5e3;
-1000b292:	4a4c      	ldr	r2, [pc, #304]	; (1000b3c4 <platform_driver_init+0x20c>)
-1000b294:	4b4c      	ldr	r3, [pc, #304]	; (1000b3c8 <platform_driver_init+0x210>)
-1000b296:	601a      	str	r2, [r3, #0]
+1000b296:	4a4c      	ldr	r2, [pc, #304]	; (1000b3c8 <platform_driver_init+0x20c>)
+1000b298:	4b4c      	ldr	r3, [pc, #304]	; (1000b3cc <platform_driver_init+0x210>)
+1000b29a:	601a      	str	r2, [r3, #0]
 		InternalAppMsgQHandle = (void*)0x10040c20;
-1000b298:	4a4c      	ldr	r2, [pc, #304]	; (1000b3cc <platform_driver_init+0x214>)
-1000b29a:	4b4d      	ldr	r3, [pc, #308]	; (1000b3d0 <platform_driver_init+0x218>)
-1000b29c:	601a      	str	r2, [r3, #0]
+1000b29c:	4a4c      	ldr	r2, [pc, #304]	; (1000b3d0 <platform_driver_init+0x214>)
+1000b29e:	4b4d      	ldr	r3, [pc, #308]	; (1000b3d4 <platform_driver_init+0x218>)
+1000b2a0:	601a      	str	r2, [r3, #0]
 		ke_free = (void(*)(void*))0x00019f09;
-1000b29e:	4a4d      	ldr	r2, [pc, #308]	; (1000b3d4 <platform_driver_init+0x21c>)
-1000b2a0:	4b4d      	ldr	r3, [pc, #308]	; (1000b3d8 <platform_driver_init+0x220>)
-1000b2a2:	601a      	str	r2, [r3, #0]
+1000b2a2:	4a4d      	ldr	r2, [pc, #308]	; (1000b3d8 <platform_driver_init+0x21c>)
+1000b2a4:	4b4d      	ldr	r3, [pc, #308]	; (1000b3dc <platform_driver_init+0x220>)
+1000b2a6:	601a      	str	r2, [r3, #0]
 #endif
 		memset(rx_buffer,0,sizeof(rx_buffer));
-1000b2a4:	22a0      	movs	r2, #160	; 0xa0
-1000b2a6:	0092      	lsls	r2, r2, #2
-1000b2a8:	2100      	movs	r1, #0
-1000b2aa:	484c      	ldr	r0, [pc, #304]	; (1000b3dc <platform_driver_init+0x224>)
-1000b2ac:	4b4c      	ldr	r3, [pc, #304]	; (1000b3e0 <platform_driver_init+0x228>)
-1000b2ae:	4798      	blx	r3
+1000b2a8:	22a0      	movs	r2, #160	; 0xa0
+1000b2aa:	0092      	lsls	r2, r2, #2
+1000b2ac:	2100      	movs	r1, #0
+1000b2ae:	484c      	ldr	r0, [pc, #304]	; (1000b3e0 <platform_driver_init+0x224>)
+1000b2b0:	4b4c      	ldr	r3, [pc, #304]	; (1000b3e4 <platform_driver_init+0x228>)
+1000b2b2:	4798      	blx	r3
 		plf_event_buff_index = PLF_EVENT_BUFFER_START_INDEX;
-1000b2b0:	2280      	movs	r2, #128	; 0x80
-1000b2b2:	0092      	lsls	r2, r2, #2
-1000b2b4:	4b4b      	ldr	r3, [pc, #300]	; (1000b3e4 <platform_driver_init+0x22c>)
-1000b2b6:	801a      	strh	r2, [r3, #0]
+1000b2b4:	2280      	movs	r2, #128	; 0x80
+1000b2b6:	0092      	lsls	r2, r2, #2
+1000b2b8:	4b4b      	ldr	r3, [pc, #300]	; (1000b3e8 <platform_driver_init+0x22c>)
+1000b2ba:	801a      	strh	r2, [r3, #0]
 		platform_event_init();
-1000b2b8:	4b4b      	ldr	r3, [pc, #300]	; (1000b3e8 <platform_driver_init+0x230>)
-1000b2ba:	4798      	blx	r3
+1000b2bc:	4b4b      	ldr	r3, [pc, #300]	; (1000b3ec <platform_driver_init+0x230>)
+1000b2be:	4798      	blx	r3
 
     \param [in]      IRQn  External interrupt number. Value cannot be negative.
  */
 __STATIC_INLINE void NVIC_EnableIRQ(IRQn_Type IRQn)
 {
   NVIC->ISER[0] = (1 << ((uint32_t)(IRQn) & 0x1F));
-1000b2bc:	4653      	mov	r3, sl
-1000b2be:	6023      	str	r3, [r4, #0]
-1000b2c0:	464b      	mov	r3, r9
+1000b2c0:	4653      	mov	r3, sl
 1000b2c2:	6023      	str	r3, [r4, #0]
+1000b2c4:	464b      	mov	r3, r9
+1000b2c6:	6023      	str	r3, [r4, #0]
 		
 #ifndef CHIPVERSION_B0		
 		// spi_flash clock fix.
 		spi_flash_clock_init();
 #endif
 		samb11_app_resume_cb = NULL;
-1000b2c4:	4b49      	ldr	r3, [pc, #292]	; (1000b3ec <platform_driver_init+0x234>)
-1000b2c6:	4642      	mov	r2, r8
-1000b2c8:	601a      	str	r2, [r3, #0]
+1000b2c8:	4b49      	ldr	r3, [pc, #292]	; (1000b3f0 <platform_driver_init+0x234>)
+1000b2ca:	4642      	mov	r2, r8
+1000b2cc:	601a      	str	r2, [r3, #0]
 		*apps_resume_cb = (uint32_t)((resume_callback)samb11_plf_resume_callback);
-1000b2ca:	683b      	ldr	r3, [r7, #0]
-1000b2cc:	4a48      	ldr	r2, [pc, #288]	; (1000b3f0 <platform_driver_init+0x238>)
-1000b2ce:	601a      	str	r2, [r3, #0]
+1000b2ce:	683b      	ldr	r3, [r7, #0]
+1000b2d0:	4a48      	ldr	r2, [pc, #288]	; (1000b3f4 <platform_driver_init+0x238>)
+1000b2d2:	601a      	str	r2, [r3, #0]
 		*wakeup_source_active_cb = (uint32_t)((wakeup_source_active_callback)wakeup_active_event_callback);
-1000b2d0:	6833      	ldr	r3, [r6, #0]
-1000b2d2:	4a48      	ldr	r2, [pc, #288]	; (1000b3f4 <platform_driver_init+0x23c>)
-1000b2d4:	601a      	str	r2, [r3, #0]
+1000b2d4:	6833      	ldr	r3, [r6, #0]
+1000b2d6:	4a48      	ldr	r2, [pc, #288]	; (1000b3f8 <platform_driver_init+0x23c>)
+1000b2d8:	601a      	str	r2, [r3, #0]
 		wakeup_int_unregister_callback(0);
-1000b2d6:	2000      	movs	r0, #0
-1000b2d8:	4c47      	ldr	r4, [pc, #284]	; (1000b3f8 <platform_driver_init+0x240>)
-1000b2da:	47a0      	blx	r4
-		wakeup_int_unregister_callback(1);
-1000b2dc:	2001      	movs	r0, #1
+1000b2da:	2000      	movs	r0, #0
+1000b2dc:	4c47      	ldr	r4, [pc, #284]	; (1000b3fc <platform_driver_init+0x240>)
 1000b2de:	47a0      	blx	r4
-		wakeup_int_unregister_callback(2);
-1000b2e0:	2002      	movs	r0, #2
+		wakeup_int_unregister_callback(1);
+1000b2e0:	2001      	movs	r0, #1
 1000b2e2:	47a0      	blx	r4
+		wakeup_int_unregister_callback(2);
+1000b2e4:	2002      	movs	r0, #2
+1000b2e6:	47a0      	blx	r4
 		platform_initialized = 1;
-1000b2e4:	2201      	movs	r2, #1
-1000b2e6:	4b06      	ldr	r3, [pc, #24]	; (1000b300 <platform_driver_init+0x148>)
-1000b2e8:	701a      	strb	r2, [r3, #0]
+1000b2e8:	2201      	movs	r2, #1
+1000b2ea:	4b06      	ldr	r3, [pc, #24]	; (1000b304 <platform_driver_init+0x148>)
+1000b2ec:	701a      	strb	r2, [r3, #0]
 		status = STATUS_SUCCESS;
-1000b2ea:	2000      	movs	r0, #0
-1000b2ec:	e003      	b.n	1000b2f6 <platform_driver_init+0x13e>
+1000b2ee:	2000      	movs	r0, #0
+1000b2f0:	e003      	b.n	1000b2fa <platform_driver_init+0x13e>
 	}
 	else {
 		platform_initialized = 1;
-1000b2ee:	2201      	movs	r2, #1
-1000b2f0:	4b03      	ldr	r3, [pc, #12]	; (1000b300 <platform_driver_init+0x148>)
-1000b2f2:	701a      	strb	r2, [r3, #0]
+1000b2f2:	2201      	movs	r2, #1
+1000b2f4:	4b03      	ldr	r3, [pc, #12]	; (1000b304 <platform_driver_init+0x148>)
+1000b2f6:	701a      	strb	r2, [r3, #0]
 		status = STATUS_ALREADY_INITIALIZED;
-1000b2f4:	2001      	movs	r0, #1
+1000b2f8:	2001      	movs	r0, #1
 	}
 	return status;
 }
-1000b2f6:	bc1c      	pop	{r2, r3, r4}
-1000b2f8:	4690      	mov	r8, r2
-1000b2fa:	4699      	mov	r9, r3
-1000b2fc:	46a2      	mov	sl, r4
-1000b2fe:	bdf0      	pop	{r4, r5, r6, r7, pc}
-1000b300:	10013d9c 	.word	0x10013d9c
-1000b304:	1000b145 	.word	0x1000b145
-1000b308:	1000b189 	.word	0x1000b189
-1000b30c:	10013dbc 	.word	0x10013dbc
-1000b310:	e000e100 	.word	0xe000e100
-1000b314:	10014a48 	.word	0x10014a48
-1000b318:	000007d7 	.word	0x000007d7
-1000b31c:	000007bd 	.word	0x000007bd
-1000b320:	10014784 	.word	0x10014784
-1000b324:	0001bc51 	.word	0x0001bc51
-1000b328:	10014a4c 	.word	0x10014a4c
-1000b32c:	100400bc 	.word	0x100400bc
-1000b330:	10013d8c 	.word	0x10013d8c
-1000b334:	100400b8 	.word	0x100400b8
-1000b338:	10013d88 	.word	0x10013d88
-1000b33c:	0001b99f 	.word	0x0001b99f
-1000b340:	10014780 	.word	0x10014780
-1000b344:	0001b9db 	.word	0x0001b9db
-1000b348:	1001478c 	.word	0x1001478c
-1000b34c:	10014a5c 	.word	0x10014a5c
-1000b350:	1004003c 	.word	0x1004003c
-1000b354:	10041fc0 	.word	0x10041fc0
-1000b358:	10014790 	.word	0x10014790
-1000b35c:	10041fc4 	.word	0x10041fc4
-1000b360:	10014a58 	.word	0x10014a58
-1000b364:	10014a50 	.word	0x10014a50
-1000b368:	10041fd4 	.word	0x10041fd4
-1000b36c:	10041fd8 	.word	0x10041fd8
-1000b370:	10014788 	.word	0x10014788
-1000b374:	0001cbe9 	.word	0x0001cbe9
-1000b378:	10013dac 	.word	0x10013dac
-1000b37c:	0001cd8f 	.word	0x0001cd8f
-1000b380:	10013da0 	.word	0x10013da0
-1000b384:	0001cea3 	.word	0x0001cea3
-1000b388:	10013dc0 	.word	0x10013dc0
-1000b38c:	0001cbcf 	.word	0x0001cbcf
-1000b390:	10013d98 	.word	0x10013d98
-1000b394:	1000b7d1 	.word	0x1000b7d1
-1000b398:	1000b765 	.word	0x1000b765
-1000b39c:	100400e4 	.word	0x100400e4
-1000b3a0:	10013db4 	.word	0x10013db4
-1000b3a4:	00019fe9 	.word	0x00019fe9
-1000b3a8:	10013dc4 	.word	0x10013dc4
-1000b3ac:	0001dbdd 	.word	0x0001dbdd
-1000b3b0:	10013d94 	.word	0x10013d94
-1000b3b4:	0001dc5b 	.word	0x0001dc5b
-1000b3b8:	10013da8 	.word	0x10013da8
-1000b3bc:	100405ec 	.word	0x100405ec
-1000b3c0:	10013da4 	.word	0x10013da4
-1000b3c4:	0001d5e3 	.word	0x0001d5e3
-1000b3c8:	10013db0 	.word	0x10013db0
-1000b3cc:	10040c20 	.word	0x10040c20
-1000b3d0:	10013dc8 	.word	0x10013dc8
-1000b3d4:	00019f09 	.word	0x00019f09
-1000b3d8:	10013d84 	.word	0x10013d84
-1000b3dc:	100147c8 	.word	0x100147c8
-1000b3e0:	10010369 	.word	0x10010369
-1000b3e4:	10014a60 	.word	0x10014a60
-1000b3e8:	1000b071 	.word	0x1000b071
-1000b3ec:	10014a54 	.word	0x10014a54
-1000b3f0:	1000b119 	.word	0x1000b119
-1000b3f4:	1000b82d 	.word	0x1000b82d
-1000b3f8:	1000b815 	.word	0x1000b815
+1000b2fa:	bc1c      	pop	{r2, r3, r4}
+1000b2fc:	4690      	mov	r8, r2
+1000b2fe:	4699      	mov	r9, r3
+1000b300:	46a2      	mov	sl, r4
+1000b302:	bdf0      	pop	{r4, r5, r6, r7, pc}
+1000b304:	10013d9c 	.word	0x10013d9c
+1000b308:	1000b149 	.word	0x1000b149
+1000b30c:	1000b18d 	.word	0x1000b18d
+1000b310:	10013dbc 	.word	0x10013dbc
+1000b314:	e000e100 	.word	0xe000e100
+1000b318:	10014a48 	.word	0x10014a48
+1000b31c:	000007d7 	.word	0x000007d7
+1000b320:	000007bd 	.word	0x000007bd
+1000b324:	10014784 	.word	0x10014784
+1000b328:	0001bc51 	.word	0x0001bc51
+1000b32c:	10014a4c 	.word	0x10014a4c
+1000b330:	100400bc 	.word	0x100400bc
+1000b334:	10013d8c 	.word	0x10013d8c
+1000b338:	100400b8 	.word	0x100400b8
+1000b33c:	10013d88 	.word	0x10013d88
+1000b340:	0001b99f 	.word	0x0001b99f
+1000b344:	10014780 	.word	0x10014780
+1000b348:	0001b9db 	.word	0x0001b9db
+1000b34c:	1001478c 	.word	0x1001478c
+1000b350:	10014a5c 	.word	0x10014a5c
+1000b354:	1004003c 	.word	0x1004003c
+1000b358:	10041fc0 	.word	0x10041fc0
+1000b35c:	10014790 	.word	0x10014790
+1000b360:	10041fc4 	.word	0x10041fc4
+1000b364:	10014a58 	.word	0x10014a58
+1000b368:	10014a50 	.word	0x10014a50
+1000b36c:	10041fd4 	.word	0x10041fd4
+1000b370:	10041fd8 	.word	0x10041fd8
+1000b374:	10014788 	.word	0x10014788
+1000b378:	0001cbe9 	.word	0x0001cbe9
+1000b37c:	10013dac 	.word	0x10013dac
+1000b380:	0001cd8f 	.word	0x0001cd8f
+1000b384:	10013da0 	.word	0x10013da0
+1000b388:	0001cea3 	.word	0x0001cea3
+1000b38c:	10013dc0 	.word	0x10013dc0
+1000b390:	0001cbcf 	.word	0x0001cbcf
+1000b394:	10013d98 	.word	0x10013d98
+1000b398:	1000b7d5 	.word	0x1000b7d5
+1000b39c:	1000b769 	.word	0x1000b769
+1000b3a0:	100400e4 	.word	0x100400e4
+1000b3a4:	10013db4 	.word	0x10013db4
+1000b3a8:	00019fe9 	.word	0x00019fe9
+1000b3ac:	10013dc4 	.word	0x10013dc4
+1000b3b0:	0001dbdd 	.word	0x0001dbdd
+1000b3b4:	10013d94 	.word	0x10013d94
+1000b3b8:	0001dc5b 	.word	0x0001dc5b
+1000b3bc:	10013da8 	.word	0x10013da8
+1000b3c0:	100405ec 	.word	0x100405ec
+1000b3c4:	10013da4 	.word	0x10013da4
+1000b3c8:	0001d5e3 	.word	0x0001d5e3
+1000b3cc:	10013db0 	.word	0x10013db0
+1000b3d0:	10040c20 	.word	0x10040c20
+1000b3d4:	10013dc8 	.word	0x10013dc8
+1000b3d8:	00019f09 	.word	0x00019f09
+1000b3dc:	10013d84 	.word	0x10013d84
+1000b3e0:	100147c8 	.word	0x100147c8
+1000b3e4:	10010369 	.word	0x10010369
+1000b3e8:	10014a60 	.word	0x10014a60
+1000b3ec:	1000b075 	.word	0x1000b075
+1000b3f0:	10014a54 	.word	0x10014a54
+1000b3f4:	1000b11d 	.word	0x1000b11d
+1000b3f8:	1000b831 	.word	0x1000b831
+1000b3fc:	1000b819 	.word	0x1000b819
 
-1000b3fc <platform_register_ble_msg_handler>:
+1000b400 <platform_register_ble_msg_handler>:
 
 
 plf_drv_status platform_register_ble_msg_handler(platform_interface_callback fp)
 {
 	plf_drv_status status;
 	if(platform_initialized == 1) {
-1000b3fc:	4b04      	ldr	r3, [pc, #16]	; (1000b410 <platform_register_ble_msg_handler+0x14>)
-1000b3fe:	781a      	ldrb	r2, [r3, #0]
+1000b400:	4b04      	ldr	r3, [pc, #16]	; (1000b414 <platform_register_ble_msg_handler+0x14>)
+1000b402:	781a      	ldrb	r2, [r3, #0]
 		ble_stack_message_handler = fp;
 		status = STATUS_SUCCESS;
 	}
 	else {
 		status = STATUS_NOT_INITIALIZED;
-1000b400:	2305      	movs	r3, #5
+1000b404:	2305      	movs	r3, #5
 
 
 plf_drv_status platform_register_ble_msg_handler(platform_interface_callback fp)
 {
 	plf_drv_status status;
 	if(platform_initialized == 1) {
-1000b402:	2a01      	cmp	r2, #1
-1000b404:	d102      	bne.n	1000b40c <platform_register_ble_msg_handler+0x10>
+1000b406:	2a01      	cmp	r2, #1
+1000b408:	d102      	bne.n	1000b410 <platform_register_ble_msg_handler+0x10>
 		ble_stack_message_handler = fp;
-1000b406:	4b03      	ldr	r3, [pc, #12]	; (1000b414 <platform_register_ble_msg_handler+0x18>)
-1000b408:	6018      	str	r0, [r3, #0]
+1000b40a:	4b03      	ldr	r3, [pc, #12]	; (1000b418 <platform_register_ble_msg_handler+0x18>)
+1000b40c:	6018      	str	r0, [r3, #0]
 		status = STATUS_SUCCESS;
-1000b40a:	2300      	movs	r3, #0
+1000b40e:	2300      	movs	r3, #0
 	}
 	else {
 		status = STATUS_NOT_INITIALIZED;
 	}
 	return status;
 }
-1000b40c:	0018      	movs	r0, r3
-1000b40e:	4770      	bx	lr
-1000b410:	10013d9c 	.word	0x10013d9c
-1000b414:	10013dbc 	.word	0x10013dbc
+1000b410:	0018      	movs	r0, r3
+1000b412:	4770      	bx	lr
+1000b414:	10013d9c 	.word	0x10013d9c
+1000b418:	10013dbc 	.word	0x10013dbc
 
-1000b418 <platform_interface_send>:
+1000b41c <platform_interface_send>:
 
 
 //Sends a message through RW kernel messaging API
 //struct ke_msg * p_msg;
 void platform_interface_send(uint8_t* data, uint32_t len)
 {
-1000b418:	b570      	push	{r4, r5, r6, lr}
-1000b41a:	0004      	movs	r4, r0
+1000b41c:	b570      	push	{r4, r5, r6, lr}
+1000b41e:	0004      	movs	r4, r0
 	void* params;
 	
 	#if (CHIPVERSION_B0)
 	ke_task_id_t dest_id;
 	dest_id = p_msg_hdr->dest_id;
 	if(gapm_get_task_from_id != NULL)
-1000b41c:	4b0e      	ldr	r3, [pc, #56]	; (1000b458 <platform_interface_send+0x40>)
-1000b41e:	681b      	ldr	r3, [r3, #0]
-1000b420:	2b00      	cmp	r3, #0
-1000b422:	d002      	beq.n	1000b42a <platform_interface_send+0x12>
+1000b420:	4b0e      	ldr	r3, [pc, #56]	; (1000b45c <platform_interface_send+0x40>)
+1000b422:	681b      	ldr	r3, [r3, #0]
+1000b424:	2b00      	cmp	r3, #0
+1000b426:	d002      	beq.n	1000b42e <platform_interface_send+0x12>
 		p_msg_hdr->dest_id = gapm_get_task_from_id(dest_id);
-1000b424:	8840      	ldrh	r0, [r0, #2]
-1000b426:	4798      	blx	r3
-1000b428:	8060      	strh	r0, [r4, #2]
+1000b428:	8840      	ldrh	r0, [r0, #2]
+1000b42a:	4798      	blx	r3
+1000b42c:	8060      	strh	r0, [r4, #2]
 	#endif	//CHIPVERSION_B0
 	// Allocate the kernel message
 	params = ke_msg_alloc(p_msg_hdr->id, p_msg_hdr->dest_id, p_msg_hdr->src_id, p_msg_hdr->param_len);
-1000b42a:	88e3      	ldrh	r3, [r4, #6]
-1000b42c:	88a2      	ldrh	r2, [r4, #4]
-1000b42e:	8861      	ldrh	r1, [r4, #2]
-1000b430:	8820      	ldrh	r0, [r4, #0]
-1000b432:	4d0a      	ldr	r5, [pc, #40]	; (1000b45c <platform_interface_send+0x44>)
-1000b434:	682d      	ldr	r5, [r5, #0]
-1000b436:	47a8      	blx	r5
-1000b438:	0005      	movs	r5, r0
+1000b42e:	88e3      	ldrh	r3, [r4, #6]
+1000b430:	88a2      	ldrh	r2, [r4, #4]
+1000b432:	8861      	ldrh	r1, [r4, #2]
+1000b434:	8820      	ldrh	r0, [r4, #0]
+1000b436:	4d0a      	ldr	r5, [pc, #40]	; (1000b460 <platform_interface_send+0x44>)
+1000b438:	682d      	ldr	r5, [r5, #0]
+1000b43a:	47a8      	blx	r5
+1000b43c:	0005      	movs	r5, r0
 											
 	//no params
 	if (p_msg_hdr->param_len == 0)
-1000b43a:	88e2      	ldrh	r2, [r4, #6]
-1000b43c:	2a00      	cmp	r2, #0
-1000b43e:	d102      	bne.n	1000b446 <platform_interface_send+0x2e>
+1000b43e:	88e2      	ldrh	r2, [r4, #6]
+1000b440:	2a00      	cmp	r2, #0
+1000b442:	d102      	bne.n	1000b44a <platform_interface_send+0x2e>
 	{
 		// Send message directly
 		at_ke_msg_send(params);
-1000b440:	4b07      	ldr	r3, [pc, #28]	; (1000b460 <platform_interface_send+0x48>)
-1000b442:	4798      	blx	r3
-1000b444:	e006      	b.n	1000b454 <platform_interface_send+0x3c>
+1000b444:	4b07      	ldr	r3, [pc, #28]	; (1000b464 <platform_interface_send+0x48>)
+1000b446:	4798      	blx	r3
+1000b448:	e006      	b.n	1000b458 <platform_interface_send+0x3c>
 	}
 	else
 	{
 		//copy params
 		memcpy(params,&(data[KE_MSG_HDR_LENGTH]),p_msg_hdr->param_len);
-1000b446:	0021      	movs	r1, r4
-1000b448:	3108      	adds	r1, #8
-1000b44a:	4b06      	ldr	r3, [pc, #24]	; (1000b464 <platform_interface_send+0x4c>)
-1000b44c:	4798      	blx	r3
+1000b44a:	0021      	movs	r1, r4
+1000b44c:	3108      	adds	r1, #8
+1000b44e:	4b06      	ldr	r3, [pc, #24]	; (1000b468 <platform_interface_send+0x4c>)
+1000b450:	4798      	blx	r3
 		// Send the kernel message
 		at_ke_msg_send(params);
-1000b44e:	0028      	movs	r0, r5
-1000b450:	4b03      	ldr	r3, [pc, #12]	; (1000b460 <platform_interface_send+0x48>)
-1000b452:	4798      	blx	r3
+1000b452:	0028      	movs	r0, r5
+1000b454:	4b03      	ldr	r3, [pc, #12]	; (1000b464 <platform_interface_send+0x48>)
+1000b456:	4798      	blx	r3
 	}
 }
-1000b454:	bd70      	pop	{r4, r5, r6, pc}
-1000b456:	46c0      	nop			; (mov r8, r8)
-1000b458:	10013d8c 	.word	0x10013d8c
-1000b45c:	10013dc4 	.word	0x10013dc4
-1000b460:	1000b0a1 	.word	0x1000b0a1
-1000b464:	10010357 	.word	0x10010357
+1000b458:	bd70      	pop	{r4, r5, r6, pc}
+1000b45a:	46c0      	nop			; (mov r8, r8)
+1000b45c:	10013d8c 	.word	0x10013d8c
+1000b460:	10013dc4 	.word	0x10013dc4
+1000b464:	1000b0a5 	.word	0x1000b0a5
+1000b468:	10010357 	.word	0x10010357
 
-1000b468 <platform_event_wait>:
+1000b46c <platform_event_wait>:
 //Waits on InternalAppMsgQHandle Queue
 // This function won't busy wait if nothing on queue but will down the semaphore and go to a blocking state
 // The OS then will move control to other higher priority tasks and will only return if these tasks finish processing AND the queue has received 
 //a msg
 plf_drv_status platform_event_wait(uint32_t timeout)
 {
-1000b468:	b5f0      	push	{r4, r5, r6, r7, lr}
-1000b46a:	465f      	mov	r7, fp
-1000b46c:	4656      	mov	r6, sl
-1000b46e:	464d      	mov	r5, r9
-1000b470:	4644      	mov	r4, r8
-1000b472:	b4f0      	push	{r4, r5, r6, r7}
-1000b474:	b087      	sub	sp, #28
+1000b46c:	b5f0      	push	{r4, r5, r6, r7, lr}
+1000b46e:	465f      	mov	r7, fp
+1000b470:	4656      	mov	r6, sl
+1000b472:	464d      	mov	r5, r9
+1000b474:	4644      	mov	r4, r8
+1000b476:	b4f0      	push	{r4, r5, r6, r7}
+1000b478:	b087      	sub	sp, #28
 	static struct ke_msg* rcv_msg;
 	static struct ke_msghdr	*ke_msg_hdr;
 	plf_drv_status status = STATUS_SUCCESS;
 	uint8_t bEventTimeoutFlag = 0;
 	uint8_t bLoopAgain = 0;
 	if(((uint32_t)-1 != timeout) && ((uint32_t)0 < timeout))
-1000b476:	1e44      	subs	r4, r0, #1
+1000b47a:	1e44      	subs	r4, r0, #1
 plf_drv_status platform_event_wait(uint32_t timeout)
 {
 	static struct ke_msg* rcv_msg;
 	static struct ke_msghdr	*ke_msg_hdr;
 	plf_drv_status status = STATUS_SUCCESS;
 	uint8_t bEventTimeoutFlag = 0;
-1000b478:	2300      	movs	r3, #0
-1000b47a:	4699      	mov	r9, r3
+1000b47c:	2300      	movs	r3, #0
+1000b47e:	4699      	mov	r9, r3
 	uint8_t bLoopAgain = 0;
 	if(((uint32_t)-1 != timeout) && ((uint32_t)0 < timeout))
-1000b47c:	1ce3      	adds	r3, r4, #3
-1000b47e:	d81c      	bhi.n	1000b4ba <platform_event_wait+0x52>
+1000b480:	1ce3      	adds	r3, r4, #3
+1000b482:	d81c      	bhi.n	1000b4be <platform_event_wait+0x52>
 	return num_of_freed;
 }
 
 static void platform_start_event_timeout(uint32_t timeout)
 {
 	uint8_t msg[8+5] = {0};
-1000b480:	220d      	movs	r2, #13
-1000b482:	2100      	movs	r1, #0
-1000b484:	a802      	add	r0, sp, #8
-1000b486:	4b82      	ldr	r3, [pc, #520]	; (1000b690 <platform_event_wait+0x228>)
-1000b488:	4798      	blx	r3
+1000b484:	220d      	movs	r2, #13
+1000b486:	2100      	movs	r1, #0
+1000b488:	a802      	add	r0, sp, #8
+1000b48a:	4b82      	ldr	r3, [pc, #520]	; (1000b694 <platform_event_wait+0x228>)
+1000b48c:	4798      	blx	r3
 	uint8_t u16TxLen = 0;
 
 	msg[u16TxLen++] = ((DBG_KE_TIMER_REQ) & 0x00FF );
-1000b48a:	2333      	movs	r3, #51	; 0x33
-1000b48c:	aa02      	add	r2, sp, #8
-1000b48e:	7013      	strb	r3, [r2, #0]
+1000b48e:	2333      	movs	r3, #51	; 0x33
+1000b490:	aa02      	add	r2, sp, #8
+1000b492:	7013      	strb	r3, [r2, #0]
 	msg[u16TxLen++] = (((DBG_KE_TIMER_REQ)>>8) & 0x00FF );
-1000b490:	3b30      	subs	r3, #48	; 0x30
-1000b492:	7053      	strb	r3, [r2, #1]
+1000b494:	3b30      	subs	r3, #48	; 0x30
+1000b496:	7053      	strb	r3, [r2, #1]
 	msg[u16TxLen++] = ((TASK_DBG) & 0x00FF );
-1000b494:	7093      	strb	r3, [r2, #2]
+1000b498:	7093      	strb	r3, [r2, #2]
 	msg[u16TxLen++] = (((TASK_DBG)>>8) & 0x00FF );	
 	msg[u16TxLen++] = ((TASK_INTERNAL_APP) & 0x00FF );
-1000b496:	3302      	adds	r3, #2
-1000b498:	7113      	strb	r3, [r2, #4]
+1000b49a:	3302      	adds	r3, #2
+1000b49c:	7113      	strb	r3, [r2, #4]
 	msg[u16TxLen++] = (((TASK_INTERNAL_APP)>>8) & 0x00FF );
 	msg[u16TxLen++] = ((5) & 0x00FF );
-1000b49a:	7193      	strb	r3, [r2, #6]
+1000b49e:	7193      	strb	r3, [r2, #6]
 	msg[u16TxLen++] = (((5)>>8) & 0x00FF );
 	
 	msg[u16TxLen++] = (uint8_t)((timeout) & 0x00FF );
-1000b49c:	7214      	strb	r4, [r2, #8]
+1000b4a0:	7214      	strb	r4, [r2, #8]
 	msg[u16TxLen++] = (uint8_t)(( (timeout) >> 8) & 0x00FF) ;
-1000b49e:	0a23      	lsrs	r3, r4, #8
-1000b4a0:	7253      	strb	r3, [r2, #9]
+1000b4a2:	0a23      	lsrs	r3, r4, #8
+1000b4a4:	7253      	strb	r3, [r2, #9]
 	msg[u16TxLen++] = (uint8_t)(( (timeout) >> 16) & 0x00FF);
-1000b4a2:	0c23      	lsrs	r3, r4, #16
-1000b4a4:	7293      	strb	r3, [r2, #10]
+1000b4a6:	0c23      	lsrs	r3, r4, #16
+1000b4a8:	7293      	strb	r3, [r2, #10]
 	msg[u16TxLen++] = (uint8_t)(( (timeout) >> 24) & 0x00FF);
-1000b4a6:	0e24      	lsrs	r4, r4, #24
-1000b4a8:	72d4      	strb	r4, [r2, #11]
+1000b4aa:	0e24      	lsrs	r4, r4, #24
+1000b4ac:	72d4      	strb	r4, [r2, #11]
 	
 	msg[u16TxLen++] = ((1) & 0x00FF );
-1000b4aa:	2301      	movs	r3, #1
-1000b4ac:	7313      	strb	r3, [r2, #12]
+1000b4ae:	2301      	movs	r3, #1
+1000b4b0:	7313      	strb	r3, [r2, #12]
 	
 	platform_interface_send(msg, u16TxLen);
-1000b4ae:	210d      	movs	r1, #13
-1000b4b0:	0010      	movs	r0, r2
-1000b4b2:	4b78      	ldr	r3, [pc, #480]	; (1000b694 <platform_event_wait+0x22c>)
-1000b4b4:	4798      	blx	r3
+1000b4b2:	210d      	movs	r1, #13
+1000b4b4:	0010      	movs	r0, r2
+1000b4b6:	4b78      	ldr	r3, [pc, #480]	; (1000b698 <platform_event_wait+0x22c>)
+1000b4b8:	4798      	blx	r3
 	uint8_t bEventTimeoutFlag = 0;
 	uint8_t bLoopAgain = 0;
 	if(((uint32_t)-1 != timeout) && ((uint32_t)0 < timeout))
 	{			
 		platform_start_event_timeout(timeout-1);
 		bEventTimeoutFlag = 1;
-1000b4b6:	2301      	movs	r3, #1
-1000b4b8:	4699      	mov	r9, r3
-1000b4ba:	2400      	movs	r4, #0
-1000b4bc:	2500      	movs	r5, #0
+1000b4ba:	2301      	movs	r3, #1
+1000b4bc:	4699      	mov	r9, r3
+1000b4be:	2400      	movs	r4, #0
+1000b4c0:	2500      	movs	r5, #0
 	}
 
 	do {
 		if(NMI_MsgQueueRecv(InternalAppMsgQHandle, (void**)&rcv_msg) == STATUS_SUCCESS)
-1000b4be:	4f76      	ldr	r7, [pc, #472]	; (1000b698 <platform_event_wait+0x230>)
-1000b4c0:	4e76      	ldr	r6, [pc, #472]	; (1000b69c <platform_event_wait+0x234>)
-1000b4c2:	4977      	ldr	r1, [pc, #476]	; (1000b6a0 <platform_event_wait+0x238>)
-1000b4c4:	6838      	ldr	r0, [r7, #0]
-1000b4c6:	6833      	ldr	r3, [r6, #0]
-1000b4c8:	4798      	blx	r3
-1000b4ca:	2800      	cmp	r0, #0
-1000b4cc:	d000      	beq.n	1000b4d0 <platform_event_wait+0x68>
-1000b4ce:	e088      	b.n	1000b5e2 <platform_event_wait+0x17a>
+1000b4c2:	4f76      	ldr	r7, [pc, #472]	; (1000b69c <platform_event_wait+0x230>)
+1000b4c4:	4e76      	ldr	r6, [pc, #472]	; (1000b6a0 <platform_event_wait+0x234>)
+1000b4c6:	4977      	ldr	r1, [pc, #476]	; (1000b6a4 <platform_event_wait+0x238>)
+1000b4c8:	6838      	ldr	r0, [r7, #0]
+1000b4ca:	6833      	ldr	r3, [r6, #0]
+1000b4cc:	4798      	blx	r3
+1000b4ce:	2800      	cmp	r0, #0
+1000b4d0:	d000      	beq.n	1000b4d4 <platform_event_wait+0x68>
+1000b4d2:	e088      	b.n	1000b5e6 <platform_event_wait+0x17a>
 		{
 			uint16_t msg_id = rcv_msg->id;
-1000b4d0:	4b73      	ldr	r3, [pc, #460]	; (1000b6a0 <platform_event_wait+0x238>)
-1000b4d2:	681c      	ldr	r4, [r3, #0]
-1000b4d4:	88a3      	ldrh	r3, [r4, #4]
-1000b4d6:	469a      	mov	sl, r3
+1000b4d4:	4b73      	ldr	r3, [pc, #460]	; (1000b6a4 <platform_event_wait+0x238>)
+1000b4d6:	681c      	ldr	r4, [r3, #0]
+1000b4d8:	88a3      	ldrh	r3, [r4, #4]
+1000b4da:	469a      	mov	sl, r3
 			uint16_t src_id = rcv_msg->src_id;
 			uint8_t* data = (uint8_t*)rcv_msg->param;
 			uint16_t len = rcv_msg->param_len;
 			bLoopAgain = 0;
 			
 			if((rcv_msg->id != DBG_KE_TIMER_RESP) && (bEventTimeoutFlag))
-1000b4d8:	23cd      	movs	r3, #205	; 0xcd
-1000b4da:	009b      	lsls	r3, r3, #2
-1000b4dc:	459a      	cmp	sl, r3
-1000b4de:	d100      	bne.n	1000b4e2 <platform_event_wait+0x7a>
-1000b4e0:	e0c7      	b.n	1000b672 <platform_event_wait+0x20a>
+1000b4dc:	23cd      	movs	r3, #205	; 0xcd
+1000b4de:	009b      	lsls	r3, r3, #2
+1000b4e0:	459a      	cmp	sl, r3
+1000b4e2:	d100      	bne.n	1000b4e6 <platform_event_wait+0x7a>
+1000b4e4:	e0c7      	b.n	1000b676 <platform_event_wait+0x20a>
 
 	do {
 		if(NMI_MsgQueueRecv(InternalAppMsgQHandle, (void**)&rcv_msg) == STATUS_SUCCESS)
 		{
 			uint16_t msg_id = rcv_msg->id;
 			uint16_t src_id = rcv_msg->src_id;
-1000b4e2:	8923      	ldrh	r3, [r4, #8]
-1000b4e4:	469b      	mov	fp, r3
+1000b4e6:	8923      	ldrh	r3, [r4, #8]
+1000b4e8:	469b      	mov	fp, r3
 			uint8_t* data = (uint8_t*)rcv_msg->param;
 			uint16_t len = rcv_msg->param_len;
-1000b4e6:	8963      	ldrh	r3, [r4, #10]
-1000b4e8:	4698      	mov	r8, r3
+1000b4ea:	8963      	ldrh	r3, [r4, #10]
+1000b4ec:	4698      	mov	r8, r3
 			bLoopAgain = 0;
 			
 			if((rcv_msg->id != DBG_KE_TIMER_RESP) && (bEventTimeoutFlag))
-1000b4ea:	464b      	mov	r3, r9
-1000b4ec:	2b00      	cmp	r3, #0
-1000b4ee:	d011      	beq.n	1000b514 <platform_event_wait+0xac>
+1000b4ee:	464b      	mov	r3, r9
+1000b4f0:	2b00      	cmp	r3, #0
+1000b4f2:	d011      	beq.n	1000b518 <platform_event_wait+0xac>
 	platform_interface_send(msg, u16TxLen);
 }
 
 static void platform_stop_event_timeout(void)
 {
 	uint8_t msg[8+5] = {0};
-1000b4f0:	220d      	movs	r2, #13
-1000b4f2:	2100      	movs	r1, #0
-1000b4f4:	a802      	add	r0, sp, #8
-1000b4f6:	4b66      	ldr	r3, [pc, #408]	; (1000b690 <platform_event_wait+0x228>)
-1000b4f8:	4798      	blx	r3
+1000b4f4:	220d      	movs	r2, #13
+1000b4f6:	2100      	movs	r1, #0
+1000b4f8:	a802      	add	r0, sp, #8
+1000b4fa:	4b66      	ldr	r3, [pc, #408]	; (1000b694 <platform_event_wait+0x228>)
+1000b4fc:	4798      	blx	r3
 	uint8_t u16TxLen = 0;
 
 	msg[u16TxLen++] = ((DBG_KE_TIMER_REQ) & 0x00FF );
-1000b4fa:	2333      	movs	r3, #51	; 0x33
-1000b4fc:	aa02      	add	r2, sp, #8
-1000b4fe:	7013      	strb	r3, [r2, #0]
+1000b4fe:	2333      	movs	r3, #51	; 0x33
+1000b500:	aa02      	add	r2, sp, #8
+1000b502:	7013      	strb	r3, [r2, #0]
 	msg[u16TxLen++] = (((DBG_KE_TIMER_REQ)>>8) & 0x00FF );
-1000b500:	3b30      	subs	r3, #48	; 0x30
-1000b502:	7053      	strb	r3, [r2, #1]
+1000b504:	3b30      	subs	r3, #48	; 0x30
+1000b506:	7053      	strb	r3, [r2, #1]
 	msg[u16TxLen++] = ((TASK_DBG) & 0x00FF );
-1000b504:	7093      	strb	r3, [r2, #2]
+1000b508:	7093      	strb	r3, [r2, #2]
 	msg[u16TxLen++] = (((TASK_DBG)>>8) & 0x00FF );	
 	msg[u16TxLen++] = ((TASK_INTERNAL_APP) & 0x00FF );
-1000b506:	3302      	adds	r3, #2
-1000b508:	7113      	strb	r3, [r2, #4]
+1000b50a:	3302      	adds	r3, #2
+1000b50c:	7113      	strb	r3, [r2, #4]
 	msg[u16TxLen++] = (((TASK_INTERNAL_APP)>>8) & 0x00FF );
 	msg[u16TxLen++] = ((5) & 0x00FF );
-1000b50a:	7193      	strb	r3, [r2, #6]
+1000b50e:	7193      	strb	r3, [r2, #6]
 	msg[u16TxLen++] = (uint8_t)(( (0) >> 16) & 0x00FF);
 	msg[u16TxLen++] = (uint8_t)(( (0) >> 24) & 0x00FF);
 	
 	msg[u16TxLen++] = ((0) & 0x00FF );
 	
 	platform_interface_send(msg, u16TxLen);
-1000b50c:	210d      	movs	r1, #13
-1000b50e:	0010      	movs	r0, r2
-1000b510:	4b60      	ldr	r3, [pc, #384]	; (1000b694 <platform_event_wait+0x22c>)
-1000b512:	4798      	blx	r3
+1000b510:	210d      	movs	r1, #13
+1000b512:	0010      	movs	r0, r2
+1000b514:	4b60      	ldr	r3, [pc, #384]	; (1000b698 <platform_event_wait+0x22c>)
+1000b516:	4798      	blx	r3
 			{
 				//Stop timer if it is still running
 				platform_stop_event_timeout();
 			}
 				
 			if(msg_id == PERIPHERAL_INTERRUPT_EVENT)
-1000b514:	23a0      	movs	r3, #160	; 0xa0
-1000b516:	00db      	lsls	r3, r3, #3
-1000b518:	459a      	cmp	sl, r3
-1000b51a:	d121      	bne.n	1000b560 <platform_event_wait+0xf8>
+1000b518:	23a0      	movs	r3, #160	; 0xa0
+1000b51a:	00db      	lsls	r3, r3, #3
+1000b51c:	459a      	cmp	sl, r3
+1000b51e:	d121      	bne.n	1000b564 <platform_event_wait+0xf8>
 			{
 				if(plf_event_buff_index+len > MAX_EVT_BUFF_LEN)
-1000b51c:	4b61      	ldr	r3, [pc, #388]	; (1000b6a4 <platform_event_wait+0x23c>)
-1000b51e:	881b      	ldrh	r3, [r3, #0]
-1000b520:	4443      	add	r3, r8
-1000b522:	22a0      	movs	r2, #160	; 0xa0
-1000b524:	0092      	lsls	r2, r2, #2
-1000b526:	4293      	cmp	r3, r2
-1000b528:	dd02      	ble.n	1000b530 <platform_event_wait+0xc8>
+1000b520:	4b61      	ldr	r3, [pc, #388]	; (1000b6a8 <platform_event_wait+0x23c>)
+1000b522:	881b      	ldrh	r3, [r3, #0]
+1000b524:	4443      	add	r3, r8
+1000b526:	22a0      	movs	r2, #160	; 0xa0
+1000b528:	0092      	lsls	r2, r2, #2
+1000b52a:	4293      	cmp	r3, r2
+1000b52c:	dd02      	ble.n	1000b534 <platform_event_wait+0xc8>
 					plf_event_buff_index = PLF_EVENT_BUFFER_START_INDEX;
-1000b52a:	3a80      	subs	r2, #128	; 0x80
-1000b52c:	4b5d      	ldr	r3, [pc, #372]	; (1000b6a4 <platform_event_wait+0x23c>)
-1000b52e:	801a      	strh	r2, [r3, #0]
+1000b52e:	3a80      	subs	r2, #128	; 0x80
+1000b530:	4b5d      	ldr	r3, [pc, #372]	; (1000b6a8 <platform_event_wait+0x23c>)
+1000b532:	801a      	strh	r2, [r3, #0]
 				memcpy(&rx_buffer[plf_event_buff_index],data,len);
-1000b530:	4b5c      	ldr	r3, [pc, #368]	; (1000b6a4 <platform_event_wait+0x23c>)
-1000b532:	469a      	mov	sl, r3
-1000b534:	881d      	ldrh	r5, [r3, #0]
-1000b536:	4b5c      	ldr	r3, [pc, #368]	; (1000b6a8 <platform_event_wait+0x240>)
-1000b538:	18ed      	adds	r5, r5, r3
-1000b53a:	0021      	movs	r1, r4
-1000b53c:	310c      	adds	r1, #12
-1000b53e:	4642      	mov	r2, r8
-1000b540:	0028      	movs	r0, r5
-1000b542:	4b5a      	ldr	r3, [pc, #360]	; (1000b6ac <platform_event_wait+0x244>)
-1000b544:	4798      	blx	r3
+1000b534:	4b5c      	ldr	r3, [pc, #368]	; (1000b6a8 <platform_event_wait+0x23c>)
+1000b536:	469a      	mov	sl, r3
+1000b538:	881d      	ldrh	r5, [r3, #0]
+1000b53a:	4b5c      	ldr	r3, [pc, #368]	; (1000b6ac <platform_event_wait+0x240>)
+1000b53c:	18ed      	adds	r5, r5, r3
+1000b53e:	0021      	movs	r1, r4
+1000b540:	310c      	adds	r1, #12
+1000b542:	4642      	mov	r2, r8
+1000b544:	0028      	movs	r0, r5
+1000b546:	4b5a      	ldr	r3, [pc, #360]	; (1000b6b0 <platform_event_wait+0x244>)
+1000b548:	4798      	blx	r3
 				platform_event_post(src_id,&rx_buffer[plf_event_buff_index],len);
-1000b546:	4642      	mov	r2, r8
-1000b548:	0029      	movs	r1, r5
-1000b54a:	4658      	mov	r0, fp
-1000b54c:	4b58      	ldr	r3, [pc, #352]	; (1000b6b0 <platform_event_wait+0x248>)
-1000b54e:	4798      	blx	r3
+1000b54a:	4642      	mov	r2, r8
+1000b54c:	0029      	movs	r1, r5
+1000b54e:	4658      	mov	r0, fp
+1000b550:	4b58      	ldr	r3, [pc, #352]	; (1000b6b4 <platform_event_wait+0x248>)
+1000b552:	4798      	blx	r3
 				plf_event_buff_index += len;
-1000b550:	4653      	mov	r3, sl
-1000b552:	881b      	ldrh	r3, [r3, #0]
-1000b554:	4443      	add	r3, r8
-1000b556:	4652      	mov	r2, sl
-1000b558:	8013      	strh	r3, [r2, #0]
+1000b554:	4653      	mov	r3, sl
+1000b556:	881b      	ldrh	r3, [r3, #0]
+1000b558:	4443      	add	r3, r8
+1000b55a:	4652      	mov	r2, sl
+1000b55c:	8013      	strh	r3, [r2, #0]
 		{
 			uint16_t msg_id = rcv_msg->id;
 			uint16_t src_id = rcv_msg->src_id;
 			uint8_t* data = (uint8_t*)rcv_msg->param;
 			uint16_t len = rcv_msg->param_len;
 			bLoopAgain = 0;
-1000b55a:	2400      	movs	r4, #0
+1000b55e:	2400      	movs	r4, #0
 				if(plf_event_buff_index+len > MAX_EVT_BUFF_LEN)
 					plf_event_buff_index = PLF_EVENT_BUFFER_START_INDEX;
 				memcpy(&rx_buffer[plf_event_buff_index],data,len);
 				platform_event_post(src_id,&rx_buffer[plf_event_buff_index],len);
 				plf_event_buff_index += len;
 				status = STATUS_RECEIVED_PLF_EVENT_MSG;
-1000b55c:	2502      	movs	r5, #2
-1000b55e:	e03a      	b.n	1000b5d6 <platform_event_wait+0x16e>
+1000b560:	2502      	movs	r5, #2
+1000b562:	e03a      	b.n	1000b5da <platform_event_wait+0x16e>
 			}
 			else
 			{	
 				// BLE stack messages
 				if(ble_stack_message_handler) {
-1000b560:	4b54      	ldr	r3, [pc, #336]	; (1000b6b4 <platform_event_wait+0x24c>)
-1000b562:	681b      	ldr	r3, [r3, #0]
-1000b564:	2b00      	cmp	r3, #0
-1000b566:	d032      	beq.n	1000b5ce <platform_event_wait+0x166>
+1000b564:	4b54      	ldr	r3, [pc, #336]	; (1000b6b8 <platform_event_wait+0x24c>)
+1000b566:	681b      	ldr	r3, [r3, #0]
+1000b568:	2b00      	cmp	r3, #0
+1000b56a:	d032      	beq.n	1000b5d2 <platform_event_wait+0x166>
 					if(rcv_msg->id == DBG_KE_TIMER_RESP)
-1000b568:	4b4d      	ldr	r3, [pc, #308]	; (1000b6a0 <platform_event_wait+0x238>)
-1000b56a:	681a      	ldr	r2, [r3, #0]
-1000b56c:	8893      	ldrh	r3, [r2, #4]
-1000b56e:	21cd      	movs	r1, #205	; 0xcd
-1000b570:	0089      	lsls	r1, r1, #2
-1000b572:	428b      	cmp	r3, r1
-1000b574:	d104      	bne.n	1000b580 <platform_event_wait+0x118>
+1000b56c:	4b4d      	ldr	r3, [pc, #308]	; (1000b6a4 <platform_event_wait+0x238>)
+1000b56e:	681a      	ldr	r2, [r3, #0]
+1000b570:	8893      	ldrh	r3, [r2, #4]
+1000b572:	21cd      	movs	r1, #205	; 0xcd
+1000b574:	0089      	lsls	r1, r1, #2
+1000b576:	428b      	cmp	r3, r1
+1000b578:	d104      	bne.n	1000b584 <platform_event_wait+0x118>
 					{
 						if(bEventTimeoutFlag)
-1000b576:	464b      	mov	r3, r9
+1000b57a:	464b      	mov	r3, r9
 						{
 							status = STATUS_TIMEOUT;	
 						}
 						else
 						{
 							bLoopAgain = 1;
-1000b578:	2401      	movs	r4, #1
+1000b57c:	2401      	movs	r4, #1
 			{	
 				// BLE stack messages
 				if(ble_stack_message_handler) {
 					if(rcv_msg->id == DBG_KE_TIMER_RESP)
 					{
 						if(bEventTimeoutFlag)
-1000b57a:	2b00      	cmp	r3, #0
-1000b57c:	d02b      	beq.n	1000b5d6 <platform_event_wait+0x16e>
-1000b57e:	e028      	b.n	1000b5d2 <platform_event_wait+0x16a>
+1000b57e:	2b00      	cmp	r3, #0
+1000b580:	d02b      	beq.n	1000b5da <platform_event_wait+0x16e>
+1000b582:	e028      	b.n	1000b5d6 <platform_event_wait+0x16a>
 							bLoopAgain = 1;
 						}
 					}
 					else
 					{
 						ke_msg_hdr = (struct ke_msghdr *)((void *)(rx_buffer+BLE_EVENT_BUFFER_START_INDEX));
-1000b580:	4c4d      	ldr	r4, [pc, #308]	; (1000b6b8 <platform_event_wait+0x250>)
-1000b582:	4d49      	ldr	r5, [pc, #292]	; (1000b6a8 <platform_event_wait+0x240>)
-1000b584:	6025      	str	r5, [r4, #0]
+1000b584:	4c4d      	ldr	r4, [pc, #308]	; (1000b6bc <platform_event_wait+0x250>)
+1000b586:	4d49      	ldr	r5, [pc, #292]	; (1000b6ac <platform_event_wait+0x240>)
+1000b588:	6025      	str	r5, [r4, #0]
 						ke_msg_hdr->id = rcv_msg->id;
-1000b586:	702b      	strb	r3, [r5, #0]
-1000b588:	0a1b      	lsrs	r3, r3, #8
-1000b58a:	706b      	strb	r3, [r5, #1]
+1000b58a:	702b      	strb	r3, [r5, #0]
+1000b58c:	0a1b      	lsrs	r3, r3, #8
+1000b58e:	706b      	strb	r3, [r5, #1]
 //#if (CHIPVERSION_A3 || CHIPVERSION_A4)
 					//ke_msg_hdr->src_id = rcv_msg->src_id;
 //#else
 					ke_msg_hdr->src_id = gapm_get_id_from_task(rcv_msg->src_id);
-1000b58c:	8910      	ldrh	r0, [r2, #8]
-1000b58e:	4b4b      	ldr	r3, [pc, #300]	; (1000b6bc <platform_event_wait+0x254>)
-1000b590:	681b      	ldr	r3, [r3, #0]
-1000b592:	4798      	blx	r3
-1000b594:	7128      	strb	r0, [r5, #4]
-1000b596:	0a00      	lsrs	r0, r0, #8
-1000b598:	7168      	strb	r0, [r5, #5]
+1000b590:	8910      	ldrh	r0, [r2, #8]
+1000b592:	4b4b      	ldr	r3, [pc, #300]	; (1000b6c0 <platform_event_wait+0x254>)
+1000b594:	681b      	ldr	r3, [r3, #0]
+1000b596:	4798      	blx	r3
+1000b598:	7128      	strb	r0, [r5, #4]
+1000b59a:	0a00      	lsrs	r0, r0, #8
+1000b59c:	7168      	strb	r0, [r5, #5]
 //#endif  /* (CHIPVERSION_A3 || CHIPVERSION_A4) */
 						ke_msg_hdr->dest_id = rcv_msg->dest_id;
-1000b59a:	6820      	ldr	r0, [r4, #0]
-1000b59c:	4b40      	ldr	r3, [pc, #256]	; (1000b6a0 <platform_event_wait+0x238>)
-1000b59e:	681a      	ldr	r2, [r3, #0]
-1000b5a0:	88d2      	ldrh	r2, [r2, #6]
-1000b5a2:	8042      	strh	r2, [r0, #2]
+1000b59e:	6820      	ldr	r0, [r4, #0]
+1000b5a0:	4b40      	ldr	r3, [pc, #256]	; (1000b6a4 <platform_event_wait+0x238>)
+1000b5a2:	681a      	ldr	r2, [r3, #0]
+1000b5a4:	88d2      	ldrh	r2, [r2, #6]
+1000b5a6:	8042      	strh	r2, [r0, #2]
 						ke_msg_hdr->param_len = rcv_msg->param_len;
-1000b5a4:	681d      	ldr	r5, [r3, #0]
-1000b5a6:	896b      	ldrh	r3, [r5, #10]
-1000b5a8:	80c3      	strh	r3, [r0, #6]
+1000b5a8:	681d      	ldr	r5, [r3, #0]
+1000b5aa:	896b      	ldrh	r3, [r5, #10]
+1000b5ac:	80c3      	strh	r3, [r0, #6]
 						ke_msg_hdr++;
-1000b5aa:	3008      	adds	r0, #8
-1000b5ac:	6020      	str	r0, [r4, #0]
+1000b5ae:	3008      	adds	r0, #8
+1000b5b0:	6020      	str	r0, [r4, #0]
 						if(rcv_msg->param_len > 0) {
-1000b5ae:	896a      	ldrh	r2, [r5, #10]
-1000b5b0:	2a00      	cmp	r2, #0
-1000b5b2:	d003      	beq.n	1000b5bc <platform_event_wait+0x154>
+1000b5b2:	896a      	ldrh	r2, [r5, #10]
+1000b5b4:	2a00      	cmp	r2, #0
+1000b5b6:	d003      	beq.n	1000b5c0 <platform_event_wait+0x154>
 							memcpy((void *)ke_msg_hdr,rcv_msg->param,rcv_msg->param_len);
-1000b5b4:	0029      	movs	r1, r5
-1000b5b6:	310c      	adds	r1, #12
-1000b5b8:	4b3c      	ldr	r3, [pc, #240]	; (1000b6ac <platform_event_wait+0x244>)
-1000b5ba:	4798      	blx	r3
+1000b5b8:	0029      	movs	r1, r5
+1000b5ba:	310c      	adds	r1, #12
+1000b5bc:	4b3c      	ldr	r3, [pc, #240]	; (1000b6b0 <platform_event_wait+0x244>)
+1000b5be:	4798      	blx	r3
 						}
 						ble_stack_message_handler(rx_buffer,(rcv_msg->param_len + sizeof(struct ke_msghdr)));
-1000b5bc:	8969      	ldrh	r1, [r5, #10]
-1000b5be:	3108      	adds	r1, #8
-1000b5c0:	4b3c      	ldr	r3, [pc, #240]	; (1000b6b4 <platform_event_wait+0x24c>)
-1000b5c2:	681b      	ldr	r3, [r3, #0]
-1000b5c4:	4838      	ldr	r0, [pc, #224]	; (1000b6a8 <platform_event_wait+0x240>)
-1000b5c6:	4798      	blx	r3
+1000b5c0:	8969      	ldrh	r1, [r5, #10]
+1000b5c2:	3108      	adds	r1, #8
+1000b5c4:	4b3c      	ldr	r3, [pc, #240]	; (1000b6b8 <platform_event_wait+0x24c>)
+1000b5c6:	681b      	ldr	r3, [r3, #0]
+1000b5c8:	4838      	ldr	r0, [pc, #224]	; (1000b6ac <platform_event_wait+0x240>)
+1000b5ca:	4798      	blx	r3
 		{
 			uint16_t msg_id = rcv_msg->id;
 			uint16_t src_id = rcv_msg->src_id;
 			uint8_t* data = (uint8_t*)rcv_msg->param;
 			uint16_t len = rcv_msg->param_len;
 			bLoopAgain = 0;
-1000b5c8:	2400      	movs	r4, #0
+1000b5cc:	2400      	movs	r4, #0
 						ke_msg_hdr++;
 						if(rcv_msg->param_len > 0) {
 							memcpy((void *)ke_msg_hdr,rcv_msg->param,rcv_msg->param_len);
 						}
 						ble_stack_message_handler(rx_buffer,(rcv_msg->param_len + sizeof(struct ke_msghdr)));
 						status = STATUS_RECEIVED_BLE_MSG;
-1000b5ca:	2503      	movs	r5, #3
-1000b5cc:	e003      	b.n	1000b5d6 <platform_event_wait+0x16e>
+1000b5ce:	2503      	movs	r5, #3
+1000b5d0:	e003      	b.n	1000b5da <platform_event_wait+0x16e>
 		{
 			uint16_t msg_id = rcv_msg->id;
 			uint16_t src_id = rcv_msg->src_id;
 			uint8_t* data = (uint8_t*)rcv_msg->param;
 			uint16_t len = rcv_msg->param_len;
 			bLoopAgain = 0;
-1000b5ce:	2400      	movs	r4, #0
-1000b5d0:	e001      	b.n	1000b5d6 <platform_event_wait+0x16e>
 1000b5d2:	2400      	movs	r4, #0
+1000b5d4:	e001      	b.n	1000b5da <platform_event_wait+0x16e>
+1000b5d6:	2400      	movs	r4, #0
 				if(ble_stack_message_handler) {
 					if(rcv_msg->id == DBG_KE_TIMER_RESP)
 					{
 						if(bEventTimeoutFlag)
 						{
 							status = STATUS_TIMEOUT;	
-1000b5d4:	25d0      	movs	r5, #208	; 0xd0
+1000b5d8:	25d0      	movs	r5, #208	; 0xd0
 						ble_stack_message_handler(rx_buffer,(rcv_msg->param_len + sizeof(struct ke_msghdr)));
 						status = STATUS_RECEIVED_BLE_MSG;
 					}
 				}
 			}
 			ke_free(rcv_msg);
-1000b5d6:	4b32      	ldr	r3, [pc, #200]	; (1000b6a0 <platform_event_wait+0x238>)
-1000b5d8:	6818      	ldr	r0, [r3, #0]
-1000b5da:	4b39      	ldr	r3, [pc, #228]	; (1000b6c0 <platform_event_wait+0x258>)
-1000b5dc:	681b      	ldr	r3, [r3, #0]
-1000b5de:	4798      	blx	r3
-1000b5e0:	e000      	b.n	1000b5e4 <platform_event_wait+0x17c>
+1000b5da:	4b32      	ldr	r3, [pc, #200]	; (1000b6a4 <platform_event_wait+0x238>)
+1000b5dc:	6818      	ldr	r0, [r3, #0]
+1000b5de:	4b39      	ldr	r3, [pc, #228]	; (1000b6c4 <platform_event_wait+0x258>)
+1000b5e0:	681b      	ldr	r3, [r3, #0]
+1000b5e2:	4798      	blx	r3
+1000b5e4:	e000      	b.n	1000b5e8 <platform_event_wait+0x17c>
 		}
 		else
 		{
 			status = STATUS_FAILURE;
-1000b5e2:	2507      	movs	r5, #7
+1000b5e6:	2507      	movs	r5, #7
 		}
 	}while(bLoopAgain);
-1000b5e4:	2c00      	cmp	r4, #0
-1000b5e6:	d000      	beq.n	1000b5ea <platform_event_wait+0x182>
-1000b5e8:	e76b      	b.n	1000b4c2 <platform_event_wait+0x5a>
+1000b5e8:	2c00      	cmp	r4, #0
+1000b5ea:	d000      	beq.n	1000b5ee <platform_event_wait+0x182>
+1000b5ec:	e76b      	b.n	1000b4c6 <platform_event_wait+0x5a>
 	
 	if(bEventTimeoutFlag)
-1000b5ea:	464b      	mov	r3, r9
-1000b5ec:	2b00      	cmp	r3, #0
-1000b5ee:	d046      	beq.n	1000b67e <platform_event_wait+0x216>
+1000b5ee:	464b      	mov	r3, r9
+1000b5f0:	2b00      	cmp	r3, #0
+1000b5f2:	d046      	beq.n	1000b682 <platform_event_wait+0x216>
 	{
 		//CleanUp if there is any remaining DBG_KE_TIMER_RESP message in queue
 		NMI_MsgQueueDestroyOnKeID(InternalAppMsgQHandle, DBG_KE_TIMER_RESP);
-1000b5f0:	4b29      	ldr	r3, [pc, #164]	; (1000b698 <platform_event_wait+0x230>)
-1000b5f2:	681e      	ldr	r6, [r3, #0]
+1000b5f4:	4b29      	ldr	r3, [pc, #164]	; (1000b69c <platform_event_wait+0x230>)
+1000b5f6:	681e      	ldr	r6, [r3, #0]
 #endif 
 static int NMI_MsgQueueDestroyOnKeID(NMI_MsgQueueHandle* pHandle, ke_msg_id_t u16KeMsgId)
 {
 	int num_of_freed=0;
 	Message * current , *prev = NULL;
 	if((NULL == pHandle) && (NULL == pHandle->pstrMessageList))
-1000b5f4:	2e00      	cmp	r6, #0
-1000b5f6:	d104      	bne.n	1000b602 <platform_event_wait+0x19a>
-1000b5f8:	2300      	movs	r3, #0
-1000b5fa:	6a1c      	ldr	r4, [r3, #32]
-1000b5fc:	2c00      	cmp	r4, #0
-1000b5fe:	d131      	bne.n	1000b664 <platform_event_wait+0x1fc>
-1000b600:	e03d      	b.n	1000b67e <platform_event_wait+0x216>
+1000b5f8:	2e00      	cmp	r6, #0
+1000b5fa:	d104      	bne.n	1000b606 <platform_event_wait+0x19a>
+1000b5fc:	2300      	movs	r3, #0
+1000b5fe:	6a1c      	ldr	r4, [r3, #32]
+1000b600:	2c00      	cmp	r4, #0
+1000b602:	d131      	bne.n	1000b668 <platform_event_wait+0x1fc>
+1000b604:	e03d      	b.n	1000b682 <platform_event_wait+0x216>
 	{
 		return num_of_freed;
 	}
 
 	current = pHandle->pstrMessageList;
-1000b602:	6a34      	ldr	r4, [r6, #32]
+1000b606:	6a34      	ldr	r4, [r6, #32]
 	os_sem_down(&pHandle->strCriticalSection);
-1000b604:	2314      	movs	r3, #20
-1000b606:	469c      	mov	ip, r3
-1000b608:	44b4      	add	ip, r6
-1000b60a:	4663      	mov	r3, ip
-1000b60c:	4660      	mov	r0, ip
-1000b60e:	9300      	str	r3, [sp, #0]
-1000b610:	4b2c      	ldr	r3, [pc, #176]	; (1000b6c4 <platform_event_wait+0x25c>)
-1000b612:	681b      	ldr	r3, [r3, #0]
-1000b614:	4798      	blx	r3
+1000b608:	2314      	movs	r3, #20
+1000b60a:	469c      	mov	ip, r3
+1000b60c:	44b4      	add	ip, r6
+1000b60e:	4663      	mov	r3, ip
+1000b610:	4660      	mov	r0, ip
+1000b612:	9300      	str	r3, [sp, #0]
+1000b614:	4b2c      	ldr	r3, [pc, #176]	; (1000b6c8 <platform_event_wait+0x25c>)
+1000b616:	681b      	ldr	r3, [r3, #0]
+1000b618:	4798      	blx	r3
 	while(NULL != current)
-1000b616:	2c00      	cmp	r4, #0
-1000b618:	d01f      	beq.n	1000b65a <platform_event_wait+0x1f2>
+1000b61a:	2c00      	cmp	r4, #0
+1000b61c:	d01f      	beq.n	1000b65e <platform_event_wait+0x1f2>
 			}
 			ke_free(rcv_msg);
 		}
 		else
 		{
 			status = STATUS_FAILURE;
-1000b61a:	2700      	movs	r7, #0
+1000b61e:	2700      	movs	r7, #0
 
 	current = pHandle->pstrMessageList;
 	os_sem_down(&pHandle->strCriticalSection);
 	while(NULL != current)
 	{
 		if(u16KeMsgId == ((struct ke_msg*)current->pvBuffer)->id)
-1000b61c:	23cd      	movs	r3, #205	; 0xcd
-1000b61e:	009b      	lsls	r3, r3, #2
-1000b620:	4698      	mov	r8, r3
+1000b620:	23cd      	movs	r3, #205	; 0xcd
+1000b622:	009b      	lsls	r3, r3, #2
+1000b624:	4698      	mov	r8, r3
 		{
 			num_of_freed++;
 			if(NULL != prev)
 			{
 				prev->pstrNext = current->pstrNext;
 				ke_free(current);
-1000b622:	4b27      	ldr	r3, [pc, #156]	; (1000b6c0 <platform_event_wait+0x258>)
-1000b624:	469a      	mov	sl, r3
-1000b626:	0020      	movs	r0, r4
+1000b626:	4b27      	ldr	r3, [pc, #156]	; (1000b6c4 <platform_event_wait+0x258>)
+1000b628:	469a      	mov	sl, r3
+1000b62a:	0020      	movs	r0, r4
 
 	current = pHandle->pstrMessageList;
 	os_sem_down(&pHandle->strCriticalSection);
 	while(NULL != current)
 	{
 		if(u16KeMsgId == ((struct ke_msg*)current->pvBuffer)->id)
-1000b628:	6803      	ldr	r3, [r0, #0]
-1000b62a:	889b      	ldrh	r3, [r3, #4]
-1000b62c:	4543      	cmp	r3, r8
-1000b62e:	d110      	bne.n	1000b652 <platform_event_wait+0x1ea>
+1000b62c:	6803      	ldr	r3, [r0, #0]
+1000b62e:	889b      	ldrh	r3, [r3, #4]
+1000b630:	4543      	cmp	r3, r8
+1000b632:	d110      	bne.n	1000b656 <platform_event_wait+0x1ea>
 		{
 			num_of_freed++;
 			if(NULL != prev)
-1000b630:	2f00      	cmp	r7, #0
-1000b632:	d006      	beq.n	1000b642 <platform_event_wait+0x1da>
+1000b634:	2f00      	cmp	r7, #0
+1000b636:	d006      	beq.n	1000b646 <platform_event_wait+0x1da>
 			{
 				prev->pstrNext = current->pstrNext;
-1000b634:	6883      	ldr	r3, [r0, #8]
-1000b636:	60bb      	str	r3, [r7, #8]
+1000b638:	6883      	ldr	r3, [r0, #8]
+1000b63a:	60bb      	str	r3, [r7, #8]
 				ke_free(current);
-1000b638:	4653      	mov	r3, sl
-1000b63a:	681b      	ldr	r3, [r3, #0]
-1000b63c:	4798      	blx	r3
+1000b63c:	4653      	mov	r3, sl
+1000b63e:	681b      	ldr	r3, [r3, #0]
+1000b640:	4798      	blx	r3
 				current = prev->pstrNext;
-1000b63e:	68b8      	ldr	r0, [r7, #8]
-1000b640:	e009      	b.n	1000b656 <platform_event_wait+0x1ee>
+1000b642:	68b8      	ldr	r0, [r7, #8]
+1000b644:	e009      	b.n	1000b65a <platform_event_wait+0x1ee>
 			}
 			else
 			{
 				pHandle->pstrMessageList = current->pstrNext;
-1000b642:	6883      	ldr	r3, [r0, #8]
-1000b644:	6233      	str	r3, [r6, #32]
+1000b646:	6883      	ldr	r3, [r0, #8]
+1000b648:	6233      	str	r3, [r6, #32]
 				ke_free(current);
-1000b646:	4b1e      	ldr	r3, [pc, #120]	; (1000b6c0 <platform_event_wait+0x258>)
-1000b648:	681b      	ldr	r3, [r3, #0]
-1000b64a:	9301      	str	r3, [sp, #4]
-1000b64c:	4798      	blx	r3
+1000b64a:	4b1e      	ldr	r3, [pc, #120]	; (1000b6c4 <platform_event_wait+0x258>)
+1000b64c:	681b      	ldr	r3, [r3, #0]
+1000b64e:	9301      	str	r3, [sp, #4]
+1000b650:	4798      	blx	r3
 				current = pHandle->pstrMessageList;
-1000b64e:	6a30      	ldr	r0, [r6, #32]
-1000b650:	e001      	b.n	1000b656 <platform_event_wait+0x1ee>
+1000b652:	6a30      	ldr	r0, [r6, #32]
+1000b654:	e001      	b.n	1000b65a <platform_event_wait+0x1ee>
 			}
 		}
 		else
 		{
 			prev = current;
 			current = current ->pstrNext;
-1000b652:	0007      	movs	r7, r0
-1000b654:	6880      	ldr	r0, [r0, #8]
+1000b656:	0007      	movs	r7, r0
+1000b658:	6880      	ldr	r0, [r0, #8]
 		return num_of_freed;
 	}
 
 	current = pHandle->pstrMessageList;
 	os_sem_down(&pHandle->strCriticalSection);
 	while(NULL != current)
-1000b656:	2800      	cmp	r0, #0
-1000b658:	d1e6      	bne.n	1000b628 <platform_event_wait+0x1c0>
+1000b65a:	2800      	cmp	r0, #0
+1000b65c:	d1e6      	bne.n	1000b62c <platform_event_wait+0x1c0>
 		{
 			prev = current;
 			current = current ->pstrNext;
 		}
 	}
 	os_sem_up(&pHandle->strCriticalSection);
-1000b65a:	4b1b      	ldr	r3, [pc, #108]	; (1000b6c8 <platform_event_wait+0x260>)
-1000b65c:	681b      	ldr	r3, [r3, #0]
-1000b65e:	9800      	ldr	r0, [sp, #0]
-1000b660:	4798      	blx	r3
+1000b65e:	4b1b      	ldr	r3, [pc, #108]	; (1000b6cc <platform_event_wait+0x260>)
+1000b660:	681b      	ldr	r3, [r3, #0]
+1000b662:	9800      	ldr	r0, [sp, #0]
+1000b664:	4798      	blx	r3
 	if(bEventTimeoutFlag)
 	{
 		//CleanUp if there is any remaining DBG_KE_TIMER_RESP message in queue
 		NMI_MsgQueueDestroyOnKeID(InternalAppMsgQHandle, DBG_KE_TIMER_RESP);
 	}
 	return status;
-1000b662:	e00c      	b.n	1000b67e <platform_event_wait+0x216>
+1000b666:	e00c      	b.n	1000b682 <platform_event_wait+0x216>
 	{
 		return num_of_freed;
 	}
 
 	current = pHandle->pstrMessageList;
 	os_sem_down(&pHandle->strCriticalSection);
-1000b664:	2314      	movs	r3, #20
-1000b666:	9300      	str	r3, [sp, #0]
-1000b668:	4b16      	ldr	r3, [pc, #88]	; (1000b6c4 <platform_event_wait+0x25c>)
-1000b66a:	681b      	ldr	r3, [r3, #0]
-1000b66c:	2014      	movs	r0, #20
-1000b66e:	4798      	blx	r3
-1000b670:	e7d3      	b.n	1000b61a <platform_event_wait+0x1b2>
+1000b668:	2314      	movs	r3, #20
+1000b66a:	9300      	str	r3, [sp, #0]
+1000b66c:	4b16      	ldr	r3, [pc, #88]	; (1000b6c8 <platform_event_wait+0x25c>)
+1000b66e:	681b      	ldr	r3, [r3, #0]
+1000b670:	2014      	movs	r0, #20
+1000b672:	4798      	blx	r3
+1000b674:	e7d3      	b.n	1000b61e <platform_event_wait+0x1b2>
 				status = STATUS_RECEIVED_PLF_EVENT_MSG;
 			}
 			else
 			{	
 				// BLE stack messages
 				if(ble_stack_message_handler) {
-1000b672:	4b10      	ldr	r3, [pc, #64]	; (1000b6b4 <platform_event_wait+0x24c>)
-1000b674:	681b      	ldr	r3, [r3, #0]
+1000b676:	4b10      	ldr	r3, [pc, #64]	; (1000b6b8 <platform_event_wait+0x24c>)
+1000b678:	681b      	ldr	r3, [r3, #0]
 		{
 			uint16_t msg_id = rcv_msg->id;
 			uint16_t src_id = rcv_msg->src_id;
 			uint8_t* data = (uint8_t*)rcv_msg->param;
 			uint16_t len = rcv_msg->param_len;
 			bLoopAgain = 0;
-1000b676:	2400      	movs	r4, #0
+1000b67a:	2400      	movs	r4, #0
 				status = STATUS_RECEIVED_PLF_EVENT_MSG;
 			}
 			else
 			{	
 				// BLE stack messages
 				if(ble_stack_message_handler) {
-1000b678:	2b00      	cmp	r3, #0
-1000b67a:	d0ac      	beq.n	1000b5d6 <platform_event_wait+0x16e>
-1000b67c:	e77b      	b.n	1000b576 <platform_event_wait+0x10e>
+1000b67c:	2b00      	cmp	r3, #0
+1000b67e:	d0ac      	beq.n	1000b5da <platform_event_wait+0x16e>
+1000b680:	e77b      	b.n	1000b57a <platform_event_wait+0x10e>
 	{
 		//CleanUp if there is any remaining DBG_KE_TIMER_RESP message in queue
 		NMI_MsgQueueDestroyOnKeID(InternalAppMsgQHandle, DBG_KE_TIMER_RESP);
 	}
 	return status;
 }
-1000b67e:	0028      	movs	r0, r5
-1000b680:	b007      	add	sp, #28
-1000b682:	bc3c      	pop	{r2, r3, r4, r5}
-1000b684:	4690      	mov	r8, r2
-1000b686:	4699      	mov	r9, r3
-1000b688:	46a2      	mov	sl, r4
-1000b68a:	46ab      	mov	fp, r5
-1000b68c:	bdf0      	pop	{r4, r5, r6, r7, pc}
-1000b68e:	46c0      	nop			; (mov r8, r8)
-1000b690:	10010369 	.word	0x10010369
-1000b694:	1000b419 	.word	0x1000b419
-1000b698:	10013dc8 	.word	0x10013dc8
-1000b69c:	10013db0 	.word	0x10013db0
-1000b6a0:	10013d90 	.word	0x10013d90
-1000b6a4:	10014a60 	.word	0x10014a60
-1000b6a8:	100147c8 	.word	0x100147c8
-1000b6ac:	10010357 	.word	0x10010357
-1000b6b0:	1000b039 	.word	0x1000b039
-1000b6b4:	10013dbc 	.word	0x10013dbc
-1000b6b8:	10013db8 	.word	0x10013db8
-1000b6bc:	10013d88 	.word	0x10013d88
-1000b6c0:	10013d84 	.word	0x10013d84
-1000b6c4:	10013da8 	.word	0x10013da8
-1000b6c8:	10013d94 	.word	0x10013d94
+1000b682:	0028      	movs	r0, r5
+1000b684:	b007      	add	sp, #28
+1000b686:	bc3c      	pop	{r2, r3, r4, r5}
+1000b688:	4690      	mov	r8, r2
+1000b68a:	4699      	mov	r9, r3
+1000b68c:	46a2      	mov	sl, r4
+1000b68e:	46ab      	mov	fp, r5
+1000b690:	bdf0      	pop	{r4, r5, r6, r7, pc}
+1000b692:	46c0      	nop			; (mov r8, r8)
+1000b694:	10010369 	.word	0x10010369
+1000b698:	1000b41d 	.word	0x1000b41d
+1000b69c:	10013dc8 	.word	0x10013dc8
+1000b6a0:	10013db0 	.word	0x10013db0
+1000b6a4:	10013d90 	.word	0x10013d90
+1000b6a8:	10014a60 	.word	0x10014a60
+1000b6ac:	100147c8 	.word	0x100147c8
+1000b6b0:	10010357 	.word	0x10010357
+1000b6b4:	1000b03d 	.word	0x1000b03d
+1000b6b8:	10013dbc 	.word	0x10013dbc
+1000b6bc:	10013db8 	.word	0x10013db8
+1000b6c0:	10013d88 	.word	0x10013d88
+1000b6c4:	10013d84 	.word	0x10013d84
+1000b6c8:	10013da8 	.word	0x10013da8
+1000b6cc:	10013d94 	.word	0x10013d94
 
-1000b6cc <acquire_sleep_lock>:
+1000b6d0 <acquire_sleep_lock>:
 
 plf_drv_status acquire_sleep_lock()
 {
-1000b6cc:	b510      	push	{r4, lr}
+1000b6d0:	b510      	push	{r4, lr}
 	plf_drv_status status = STATUS_RESOURCE_BUSY;
 	//uint8_t osc_en = REG_PL_RD(0x4000B1EC)&0x01;
 	
 	rwip_prevent_sleep_set(APP_PREVENT_SLEEP);
-1000b6ce:	4b03      	ldr	r3, [pc, #12]	; (1000b6dc <acquire_sleep_lock+0x10>)
-1000b6d0:	681b      	ldr	r3, [r3, #0]
-1000b6d2:	2080      	movs	r0, #128	; 0x80
-1000b6d4:	0200      	lsls	r0, r0, #8
-1000b6d6:	4798      	blx	r3
+1000b6d2:	4b03      	ldr	r3, [pc, #12]	; (1000b6e0 <acquire_sleep_lock+0x10>)
+1000b6d4:	681b      	ldr	r3, [r3, #0]
+1000b6d6:	2080      	movs	r0, #128	; 0x80
+1000b6d8:	0200      	lsls	r0, r0, #8
+1000b6da:	4798      	blx	r3
 		/*  */
 		os_sem_up(gstrFwSem);
 	}
 #endif	//0
 	return status;
 }
-1000b6d8:	2008      	movs	r0, #8
-1000b6da:	bd10      	pop	{r4, pc}
-1000b6dc:	10014780 	.word	0x10014780
+1000b6dc:	2008      	movs	r0, #8
+1000b6de:	bd10      	pop	{r4, pc}
+1000b6e0:	10014780 	.word	0x10014780
 
-1000b6e0 <release_message_lock>:
+1000b6e4 <release_message_lock>:
 
 plf_drv_status release_message_lock()
 {
-1000b6e0:	b510      	push	{r4, lr}
+1000b6e4:	b510      	push	{r4, lr}
 	plf_drv_status status = STATUS_SUCCESS;
 	rwip_prevent_sleep_clear(MSG_PREVENT_SLEEP);
-1000b6e2:	4b03      	ldr	r3, [pc, #12]	; (1000b6f0 <release_message_lock+0x10>)
-1000b6e4:	681b      	ldr	r3, [r3, #0]
-1000b6e6:	2080      	movs	r0, #128	; 0x80
-1000b6e8:	01c0      	lsls	r0, r0, #7
-1000b6ea:	4798      	blx	r3
+1000b6e6:	4b03      	ldr	r3, [pc, #12]	; (1000b6f4 <release_message_lock+0x10>)
+1000b6e8:	681b      	ldr	r3, [r3, #0]
+1000b6ea:	2080      	movs	r0, #128	; 0x80
+1000b6ec:	01c0      	lsls	r0, r0, #7
+1000b6ee:	4798      	blx	r3
 	return status;
 }
-1000b6ec:	2000      	movs	r0, #0
-1000b6ee:	bd10      	pop	{r4, pc}
-1000b6f0:	1001478c 	.word	0x1001478c
+1000b6f0:	2000      	movs	r0, #0
+1000b6f2:	bd10      	pop	{r4, pc}
+1000b6f4:	1001478c 	.word	0x1001478c
 
-1000b6f4 <gpio1_combined_isr_handler>:
+1000b6f8 <gpio1_combined_isr_handler>:
 
 enum port_status_code wakeup_int_unregister_callback(enum port_wakeup_source wakeup_source);
 void wakeup_active_event_callback(uint32_t wakeup_source);
 
 void gpio1_combined_isr_handler(void)
 {
-1000b6f4:	b530      	push	{r4, r5, lr}
+1000b6f8:	b530      	push	{r4, r5, lr}
 	uint8_t index = 0;
 	/* portint_callback_t callback; */
 	uint8_t port_gpio1 = LPGPIO_16;
 	uint32_t intstatus = GPIO1->INTSTATUSCLEAR.reg; /* jeffy */
-1000b6f6:	4a18      	ldr	r2, [pc, #96]	; (1000b758 <gpio1_combined_isr_handler+0x64>)
-1000b6f8:	8f13      	ldrh	r3, [r2, #56]	; 0x38
-1000b6fa:	b29b      	uxth	r3, r3
+1000b6fa:	4a18      	ldr	r2, [pc, #96]	; (1000b75c <gpio1_combined_isr_handler+0x64>)
+1000b6fc:	8f13      	ldrh	r3, [r2, #56]	; 0x38
+1000b6fe:	b29b      	uxth	r3, r3
 	GPIO1->INTTYPESET.reg |= (1 << 15); /* jeffy */
-1000b6fc:	8d10      	ldrh	r0, [r2, #40]	; 0x28
-1000b6fe:	2180      	movs	r1, #128	; 0x80
-1000b700:	0209      	lsls	r1, r1, #8
-1000b702:	4301      	orrs	r1, r0
-1000b704:	8511      	strh	r1, [r2, #40]	; 0x28
+1000b700:	8d10      	ldrh	r0, [r2, #40]	; 0x28
+1000b702:	2180      	movs	r1, #128	; 0x80
+1000b704:	0209      	lsls	r1, r1, #8
+1000b706:	4301      	orrs	r1, r0
+1000b708:	8511      	strh	r1, [r2, #40]	; 0x28
 			/* CMSDK_GPIO1->INTCLEAR = (1 << index); */
 			/* /REG_GPIO1_INTSTATUSCLEAR = (1 << index); */
 			GPIO1->INTSTATUSCLEAR.reg = (1 << index); /* / jeffy */
 		} else {
 			/* CMSDK_GPIO1->INTCLEAR = CMSDK_GPIO1->INTSTATUS; */
 			GPIO1->INTSTATUSCLEAR.reg |= (1 << 15); /* jeffy */
-1000b706:	0010      	movs	r0, r2
-1000b708:	4d14      	ldr	r5, [pc, #80]	; (1000b75c <gpio1_combined_isr_handler+0x68>)
+1000b70a:	0010      	movs	r0, r2
+1000b70c:	4d14      	ldr	r5, [pc, #80]	; (1000b760 <gpio1_combined_isr_handler+0x68>)
 			/* callback = port_int_callback[index+LPGPIO_16]; */
 			/* callback(); */
 			/* } */
 			/* CMSDK_GPIO1->INTCLEAR = (1 << index); */
 			/* /REG_GPIO1_INTSTATUSCLEAR = (1 << index); */
 			GPIO1->INTSTATUSCLEAR.reg = (1 << index); /* / jeffy */
-1000b70a:	2401      	movs	r4, #1
+1000b70e:	2401      	movs	r4, #1
 		#ifdef CHIPVERSION_B0
 		intstatus &= 0x1FF;
 		#else
 		intstatus &= 0x1F;
 		#endif
 		index = 0;
-1000b70c:	2200      	movs	r2, #0
+1000b710:	2200      	movs	r2, #0
 	uint32_t intstatus = GPIO1->INTSTATUSCLEAR.reg; /* jeffy */
 	GPIO1->INTTYPESET.reg |= (1 << 15); /* jeffy */
 
 	do {
 		#ifdef CHIPVERSION_B0
 		intstatus &= 0x1FF;
-1000b70e:	05db      	lsls	r3, r3, #23
-1000b710:	0ddb      	lsrs	r3, r3, #23
+1000b712:	05db      	lsls	r3, r3, #23
+1000b714:	0ddb      	lsrs	r3, r3, #23
 		#else
 		intstatus &= 0x1F;
 		#endif
 		index = 0;
 		if (intstatus != 0) {
-1000b712:	d011      	beq.n	1000b738 <gpio1_combined_isr_handler+0x44>
+1000b716:	d011      	beq.n	1000b73c <gpio1_combined_isr_handler+0x44>
 			port_gpio1 = (intstatus & ~(intstatus - 1));
-1000b714:	b2db      	uxtb	r3, r3
-1000b716:	4259      	negs	r1, r3
-1000b718:	400b      	ands	r3, r1
+1000b718:	b2db      	uxtb	r3, r3
+1000b71a:	4259      	negs	r1, r3
+1000b71c:	400b      	ands	r3, r1
 			while (!(port_gpio1 == 1)) {
-1000b71a:	2b01      	cmp	r3, #1
-1000b71c:	d006      	beq.n	1000b72c <gpio1_combined_isr_handler+0x38>
-1000b71e:	0011      	movs	r1, r2
+1000b71e:	2b01      	cmp	r3, #1
+1000b720:	d006      	beq.n	1000b730 <gpio1_combined_isr_handler+0x38>
+1000b722:	0011      	movs	r1, r2
 				port_gpio1 = port_gpio1 >> 1;
-1000b720:	085b      	lsrs	r3, r3, #1
+1000b724:	085b      	lsrs	r3, r3, #1
 				index++;
-1000b722:	3101      	adds	r1, #1
-1000b724:	b2c9      	uxtb	r1, r1
+1000b726:	3101      	adds	r1, #1
+1000b728:	b2c9      	uxtb	r1, r1
 		intstatus &= 0x1F;
 		#endif
 		index = 0;
 		if (intstatus != 0) {
 			port_gpio1 = (intstatus & ~(intstatus - 1));
 			while (!(port_gpio1 == 1)) {
-1000b726:	2b01      	cmp	r3, #1
-1000b728:	d1fa      	bne.n	1000b720 <gpio1_combined_isr_handler+0x2c>
-1000b72a:	e000      	b.n	1000b72e <gpio1_combined_isr_handler+0x3a>
+1000b72a:	2b01      	cmp	r3, #1
+1000b72c:	d1fa      	bne.n	1000b724 <gpio1_combined_isr_handler+0x2c>
+1000b72e:	e000      	b.n	1000b732 <gpio1_combined_isr_handler+0x3a>
 		#ifdef CHIPVERSION_B0
 		intstatus &= 0x1FF;
 		#else
 		intstatus &= 0x1F;
 		#endif
 		index = 0;
-1000b72c:	0011      	movs	r1, r2
+1000b730:	0011      	movs	r1, r2
 			/* callback = port_int_callback[index+LPGPIO_16]; */
 			/* callback(); */
 			/* } */
 			/* CMSDK_GPIO1->INTCLEAR = (1 << index); */
 			/* /REG_GPIO1_INTSTATUSCLEAR = (1 << index); */
 			GPIO1->INTSTATUSCLEAR.reg = (1 << index); /* / jeffy */
-1000b72e:	0023      	movs	r3, r4
-1000b730:	408b      	lsls	r3, r1
-1000b732:	b29b      	uxth	r3, r3
-1000b734:	8703      	strh	r3, [r0, #56]	; 0x38
-1000b736:	e003      	b.n	1000b740 <gpio1_combined_isr_handler+0x4c>
+1000b732:	0023      	movs	r3, r4
+1000b734:	408b      	lsls	r3, r1
+1000b736:	b29b      	uxth	r3, r3
+1000b738:	8703      	strh	r3, [r0, #56]	; 0x38
+1000b73a:	e003      	b.n	1000b744 <gpio1_combined_isr_handler+0x4c>
 		} else {
 			/* CMSDK_GPIO1->INTCLEAR = CMSDK_GPIO1->INTSTATUS; */
 			GPIO1->INTSTATUSCLEAR.reg |= (1 << 15); /* jeffy */
-1000b738:	8f03      	ldrh	r3, [r0, #56]	; 0x38
-1000b73a:	432b      	orrs	r3, r5
-1000b73c:	b29b      	uxth	r3, r3
-1000b73e:	8703      	strh	r3, [r0, #56]	; 0x38
+1000b73c:	8f03      	ldrh	r3, [r0, #56]	; 0x38
+1000b73e:	432b      	orrs	r3, r5
+1000b740:	b29b      	uxth	r3, r3
+1000b742:	8703      	strh	r3, [r0, #56]	; 0x38
 			/* REG_GPIO1_INTSTATUSCLEAR = REG_GPIO1_INTENSET; */
 		}
 
 		intstatus = GPIO1->INTSTATUSCLEAR.reg;
-1000b740:	8f03      	ldrh	r3, [r0, #56]	; 0x38
+1000b744:	8f03      	ldrh	r3, [r0, #56]	; 0x38
 		#ifdef CHIPVERSION_B0
 		intstatus &= 0x1FF;
-1000b742:	05db      	lsls	r3, r3, #23
-1000b744:	0ddb      	lsrs	r3, r3, #23
+1000b746:	05db      	lsls	r3, r3, #23
+1000b748:	0ddb      	lsrs	r3, r3, #23
 		#else
 		intstatus &= 0x1F;
 		#endif
 	} while (intstatus != 0);
-1000b746:	d1e2      	bne.n	1000b70e <gpio1_combined_isr_handler+0x1a>
+1000b74a:	d1e2      	bne.n	1000b712 <gpio1_combined_isr_handler+0x1a>
 
     \param [in]      IRQn  External interrupt number. Value cannot be negative.
  */
 __STATIC_INLINE void NVIC_ClearPendingIRQ(IRQn_Type IRQn)
 {
   NVIC->ICPR[0] = (1 << ((uint32_t)(IRQn) & 0x1F)); /* Clear pending interrupt */
-1000b748:	2180      	movs	r1, #128	; 0x80
-1000b74a:	0049      	lsls	r1, r1, #1
-1000b74c:	3381      	adds	r3, #129	; 0x81
-1000b74e:	33ff      	adds	r3, #255	; 0xff
-1000b750:	4a03      	ldr	r2, [pc, #12]	; (1000b760 <gpio1_combined_isr_handler+0x6c>)
-1000b752:	50d1      	str	r1, [r2, r3]
+1000b74c:	2180      	movs	r1, #128	; 0x80
+1000b74e:	0049      	lsls	r1, r1, #1
+1000b750:	3381      	adds	r3, #129	; 0x81
+1000b752:	33ff      	adds	r3, #255	; 0xff
+1000b754:	4a03      	ldr	r2, [pc, #12]	; (1000b764 <gpio1_combined_isr_handler+0x6c>)
+1000b756:	50d1      	str	r1, [r2, r3]
 
 	NVIC_ClearPendingIRQ(8);
 }
-1000b754:	bd30      	pop	{r4, r5, pc}
-1000b756:	46c0      	nop			; (mov r8, r8)
-1000b758:	40011000 	.word	0x40011000
-1000b75c:	ffff8000 	.word	0xffff8000
-1000b760:	e000e100 	.word	0xe000e100
+1000b758:	bd30      	pop	{r4, r5, pc}
+1000b75a:	46c0      	nop			; (mov r8, r8)
+1000b75c:	40011000 	.word	0x40011000
+1000b760:	ffff8000 	.word	0xffff8000
+1000b764:	e000e100 	.word	0xe000e100
 
-1000b764 <gpio0_combined_isr_handler>:
+1000b768 <gpio0_combined_isr_handler>:
 
 void gpio0_combined_isr_handler(void)
 {
-1000b764:	b530      	push	{r4, r5, lr}
+1000b768:	b530      	push	{r4, r5, lr}
 	uint8_t index = 0;
 	/* portint_callback_t callback; */
 	uint8_t port_gpio0 = LPGPIO_0;
 	uint32_t intstatus = GPIO0->INTSTATUSCLEAR.reg; /* jeffy */
-1000b766:	4a17      	ldr	r2, [pc, #92]	; (1000b7c4 <gpio0_combined_isr_handler+0x60>)
-1000b768:	8f13      	ldrh	r3, [r2, #56]	; 0x38
-1000b76a:	b29b      	uxth	r3, r3
+1000b76a:	4a17      	ldr	r2, [pc, #92]	; (1000b7c8 <gpio0_combined_isr_handler+0x60>)
+1000b76c:	8f13      	ldrh	r3, [r2, #56]	; 0x38
+1000b76e:	b29b      	uxth	r3, r3
 	GPIO0->INTTYPESET.reg |= (1 << 15); /* jeffy */
-1000b76c:	8d10      	ldrh	r0, [r2, #40]	; 0x28
-1000b76e:	2180      	movs	r1, #128	; 0x80
-1000b770:	0209      	lsls	r1, r1, #8
-1000b772:	4301      	orrs	r1, r0
-1000b774:	8511      	strh	r1, [r2, #40]	; 0x28
+1000b770:	8d10      	ldrh	r0, [r2, #40]	; 0x28
+1000b772:	2180      	movs	r1, #128	; 0x80
+1000b774:	0209      	lsls	r1, r1, #8
+1000b776:	4301      	orrs	r1, r0
+1000b778:	8511      	strh	r1, [r2, #40]	; 0x28
 			/* CMSDK_GPIO1->INTCLEAR = (1 << index); */
 			/* /REG_GPIO1_INTSTATUSCLEAR = (1 << index); */
 			GPIO0->INTSTATUSCLEAR.reg = (1 << index); /* / jeffy */
 		} else {
 			/* CMSDK_GPIO1->INTCLEAR = CMSDK_GPIO1->INTSTATUS; */
 			GPIO0->INTSTATUSCLEAR.reg |= (1 << 15); /* jeffy */
-1000b776:	0010      	movs	r0, r2
-1000b778:	4d13      	ldr	r5, [pc, #76]	; (1000b7c8 <gpio0_combined_isr_handler+0x64>)
+1000b77a:	0010      	movs	r0, r2
+1000b77c:	4d13      	ldr	r5, [pc, #76]	; (1000b7cc <gpio0_combined_isr_handler+0x64>)
 			/* callback = port_int_callback[index+LPGPIO_16]; */
 			/* callback(); */
 			/* } */
 			/* CMSDK_GPIO1->INTCLEAR = (1 << index); */
 			/* /REG_GPIO1_INTSTATUSCLEAR = (1 << index); */
 			GPIO0->INTSTATUSCLEAR.reg = (1 << index); /* / jeffy */
-1000b77a:	2401      	movs	r4, #1
+1000b77e:	2401      	movs	r4, #1
 		#ifdef CHIPVERSION_B0
 		intstatus &= 0x1FF;
 		#else
 		intstatus &= 0x1F;
 		#endif
 		index = 0;
-1000b77c:	2200      	movs	r2, #0
+1000b780:	2200      	movs	r2, #0
 	uint32_t intstatus = GPIO0->INTSTATUSCLEAR.reg; /* jeffy */
 	GPIO0->INTTYPESET.reg |= (1 << 15); /* jeffy */
 
 	do {
 		#ifdef CHIPVERSION_B0
 		intstatus &= 0x1FF;
-1000b77e:	05db      	lsls	r3, r3, #23
-1000b780:	0ddb      	lsrs	r3, r3, #23
+1000b782:	05db      	lsls	r3, r3, #23
+1000b784:	0ddb      	lsrs	r3, r3, #23
 		#else
 		intstatus &= 0x1F;
 		#endif
 		index = 0;
 		if (intstatus != 0) {
-1000b782:	d011      	beq.n	1000b7a8 <gpio0_combined_isr_handler+0x44>
+1000b786:	d011      	beq.n	1000b7ac <gpio0_combined_isr_handler+0x44>
 			port_gpio0 = (intstatus & ~(intstatus - 1));
-1000b784:	b2db      	uxtb	r3, r3
-1000b786:	4259      	negs	r1, r3
-1000b788:	400b      	ands	r3, r1
+1000b788:	b2db      	uxtb	r3, r3
+1000b78a:	4259      	negs	r1, r3
+1000b78c:	400b      	ands	r3, r1
 			while (!(port_gpio0 == 1)) {
-1000b78a:	2b01      	cmp	r3, #1
-1000b78c:	d006      	beq.n	1000b79c <gpio0_combined_isr_handler+0x38>
-1000b78e:	0011      	movs	r1, r2
+1000b78e:	2b01      	cmp	r3, #1
+1000b790:	d006      	beq.n	1000b7a0 <gpio0_combined_isr_handler+0x38>
+1000b792:	0011      	movs	r1, r2
 				port_gpio0 = port_gpio0 >> 1;
-1000b790:	085b      	lsrs	r3, r3, #1
+1000b794:	085b      	lsrs	r3, r3, #1
 				index++;
-1000b792:	3101      	adds	r1, #1
-1000b794:	b2c9      	uxtb	r1, r1
+1000b796:	3101      	adds	r1, #1
+1000b798:	b2c9      	uxtb	r1, r1
 		intstatus &= 0x1F;
 		#endif
 		index = 0;
 		if (intstatus != 0) {
 			port_gpio0 = (intstatus & ~(intstatus - 1));
 			while (!(port_gpio0 == 1)) {
-1000b796:	2b01      	cmp	r3, #1
-1000b798:	d1fa      	bne.n	1000b790 <gpio0_combined_isr_handler+0x2c>
-1000b79a:	e000      	b.n	1000b79e <gpio0_combined_isr_handler+0x3a>
+1000b79a:	2b01      	cmp	r3, #1
+1000b79c:	d1fa      	bne.n	1000b794 <gpio0_combined_isr_handler+0x2c>
+1000b79e:	e000      	b.n	1000b7a2 <gpio0_combined_isr_handler+0x3a>
 		#ifdef CHIPVERSION_B0
 		intstatus &= 0x1FF;
 		#else
 		intstatus &= 0x1F;
 		#endif
 		index = 0;
-1000b79c:	0011      	movs	r1, r2
+1000b7a0:	0011      	movs	r1, r2
 			/* callback = port_int_callback[index+LPGPIO_16]; */
 			/* callback(); */
 			/* } */
 			/* CMSDK_GPIO1->INTCLEAR = (1 << index); */
 			/* /REG_GPIO1_INTSTATUSCLEAR = (1 << index); */
 			GPIO0->INTSTATUSCLEAR.reg = (1 << index); /* / jeffy */
-1000b79e:	0023      	movs	r3, r4
-1000b7a0:	408b      	lsls	r3, r1
-1000b7a2:	b29b      	uxth	r3, r3
-1000b7a4:	8703      	strh	r3, [r0, #56]	; 0x38
-1000b7a6:	e003      	b.n	1000b7b0 <gpio0_combined_isr_handler+0x4c>
+1000b7a2:	0023      	movs	r3, r4
+1000b7a4:	408b      	lsls	r3, r1
+1000b7a6:	b29b      	uxth	r3, r3
+1000b7a8:	8703      	strh	r3, [r0, #56]	; 0x38
+1000b7aa:	e003      	b.n	1000b7b4 <gpio0_combined_isr_handler+0x4c>
 		} else {
 			/* CMSDK_GPIO1->INTCLEAR = CMSDK_GPIO1->INTSTATUS; */
 			GPIO0->INTSTATUSCLEAR.reg |= (1 << 15); /* jeffy */
-1000b7a8:	8f03      	ldrh	r3, [r0, #56]	; 0x38
-1000b7aa:	432b      	orrs	r3, r5
-1000b7ac:	b29b      	uxth	r3, r3
-1000b7ae:	8703      	strh	r3, [r0, #56]	; 0x38
+1000b7ac:	8f03      	ldrh	r3, [r0, #56]	; 0x38
+1000b7ae:	432b      	orrs	r3, r5
+1000b7b0:	b29b      	uxth	r3, r3
+1000b7b2:	8703      	strh	r3, [r0, #56]	; 0x38
 			/* REG_GPIO1_INTSTATUSCLEAR = REG_GPIO1_INTENSET; */
 		}
 
 		intstatus = GPIO0->INTSTATUSCLEAR.reg;
-1000b7b0:	8f03      	ldrh	r3, [r0, #56]	; 0x38
+1000b7b4:	8f03      	ldrh	r3, [r0, #56]	; 0x38
 		#ifdef CHIPVERSION_B0
 		intstatus &= 0x1FF;
-1000b7b2:	05db      	lsls	r3, r3, #23
-1000b7b4:	0ddb      	lsrs	r3, r3, #23
+1000b7b6:	05db      	lsls	r3, r3, #23
+1000b7b8:	0ddb      	lsrs	r3, r3, #23
 		#else
 		intstatus &= 0x1F;
 		#endif
 	} while (intstatus != 0);
-1000b7b6:	d1e2      	bne.n	1000b77e <gpio0_combined_isr_handler+0x1a>
-1000b7b8:	2180      	movs	r1, #128	; 0x80
-1000b7ba:	3381      	adds	r3, #129	; 0x81
-1000b7bc:	33ff      	adds	r3, #255	; 0xff
-1000b7be:	4a03      	ldr	r2, [pc, #12]	; (1000b7cc <gpio0_combined_isr_handler+0x68>)
-1000b7c0:	50d1      	str	r1, [r2, r3]
+1000b7ba:	d1e2      	bne.n	1000b782 <gpio0_combined_isr_handler+0x1a>
+1000b7bc:	2180      	movs	r1, #128	; 0x80
+1000b7be:	3381      	adds	r3, #129	; 0x81
+1000b7c0:	33ff      	adds	r3, #255	; 0xff
+1000b7c2:	4a03      	ldr	r2, [pc, #12]	; (1000b7d0 <gpio0_combined_isr_handler+0x68>)
+1000b7c4:	50d1      	str	r1, [r2, r3]
 
 	NVIC_ClearPendingIRQ(7);
 }
-1000b7c2:	bd30      	pop	{r4, r5, pc}
-1000b7c4:	40010000 	.word	0x40010000
-1000b7c8:	ffff8000 	.word	0xffff8000
-1000b7cc:	e000e100 	.word	0xe000e100
+1000b7c6:	bd30      	pop	{r4, r5, pc}
+1000b7c8:	40010000 	.word	0x40010000
+1000b7cc:	ffff8000 	.word	0xffff8000
+1000b7d0:	e000e100 	.word	0xe000e100
 
-1000b7d0 <PORT1_COMB_Handler>:
+1000b7d4 <PORT1_COMB_Handler>:
 
 #ifdef CHIPVERSION_B0
 void PORT1_COMB_Handler(void)
 {
-1000b7d0:	b510      	push	{r4, lr}
+1000b7d4:	b510      	push	{r4, lr}
 	/* if(CMSDK_GPIO1->INTSTATUS & ((1<<15) | (1<<14) | (1<<13))) { */
 	if (GPIO1->INTSTATUSCLEAR.reg & ((1 << 15) | (1 << 14) | (1 << 13))) {
-1000b7d2:	4b0c      	ldr	r3, [pc, #48]	; (1000b804 <PORT1_COMB_Handler+0x34>)
-1000b7d4:	8f1b      	ldrh	r3, [r3, #56]	; 0x38
-1000b7d6:	0b5b      	lsrs	r3, r3, #13
-1000b7d8:	d010      	beq.n	1000b7fc <PORT1_COMB_Handler+0x2c>
+1000b7d6:	4b0c      	ldr	r3, [pc, #48]	; (1000b808 <PORT1_COMB_Handler+0x34>)
+1000b7d8:	8f1b      	ldrh	r3, [r3, #56]	; 0x38
+1000b7da:	0b5b      	lsrs	r3, r3, #13
+1000b7dc:	d010      	beq.n	1000b800 <PORT1_COMB_Handler+0x2c>
 		handle_ext_wakeup_isr();
-1000b7da:	4b0b      	ldr	r3, [pc, #44]	; (1000b808 <PORT1_COMB_Handler+0x38>)
-1000b7dc:	681b      	ldr	r3, [r3, #0]
-1000b7de:	4798      	blx	r3
+1000b7de:	4b0b      	ldr	r3, [pc, #44]	; (1000b80c <PORT1_COMB_Handler+0x38>)
+1000b7e0:	681b      	ldr	r3, [r3, #0]
+1000b7e2:	4798      	blx	r3
 
 		/* clear specific int pin status that caused the Interrupt */
 		/* CMSDK_GPIO1->INTCLEAR |= CMSDK_GPIO1->INTSTATUS & ((1<<15) | (1<<14) | (1<<13)); */
 		GPIO1->INTSTATUSCLEAR.reg |= GPIO1->INTSTATUSCLEAR.reg & ((1 << 15) | (1 << 14) | (1 << 13));
-1000b7e0:	4a08      	ldr	r2, [pc, #32]	; (1000b804 <PORT1_COMB_Handler+0x34>)
-1000b7e2:	8f13      	ldrh	r3, [r2, #56]	; 0x38
-1000b7e4:	8f11      	ldrh	r1, [r2, #56]	; 0x38
-1000b7e6:	0b5b      	lsrs	r3, r3, #13
-1000b7e8:	035b      	lsls	r3, r3, #13
-1000b7ea:	430b      	orrs	r3, r1
-1000b7ec:	8713      	strh	r3, [r2, #56]	; 0x38
-1000b7ee:	2180      	movs	r1, #128	; 0x80
-1000b7f0:	0049      	lsls	r1, r1, #1
-1000b7f2:	23c0      	movs	r3, #192	; 0xc0
-1000b7f4:	005b      	lsls	r3, r3, #1
-1000b7f6:	4a05      	ldr	r2, [pc, #20]	; (1000b80c <PORT1_COMB_Handler+0x3c>)
-1000b7f8:	50d1      	str	r1, [r2, r3]
-1000b7fa:	e001      	b.n	1000b800 <PORT1_COMB_Handler+0x30>
+1000b7e4:	4a08      	ldr	r2, [pc, #32]	; (1000b808 <PORT1_COMB_Handler+0x34>)
+1000b7e6:	8f13      	ldrh	r3, [r2, #56]	; 0x38
+1000b7e8:	8f11      	ldrh	r1, [r2, #56]	; 0x38
+1000b7ea:	0b5b      	lsrs	r3, r3, #13
+1000b7ec:	035b      	lsls	r3, r3, #13
+1000b7ee:	430b      	orrs	r3, r1
+1000b7f0:	8713      	strh	r3, [r2, #56]	; 0x38
+1000b7f2:	2180      	movs	r1, #128	; 0x80
+1000b7f4:	0049      	lsls	r1, r1, #1
+1000b7f6:	23c0      	movs	r3, #192	; 0xc0
+1000b7f8:	005b      	lsls	r3, r3, #1
+1000b7fa:	4a05      	ldr	r2, [pc, #20]	; (1000b810 <PORT1_COMB_Handler+0x3c>)
+1000b7fc:	50d1      	str	r1, [r2, r3]
+1000b7fe:	e001      	b.n	1000b804 <PORT1_COMB_Handler+0x30>
 		/* NVIC_ClearPendingIRQ(PORT1_COMB_IRQn); */
 		NVIC_ClearPendingIRQ(8);
 	} else {
 		gpio1_combined_isr_handler();
-1000b7fc:	4b04      	ldr	r3, [pc, #16]	; (1000b810 <PORT1_COMB_Handler+0x40>)
-1000b7fe:	4798      	blx	r3
+1000b800:	4b04      	ldr	r3, [pc, #16]	; (1000b814 <PORT1_COMB_Handler+0x40>)
+1000b802:	4798      	blx	r3
 	}
 }
-1000b800:	bd10      	pop	{r4, pc}
-1000b802:	46c0      	nop			; (mov r8, r8)
-1000b804:	40011000 	.word	0x40011000
-1000b808:	10014a4c 	.word	0x10014a4c
-1000b80c:	e000e100 	.word	0xe000e100
-1000b810:	1000b6f5 	.word	0x1000b6f5
+1000b804:	bd10      	pop	{r4, pc}
+1000b806:	46c0      	nop			; (mov r8, r8)
+1000b808:	40011000 	.word	0x40011000
+1000b80c:	10014a4c 	.word	0x10014a4c
+1000b810:	e000e100 	.word	0xe000e100
+1000b814:	1000b6f9 	.word	0x1000b6f9
 
-1000b814 <wakeup_int_unregister_callback>:
+1000b818 <wakeup_int_unregister_callback>:
 	{
 		wakeup_source_callback[wakeup_source] = 0;
 	}
 	else 
 	{
 		status = PORT_STATUS_ERR_INVALID_ARG;
-1000b814:	2303      	movs	r3, #3
+1000b818:	2303      	movs	r3, #3
 #endif  /* CHIPVERSION_B0 */
 
 enum port_status_code wakeup_int_unregister_callback(enum port_wakeup_source wakeup_source)
 {
 	enum port_status_code status = PORT_STATUS_OK;
 	if(	(wakeup_source == PORT_WAKEUP_SOURCE_AON_GPIO_0) || 
-1000b816:	2802      	cmp	r0, #2
-1000b818:	d804      	bhi.n	1000b824 <wakeup_int_unregister_callback+0x10>
+1000b81a:	2802      	cmp	r0, #2
+1000b81c:	d804      	bhi.n	1000b828 <wakeup_int_unregister_callback+0x10>
 		(wakeup_source == PORT_WAKEUP_SOURCE_AON_GPIO_1) || 
 		(wakeup_source == PORT_WAKEUP_SOURCE_AON_GPIO_2) ) 
 	{
 		wakeup_source_callback[wakeup_source] = 0;
-1000b81a:	0080      	lsls	r0, r0, #2
-1000b81c:	2200      	movs	r2, #0
-1000b81e:	4b02      	ldr	r3, [pc, #8]	; (1000b828 <wakeup_int_unregister_callback+0x14>)
-1000b820:	50c2      	str	r2, [r0, r3]
+1000b81e:	0080      	lsls	r0, r0, #2
+1000b820:	2200      	movs	r2, #0
+1000b822:	4b02      	ldr	r3, [pc, #8]	; (1000b82c <wakeup_int_unregister_callback+0x14>)
+1000b824:	50c2      	str	r2, [r0, r3]
 
 #endif  /* CHIPVERSION_B0 */
 
 enum port_status_code wakeup_int_unregister_callback(enum port_wakeup_source wakeup_source)
 {
 	enum port_status_code status = PORT_STATUS_OK;
-1000b822:	2300      	movs	r3, #0
+1000b826:	2300      	movs	r3, #0
 	else 
 	{
 		status = PORT_STATUS_ERR_INVALID_ARG;
 	}
 	return status;
 }
-1000b824:	0018      	movs	r0, r3
-1000b826:	4770      	bx	lr
-1000b828:	10014a64 	.word	0x10014a64
+1000b828:	0018      	movs	r0, r3
+1000b82a:	4770      	bx	lr
+1000b82c:	10014a64 	.word	0x10014a64
 
-1000b82c <wakeup_active_event_callback>:
+1000b830 <wakeup_active_event_callback>:
 
 void wakeup_active_event_callback(uint32_t wakeup_source)
 {
-1000b82c:	b510      	push	{r4, lr}
-1000b82e:	0004      	movs	r4, r0
+1000b830:	b510      	push	{r4, lr}
+1000b832:	0004      	movs	r4, r0
 	portint_callback_t callback;
 	uint32_t *pu32WakeSource = (uint32_t *)wakeup_source;
 	if((*pu32WakeSource & 0xFF) == 1)
-1000b830:	7803      	ldrb	r3, [r0, #0]
-1000b832:	2b01      	cmp	r3, #1
-1000b834:	d108      	bne.n	1000b848 <wakeup_active_event_callback+0x1c>
+1000b834:	7803      	ldrb	r3, [r0, #0]
+1000b836:	2b01      	cmp	r3, #1
+1000b838:	d108      	bne.n	1000b84c <wakeup_active_event_callback+0x1c>
 	{
 		if(wakeup_source_callback[0] != NULL) {
-1000b836:	4b11      	ldr	r3, [pc, #68]	; (1000b87c <wakeup_active_event_callback+0x50>)
-1000b838:	681b      	ldr	r3, [r3, #0]
-1000b83a:	2b00      	cmp	r3, #0
-1000b83c:	d000      	beq.n	1000b840 <wakeup_active_event_callback+0x14>
+1000b83a:	4b11      	ldr	r3, [pc, #68]	; (1000b880 <wakeup_active_event_callback+0x50>)
+1000b83c:	681b      	ldr	r3, [r3, #0]
+1000b83e:	2b00      	cmp	r3, #0
+1000b840:	d000      	beq.n	1000b844 <wakeup_active_event_callback+0x14>
 			callback = wakeup_source_callback[0];
 			callback();
-1000b83e:	4798      	blx	r3
+1000b842:	4798      	blx	r3
 		}
 		*pu32WakeSource &= ~(0xFF);
-1000b840:	23ff      	movs	r3, #255	; 0xff
-1000b842:	6822      	ldr	r2, [r4, #0]
-1000b844:	439a      	bics	r2, r3
-1000b846:	6022      	str	r2, [r4, #0]
+1000b844:	23ff      	movs	r3, #255	; 0xff
+1000b846:	6822      	ldr	r2, [r4, #0]
+1000b848:	439a      	bics	r2, r3
+1000b84a:	6022      	str	r2, [r4, #0]
 	}
 	if(((*pu32WakeSource >> 8) & 0xFF) == 1)
-1000b848:	7863      	ldrb	r3, [r4, #1]
-1000b84a:	2b01      	cmp	r3, #1
-1000b84c:	d108      	bne.n	1000b860 <wakeup_active_event_callback+0x34>
+1000b84c:	7863      	ldrb	r3, [r4, #1]
+1000b84e:	2b01      	cmp	r3, #1
+1000b850:	d108      	bne.n	1000b864 <wakeup_active_event_callback+0x34>
 	{
 		if(wakeup_source_callback[1] != NULL) {
-1000b84e:	4b0b      	ldr	r3, [pc, #44]	; (1000b87c <wakeup_active_event_callback+0x50>)
-1000b850:	685b      	ldr	r3, [r3, #4]
-1000b852:	2b00      	cmp	r3, #0
-1000b854:	d000      	beq.n	1000b858 <wakeup_active_event_callback+0x2c>
+1000b852:	4b0b      	ldr	r3, [pc, #44]	; (1000b880 <wakeup_active_event_callback+0x50>)
+1000b854:	685b      	ldr	r3, [r3, #4]
+1000b856:	2b00      	cmp	r3, #0
+1000b858:	d000      	beq.n	1000b85c <wakeup_active_event_callback+0x2c>
 			callback = wakeup_source_callback[1];
 			callback();
-1000b856:	4798      	blx	r3
+1000b85a:	4798      	blx	r3
 		}
 		*pu32WakeSource &= ~(0xFF << 8);
-1000b858:	4b09      	ldr	r3, [pc, #36]	; (1000b880 <wakeup_active_event_callback+0x54>)
-1000b85a:	6822      	ldr	r2, [r4, #0]
-1000b85c:	4013      	ands	r3, r2
-1000b85e:	6023      	str	r3, [r4, #0]
+1000b85c:	4b09      	ldr	r3, [pc, #36]	; (1000b884 <wakeup_active_event_callback+0x54>)
+1000b85e:	6822      	ldr	r2, [r4, #0]
+1000b860:	4013      	ands	r3, r2
+1000b862:	6023      	str	r3, [r4, #0]
 	}
 	if(((*pu32WakeSource >> 16) & 0xFF) == 1)
-1000b860:	78a3      	ldrb	r3, [r4, #2]
-1000b862:	2b01      	cmp	r3, #1
-1000b864:	d108      	bne.n	1000b878 <wakeup_active_event_callback+0x4c>
+1000b864:	78a3      	ldrb	r3, [r4, #2]
+1000b866:	2b01      	cmp	r3, #1
+1000b868:	d108      	bne.n	1000b87c <wakeup_active_event_callback+0x4c>
 	{
 		if(wakeup_source_callback[2] != NULL) {
-1000b866:	4b05      	ldr	r3, [pc, #20]	; (1000b87c <wakeup_active_event_callback+0x50>)
-1000b868:	689b      	ldr	r3, [r3, #8]
-1000b86a:	2b00      	cmp	r3, #0
-1000b86c:	d000      	beq.n	1000b870 <wakeup_active_event_callback+0x44>
+1000b86a:	4b05      	ldr	r3, [pc, #20]	; (1000b880 <wakeup_active_event_callback+0x50>)
+1000b86c:	689b      	ldr	r3, [r3, #8]
+1000b86e:	2b00      	cmp	r3, #0
+1000b870:	d000      	beq.n	1000b874 <wakeup_active_event_callback+0x44>
 			callback = wakeup_source_callback[2];
 			callback();
-1000b86e:	4798      	blx	r3
+1000b872:	4798      	blx	r3
 		}
 		*pu32WakeSource &= ~(0xFF << 16);
-1000b870:	4b04      	ldr	r3, [pc, #16]	; (1000b884 <wakeup_active_event_callback+0x58>)
-1000b872:	6822      	ldr	r2, [r4, #0]
-1000b874:	4013      	ands	r3, r2
-1000b876:	6023      	str	r3, [r4, #0]
+1000b874:	4b04      	ldr	r3, [pc, #16]	; (1000b888 <wakeup_active_event_callback+0x58>)
+1000b876:	6822      	ldr	r2, [r4, #0]
+1000b878:	4013      	ands	r3, r2
+1000b87a:	6023      	str	r3, [r4, #0]
 	}
 }
-1000b878:	bd10      	pop	{r4, pc}
-1000b87a:	46c0      	nop			; (mov r8, r8)
-1000b87c:	10014a64 	.word	0x10014a64
-1000b880:	ffff00ff 	.word	0xffff00ff
-1000b884:	ff00ffff 	.word	0xff00ffff
+1000b87c:	bd10      	pop	{r4, pc}
+1000b87e:	46c0      	nop			; (mov r8, r8)
+1000b880:	10014a64 	.word	0x10014a64
+1000b884:	ffff00ff 	.word	0xffff00ff
+1000b888:	ff00ffff 	.word	0xff00ffff
 
-1000b888 <app_htpt_cfg_indntf_ind_handler>:
+1000b88c <app_htpt_cfg_indntf_ind_handler>:
 	}
 }
 
 
 static at_ble_status_t app_htpt_cfg_indntf_ind_handler(void *params)
 {
-1000b888:	b510      	push	{r4, lr}
+1000b88c:	b510      	push	{r4, lr}
 	at_ble_htpt_cfg_indntf_ind_t htpt_cfg_indntf_ind_params;
 	memcpy((uint8_t *)&htpt_cfg_indntf_ind_params, params,
 	sizeof(at_ble_htpt_cfg_indntf_ind_t));
 	if (htpt_cfg_indntf_ind_params.ntf_ind_cfg == 0x03) {
-1000b88a:	7843      	ldrb	r3, [r0, #1]
-1000b88c:	2b03      	cmp	r3, #3
-1000b88e:	d106      	bne.n	1000b89e <app_htpt_cfg_indntf_ind_handler+0x16>
+1000b88e:	7843      	ldrb	r3, [r0, #1]
+1000b890:	2b03      	cmp	r3, #3
+1000b892:	d106      	bne.n	1000b8a2 <app_htpt_cfg_indntf_ind_handler+0x16>
 		printf("Started HTP Temperature Notification");
-1000b890:	4807      	ldr	r0, [pc, #28]	; (1000b8b0 <app_htpt_cfg_indntf_ind_handler+0x28>)
-1000b892:	4b08      	ldr	r3, [pc, #32]	; (1000b8b4 <app_htpt_cfg_indntf_ind_handler+0x2c>)
-1000b894:	4798      	blx	r3
+1000b894:	4807      	ldr	r0, [pc, #28]	; (1000b8b4 <app_htpt_cfg_indntf_ind_handler+0x28>)
+1000b896:	4b08      	ldr	r3, [pc, #32]	; (1000b8b8 <app_htpt_cfg_indntf_ind_handler+0x2c>)
+1000b898:	4798      	blx	r3
 		Temp_Notification_Flag = true;
-1000b896:	2201      	movs	r2, #1
-1000b898:	4b07      	ldr	r3, [pc, #28]	; (1000b8b8 <app_htpt_cfg_indntf_ind_handler+0x30>)
-1000b89a:	701a      	strb	r2, [r3, #0]
-1000b89c:	e005      	b.n	1000b8aa <app_htpt_cfg_indntf_ind_handler+0x22>
+1000b89a:	2201      	movs	r2, #1
+1000b89c:	4b07      	ldr	r3, [pc, #28]	; (1000b8bc <app_htpt_cfg_indntf_ind_handler+0x30>)
+1000b89e:	701a      	strb	r2, [r3, #0]
+1000b8a0:	e005      	b.n	1000b8ae <app_htpt_cfg_indntf_ind_handler+0x22>
 	}
 	else {
 		printf("HTP Temperature Notification Stopped");
-1000b89e:	4807      	ldr	r0, [pc, #28]	; (1000b8bc <app_htpt_cfg_indntf_ind_handler+0x34>)
-1000b8a0:	4b04      	ldr	r3, [pc, #16]	; (1000b8b4 <app_htpt_cfg_indntf_ind_handler+0x2c>)
-1000b8a2:	4798      	blx	r3
+1000b8a2:	4807      	ldr	r0, [pc, #28]	; (1000b8c0 <app_htpt_cfg_indntf_ind_handler+0x34>)
+1000b8a4:	4b04      	ldr	r3, [pc, #16]	; (1000b8b8 <app_htpt_cfg_indntf_ind_handler+0x2c>)
+1000b8a6:	4798      	blx	r3
 		Temp_Notification_Flag = false;
-1000b8a4:	2200      	movs	r2, #0
-1000b8a6:	4b04      	ldr	r3, [pc, #16]	; (1000b8b8 <app_htpt_cfg_indntf_ind_handler+0x30>)
-1000b8a8:	701a      	strb	r2, [r3, #0]
+1000b8a8:	2200      	movs	r2, #0
+1000b8aa:	4b04      	ldr	r3, [pc, #16]	; (1000b8bc <app_htpt_cfg_indntf_ind_handler+0x30>)
+1000b8ac:	701a      	strb	r2, [r3, #0]
 	}
 	return AT_BLE_SUCCESS;
 }
-1000b8aa:	2000      	movs	r0, #0
-1000b8ac:	bd10      	pop	{r4, pc}
-1000b8ae:	46c0      	nop			; (mov r8, r8)
-1000b8b0:	10011f84 	.word	0x10011f84
-1000b8b4:	10010379 	.word	0x10010379
-1000b8b8:	10013dd5 	.word	0x10013dd5
-1000b8bc:	10011fac 	.word	0x10011fac
+1000b8ae:	2000      	movs	r0, #0
+1000b8b0:	bd10      	pop	{r4, pc}
+1000b8b2:	46c0      	nop			; (mov r8, r8)
+1000b8b4:	10011f84 	.word	0x10011f84
+1000b8b8:	10010379 	.word	0x10010379
+1000b8bc:	10013dd5 	.word	0x10013dd5
+1000b8c0:	10011fac 	.word	0x10011fac
 
-1000b8c0 <transfer_done_rx>:
+1000b8c4 <transfer_done_rx>:
 {
 	dma_start_transfer_job(&uart_dma_resource_rx);
 }
 
 static void transfer_done_rx(struct dma_resource* const resource )
 {
-1000b8c0:	b510      	push	{r4, lr}
+1000b8c4:	b510      	push	{r4, lr}
 	//dma_start_transfer_job(&uart_dma_resource_tx);
 	/* Start parsing the data here! */
 	dma_start_transfer_job(&uart_dma_resource_rx);
-1000b8c2:	4809      	ldr	r0, [pc, #36]	; (1000b8e8 <transfer_done_rx+0x28>)
-1000b8c4:	4b09      	ldr	r3, [pc, #36]	; (1000b8ec <transfer_done_rx+0x2c>)
-1000b8c6:	4798      	blx	r3
+1000b8c6:	4809      	ldr	r0, [pc, #36]	; (1000b8ec <transfer_done_rx+0x28>)
+1000b8c8:	4b09      	ldr	r3, [pc, #36]	; (1000b8f0 <transfer_done_rx+0x2c>)
+1000b8ca:	4798      	blx	r3
 	
 	#if 0
 	GPIO1->DATAOUT.reg |= (1 << (LED_0_PIN % 16)); // Turn OFF
 	GPIO1->DATAOUT.reg &= ~(1 << (LED_0_PIN % 16)); // Turn ON
 	#endif
 	if(string_rx[4] == 1) {
-1000b8c8:	4b09      	ldr	r3, [pc, #36]	; (1000b8f0 <transfer_done_rx+0x30>)
-1000b8ca:	791b      	ldrb	r3, [r3, #4]
-1000b8cc:	2b01      	cmp	r3, #1
-1000b8ce:	d105      	bne.n	1000b8dc <transfer_done_rx+0x1c>
+1000b8cc:	4b09      	ldr	r3, [pc, #36]	; (1000b8f4 <transfer_done_rx+0x30>)
+1000b8ce:	791b      	ldrb	r3, [r3, #4]
+1000b8d0:	2b01      	cmp	r3, #1
+1000b8d2:	d105      	bne.n	1000b8e0 <transfer_done_rx+0x1c>
 		/* Toggle the LED to 0 */
 		GPIO1->DATAOUT.reg |= (1 << (LED_0_PIN % 16)); // Turn OFF
-1000b8d0:	4a08      	ldr	r2, [pc, #32]	; (1000b8f4 <transfer_done_rx+0x34>)
-1000b8d2:	8891      	ldrh	r1, [r2, #4]
-1000b8d4:	333f      	adds	r3, #63	; 0x3f
-1000b8d6:	430b      	orrs	r3, r1
-1000b8d8:	8093      	strh	r3, [r2, #4]
-1000b8da:	e004      	b.n	1000b8e6 <transfer_done_rx+0x26>
+1000b8d4:	4a08      	ldr	r2, [pc, #32]	; (1000b8f8 <transfer_done_rx+0x34>)
+1000b8d6:	8891      	ldrh	r1, [r2, #4]
+1000b8d8:	333f      	adds	r3, #63	; 0x3f
+1000b8da:	430b      	orrs	r3, r1
+1000b8dc:	8093      	strh	r3, [r2, #4]
+1000b8de:	e004      	b.n	1000b8ea <transfer_done_rx+0x26>
 		} else {
 		/* Let the LED be ON */
 		GPIO1->DATAOUT.reg &= ~(1 << (LED_0_PIN % 16)); // Turn ON
-1000b8dc:	4a05      	ldr	r2, [pc, #20]	; (1000b8f4 <transfer_done_rx+0x34>)
-1000b8de:	8893      	ldrh	r3, [r2, #4]
-1000b8e0:	2140      	movs	r1, #64	; 0x40
-1000b8e2:	438b      	bics	r3, r1
-1000b8e4:	8093      	strh	r3, [r2, #4]
+1000b8e0:	4a05      	ldr	r2, [pc, #20]	; (1000b8f8 <transfer_done_rx+0x34>)
+1000b8e2:	8893      	ldrh	r3, [r2, #4]
+1000b8e4:	2140      	movs	r1, #64	; 0x40
+1000b8e6:	438b      	bics	r3, r1
+1000b8e8:	8093      	strh	r3, [r2, #4]
 	}
 }
-1000b8e6:	bd10      	pop	{r4, pc}
-1000b8e8:	10014ab4 	.word	0x10014ab4
-1000b8ec:	1000836d 	.word	0x1000836d
-1000b8f0:	10013dd0 	.word	0x10013dd0
-1000b8f4:	40011000 	.word	0x40011000
+1000b8ea:	bd10      	pop	{r4, pc}
+1000b8ec:	10014ab4 	.word	0x10014ab4
+1000b8f0:	1000836d 	.word	0x1000836d
+1000b8f4:	10013dd0 	.word	0x10013dd0
+1000b8f8:	40011000 	.word	0x40011000
 
-1000b8f8 <transfer_done_tx>:
+1000b8fc <transfer_done_tx>:
 //! [transfer_descriptor]
 
 //! [setup]
 //! [transfer_done_tx]
 static void transfer_done_tx(struct dma_resource* const resource )
 {
-1000b8f8:	b510      	push	{r4, lr}
+1000b8fc:	b510      	push	{r4, lr}
 	dma_start_transfer_job(&uart_dma_resource_rx);
-1000b8fa:	4802      	ldr	r0, [pc, #8]	; (1000b904 <transfer_done_tx+0xc>)
-1000b8fc:	4b02      	ldr	r3, [pc, #8]	; (1000b908 <transfer_done_tx+0x10>)
-1000b8fe:	4798      	blx	r3
+1000b8fe:	4802      	ldr	r0, [pc, #8]	; (1000b908 <transfer_done_tx+0xc>)
+1000b900:	4b02      	ldr	r3, [pc, #8]	; (1000b90c <transfer_done_tx+0x10>)
+1000b902:	4798      	blx	r3
 }
-1000b900:	bd10      	pop	{r4, pc}
-1000b902:	46c0      	nop			; (mov r8, r8)
-1000b904:	10014ab4 	.word	0x10014ab4
-1000b908:	1000836d 	.word	0x1000836d
+1000b904:	bd10      	pop	{r4, pc}
+1000b906:	46c0      	nop			; (mov r8, r8)
+1000b908:	10014ab4 	.word	0x10014ab4
+1000b90c:	1000836d 	.word	0x1000836d
 
-1000b90c <timer_callback_handler>:
+1000b910 <timer_callback_handler>:
 }
 #endif
 
 /* Timer callback */
 static void timer_callback_handler(void)
 {
-1000b90c:	b510      	push	{r4, lr}
+1000b910:	b510      	push	{r4, lr}
 	/* Stop timer */
 	hw_timer_stop();
-1000b90e:	4b04      	ldr	r3, [pc, #16]	; (1000b920 <timer_callback_handler+0x14>)
-1000b910:	4798      	blx	r3
+1000b912:	4b04      	ldr	r3, [pc, #16]	; (1000b924 <timer_callback_handler+0x14>)
+1000b914:	4798      	blx	r3
 	/* Set timer Alarm flag */
 	Timer_Flag = true;
-1000b912:	2201      	movs	r2, #1
-1000b914:	4b03      	ldr	r3, [pc, #12]	; (1000b924 <timer_callback_handler+0x18>)
-1000b916:	701a      	strb	r2, [r3, #0]
+1000b916:	2201      	movs	r2, #1
+1000b918:	4b03      	ldr	r3, [pc, #12]	; (1000b928 <timer_callback_handler+0x18>)
+1000b91a:	701a      	strb	r2, [r3, #0]
 	/* Restart Timer */
 	hw_timer_start(10);
-1000b918:	200a      	movs	r0, #10
-1000b91a:	4b03      	ldr	r3, [pc, #12]	; (1000b928 <timer_callback_handler+0x1c>)
-1000b91c:	4798      	blx	r3
+1000b91c:	200a      	movs	r0, #10
+1000b91e:	4b03      	ldr	r3, [pc, #12]	; (1000b92c <timer_callback_handler+0x1c>)
+1000b920:	4798      	blx	r3
 }
-1000b91e:	bd10      	pop	{r4, pc}
-1000b920:	1000ae19 	.word	0x1000ae19
-1000b924:	10013dcc 	.word	0x10013dcc
-1000b928:	1000aded 	.word	0x1000aded
+1000b922:	bd10      	pop	{r4, pc}
+1000b924:	1000ae19 	.word	0x1000ae19
+1000b928:	10013dcc 	.word	0x10013dcc
+1000b92c:	1000aded 	.word	0x1000aded
 
-1000b92c <ble_advertise>:
+1000b930 <ble_advertise>:
 at_ble_handle_t htpt_conn_handle;
 volatile bool Timer_Flag = false;
 volatile bool Temp_Notification_Flag = false;
 
 static void ble_advertise (void)
 {
-1000b92c:	b510      	push	{r4, lr}
-1000b92e:	b084      	sub	sp, #16
+1000b930:	b510      	push	{r4, lr}
+1000b932:	b084      	sub	sp, #16
 	printf("\nAssignment 2.1 : Start Advertising");
-1000b930:	4815      	ldr	r0, [pc, #84]	; (1000b988 <ble_advertise+0x5c>)
-1000b932:	4b16      	ldr	r3, [pc, #88]	; (1000b98c <ble_advertise+0x60>)
-1000b934:	4798      	blx	r3
-	status = ble_advertisement_data_set();
-1000b936:	4b16      	ldr	r3, [pc, #88]	; (1000b990 <ble_advertise+0x64>)
+1000b934:	4815      	ldr	r0, [pc, #84]	; (1000b98c <ble_advertise+0x5c>)
+1000b936:	4b16      	ldr	r3, [pc, #88]	; (1000b990 <ble_advertise+0x60>)
 1000b938:	4798      	blx	r3
-1000b93a:	4b16      	ldr	r3, [pc, #88]	; (1000b994 <ble_advertise+0x68>)
-1000b93c:	7018      	strb	r0, [r3, #0]
+	status = ble_advertisement_data_set();
+1000b93a:	4b16      	ldr	r3, [pc, #88]	; (1000b994 <ble_advertise+0x64>)
+1000b93c:	4798      	blx	r3
+1000b93e:	4b16      	ldr	r3, [pc, #88]	; (1000b998 <ble_advertise+0x68>)
+1000b940:	7018      	strb	r0, [r3, #0]
 	if(status != AT_BLE_SUCCESS)
-1000b93e:	781b      	ldrb	r3, [r3, #0]
-1000b940:	2b00      	cmp	r3, #0
-1000b942:	d006      	beq.n	1000b952 <ble_advertise+0x26>
+1000b942:	781b      	ldrb	r3, [r3, #0]
+1000b944:	2b00      	cmp	r3, #0
+1000b946:	d006      	beq.n	1000b956 <ble_advertise+0x26>
 	{
 		printf("\n\r## Advertisement data set failed : error %x",status);
-1000b944:	4b13      	ldr	r3, [pc, #76]	; (1000b994 <ble_advertise+0x68>)
-1000b946:	7819      	ldrb	r1, [r3, #0]
-1000b948:	b2c9      	uxtb	r1, r1
-1000b94a:	4813      	ldr	r0, [pc, #76]	; (1000b998 <ble_advertise+0x6c>)
-1000b94c:	4b0f      	ldr	r3, [pc, #60]	; (1000b98c <ble_advertise+0x60>)
-1000b94e:	4798      	blx	r3
-1000b950:	e7fe      	b.n	1000b950 <ble_advertise+0x24>
+1000b948:	4b13      	ldr	r3, [pc, #76]	; (1000b998 <ble_advertise+0x68>)
+1000b94a:	7819      	ldrb	r1, [r3, #0]
+1000b94c:	b2c9      	uxtb	r1, r1
+1000b94e:	4813      	ldr	r0, [pc, #76]	; (1000b99c <ble_advertise+0x6c>)
+1000b950:	4b0f      	ldr	r3, [pc, #60]	; (1000b990 <ble_advertise+0x60>)
+1000b952:	4798      	blx	r3
+1000b954:	e7fe      	b.n	1000b954 <ble_advertise+0x24>
 		while(1);
 	}
 	/* Start of advertisement */
 	status = at_ble_adv_start(AT_BLE_ADV_TYPE_UNDIRECTED,\
-1000b952:	2300      	movs	r3, #0
-1000b954:	9302      	str	r3, [sp, #8]
-1000b956:	4b11      	ldr	r3, [pc, #68]	; (1000b99c <ble_advertise+0x70>)
-1000b958:	9301      	str	r3, [sp, #4]
-1000b95a:	335a      	adds	r3, #90	; 0x5a
-1000b95c:	33ff      	adds	r3, #255	; 0xff
-1000b95e:	9300      	str	r3, [sp, #0]
-1000b960:	2300      	movs	r3, #0
-1000b962:	2200      	movs	r2, #0
-1000b964:	2101      	movs	r1, #1
-1000b966:	2000      	movs	r0, #0
-1000b968:	4c0d      	ldr	r4, [pc, #52]	; (1000b9a0 <ble_advertise+0x74>)
-1000b96a:	47a0      	blx	r4
-1000b96c:	4b09      	ldr	r3, [pc, #36]	; (1000b994 <ble_advertise+0x68>)
-1000b96e:	7018      	strb	r0, [r3, #0]
+1000b956:	2300      	movs	r3, #0
+1000b958:	9302      	str	r3, [sp, #8]
+1000b95a:	4b11      	ldr	r3, [pc, #68]	; (1000b9a0 <ble_advertise+0x70>)
+1000b95c:	9301      	str	r3, [sp, #4]
+1000b95e:	335a      	adds	r3, #90	; 0x5a
+1000b960:	33ff      	adds	r3, #255	; 0xff
+1000b962:	9300      	str	r3, [sp, #0]
+1000b964:	2300      	movs	r3, #0
+1000b966:	2200      	movs	r2, #0
+1000b968:	2101      	movs	r1, #1
+1000b96a:	2000      	movs	r0, #0
+1000b96c:	4c0d      	ldr	r4, [pc, #52]	; (1000b9a4 <ble_advertise+0x74>)
+1000b96e:	47a0      	blx	r4
+1000b970:	4b09      	ldr	r3, [pc, #36]	; (1000b998 <ble_advertise+0x68>)
+1000b972:	7018      	strb	r0, [r3, #0]
 	NULL,\
 	AT_BLE_ADV_FP_ANY,\
 	1000,\
 	655,\
 	0);
 	if(status != AT_BLE_SUCCESS)
-1000b970:	781b      	ldrb	r3, [r3, #0]
-1000b972:	2b00      	cmp	r3, #0
-1000b974:	d006      	beq.n	1000b984 <ble_advertise+0x58>
+1000b974:	781b      	ldrb	r3, [r3, #0]
+1000b976:	2b00      	cmp	r3, #0
+1000b978:	d006      	beq.n	1000b988 <ble_advertise+0x58>
 	{
 		printf("\n\r## Advertisement data set failed : error %x",status);
-1000b976:	4b07      	ldr	r3, [pc, #28]	; (1000b994 <ble_advertise+0x68>)
-1000b978:	7819      	ldrb	r1, [r3, #0]
-1000b97a:	b2c9      	uxtb	r1, r1
-1000b97c:	4806      	ldr	r0, [pc, #24]	; (1000b998 <ble_advertise+0x6c>)
-1000b97e:	4b03      	ldr	r3, [pc, #12]	; (1000b98c <ble_advertise+0x60>)
-1000b980:	4798      	blx	r3
-1000b982:	e7fe      	b.n	1000b982 <ble_advertise+0x56>
+1000b97a:	4b07      	ldr	r3, [pc, #28]	; (1000b998 <ble_advertise+0x68>)
+1000b97c:	7819      	ldrb	r1, [r3, #0]
+1000b97e:	b2c9      	uxtb	r1, r1
+1000b980:	4806      	ldr	r0, [pc, #24]	; (1000b99c <ble_advertise+0x6c>)
+1000b982:	4b03      	ldr	r3, [pc, #12]	; (1000b990 <ble_advertise+0x60>)
+1000b984:	4798      	blx	r3
+1000b986:	e7fe      	b.n	1000b986 <ble_advertise+0x56>
 		while(1);
 	}
 }
-1000b984:	b004      	add	sp, #16
-1000b986:	bd10      	pop	{r4, pc}
-1000b988:	10011fd4 	.word	0x10011fd4
-1000b98c:	10010379 	.word	0x10010379
-1000b990:	1000ad11 	.word	0x1000ad11
-1000b994:	10014af4 	.word	0x10014af4
-1000b998:	10011ff8 	.word	0x10011ff8
-1000b99c:	0000028f 	.word	0x0000028f
-1000b9a0:	1000c901 	.word	0x1000c901
+1000b988:	b004      	add	sp, #16
+1000b98a:	bd10      	pop	{r4, pc}
+1000b98c:	10011fd4 	.word	0x10011fd4
+1000b990:	10010379 	.word	0x10010379
+1000b994:	1000ad11 	.word	0x1000ad11
+1000b998:	10014af4 	.word	0x10014af4
+1000b99c:	10011ff8 	.word	0x10011ff8
+1000b9a0:	0000028f 	.word	0x0000028f
+1000b9a4:	1000c901 	.word	0x1000c901
 
-1000b9a4 <ble_disconnected_cb>:
+1000b9a8 <ble_disconnected_cb>:
 	return AT_BLE_SUCCESS;
 }
 
 /* Callback registered for AT_BLE_DISCONNECTED event */
 static at_ble_status_t ble_disconnected_cb (void *param)
 {
-1000b9a4:	b510      	push	{r4, lr}
+1000b9a8:	b510      	push	{r4, lr}
 	printf("\nAssignment 3.2: Application disconnected "); 
-1000b9a6:	4803      	ldr	r0, [pc, #12]	; (1000b9b4 <ble_disconnected_cb+0x10>)
-1000b9a8:	4b03      	ldr	r3, [pc, #12]	; (1000b9b8 <ble_disconnected_cb+0x14>)
-1000b9aa:	4798      	blx	r3
-	ble_advertise();
-1000b9ac:	4b03      	ldr	r3, [pc, #12]	; (1000b9bc <ble_disconnected_cb+0x18>)
+1000b9aa:	4803      	ldr	r0, [pc, #12]	; (1000b9b8 <ble_disconnected_cb+0x10>)
+1000b9ac:	4b03      	ldr	r3, [pc, #12]	; (1000b9bc <ble_disconnected_cb+0x14>)
 1000b9ae:	4798      	blx	r3
+	ble_advertise();
+1000b9b0:	4b03      	ldr	r3, [pc, #12]	; (1000b9c0 <ble_disconnected_cb+0x18>)
+1000b9b2:	4798      	blx	r3
 	ALL_UNUSED(param);
 	return AT_BLE_SUCCESS;
 }
-1000b9b0:	2000      	movs	r0, #0
-1000b9b2:	bd10      	pop	{r4, pc}
-1000b9b4:	10012028 	.word	0x10012028
-1000b9b8:	10010379 	.word	0x10010379
-1000b9bc:	1000b92d 	.word	0x1000b92d
+1000b9b4:	2000      	movs	r0, #0
+1000b9b6:	bd10      	pop	{r4, pc}
+1000b9b8:	10012028 	.word	0x10012028
+1000b9bc:	10010379 	.word	0x10010379
+1000b9c0:	1000b931 	.word	0x1000b931
 
-1000b9c0 <ble_paired_cb>:
+1000b9c4 <ble_paired_cb>:
 }
 																																	
 
 /* Callback registered for AT_BLE_CONNECTED event*/
 static at_ble_status_t ble_paired_cb (void *param)
 {
-1000b9c0:	b570      	push	{r4, r5, r6, lr}
-1000b9c2:	0005      	movs	r5, r0
+1000b9c4:	b570      	push	{r4, r5, r6, lr}
+1000b9c6:	0005      	movs	r5, r0
 	at_ble_pair_done_t *pair_params = param; 
 	printf("\nAssignment 3.2: Application paired ");
-1000b9c4:	4809      	ldr	r0, [pc, #36]	; (1000b9ec <ble_paired_cb+0x2c>)
-1000b9c6:	4c0a      	ldr	r4, [pc, #40]	; (1000b9f0 <ble_paired_cb+0x30>)
-1000b9c8:	47a0      	blx	r4
+1000b9c8:	4809      	ldr	r0, [pc, #36]	; (1000b9f0 <ble_paired_cb+0x2c>)
+1000b9ca:	4c0a      	ldr	r4, [pc, #40]	; (1000b9f4 <ble_paired_cb+0x30>)
+1000b9cc:	47a0      	blx	r4
 	/* Enable the HTP Profile */
 	printf("\nAssignment 4.1: enable health temperature service ");
-1000b9ca:	480a      	ldr	r0, [pc, #40]	; (1000b9f4 <ble_paired_cb+0x34>)
-1000b9cc:	47a0      	blx	r4
+1000b9ce:	480a      	ldr	r0, [pc, #40]	; (1000b9f8 <ble_paired_cb+0x34>)
+1000b9d0:	47a0      	blx	r4
 	status = at_ble_htpt_enable(pair_params->handle,
-1000b9ce:	8868      	ldrh	r0, [r5, #2]
-1000b9d0:	2102      	movs	r1, #2
-1000b9d2:	4b09      	ldr	r3, [pc, #36]	; (1000b9f8 <ble_paired_cb+0x38>)
-1000b9d4:	4798      	blx	r3
-1000b9d6:	4b09      	ldr	r3, [pc, #36]	; (1000b9fc <ble_paired_cb+0x3c>)
-1000b9d8:	7018      	strb	r0, [r3, #0]
+1000b9d2:	8868      	ldrh	r0, [r5, #2]
+1000b9d4:	2102      	movs	r1, #2
+1000b9d6:	4b09      	ldr	r3, [pc, #36]	; (1000b9fc <ble_paired_cb+0x38>)
+1000b9d8:	4798      	blx	r3
+1000b9da:	4b09      	ldr	r3, [pc, #36]	; (1000ba00 <ble_paired_cb+0x3c>)
+1000b9dc:	7018      	strb	r0, [r3, #0]
 	HTPT_CFG_INTERM_MEAS_NTF);
 	if(status != AT_BLE_SUCCESS){
-1000b9da:	781b      	ldrb	r3, [r3, #0]
-1000b9dc:	2b00      	cmp	r3, #0
-1000b9de:	d003      	beq.n	1000b9e8 <ble_paired_cb+0x28>
+1000b9de:	781b      	ldrb	r3, [r3, #0]
+1000b9e0:	2b00      	cmp	r3, #0
+1000b9e2:	d003      	beq.n	1000b9ec <ble_paired_cb+0x28>
 		printf("*** Failure in HTP Profile Enable");
-1000b9e0:	4807      	ldr	r0, [pc, #28]	; (1000ba00 <ble_paired_cb+0x40>)
-1000b9e2:	4b03      	ldr	r3, [pc, #12]	; (1000b9f0 <ble_paired_cb+0x30>)
-1000b9e4:	4798      	blx	r3
-1000b9e6:	e7fe      	b.n	1000b9e6 <ble_paired_cb+0x26>
+1000b9e4:	4807      	ldr	r0, [pc, #28]	; (1000ba04 <ble_paired_cb+0x40>)
+1000b9e6:	4b03      	ldr	r3, [pc, #12]	; (1000b9f4 <ble_paired_cb+0x30>)
+1000b9e8:	4798      	blx	r3
+1000b9ea:	e7fe      	b.n	1000b9ea <ble_paired_cb+0x26>
 		while(true);
 	}
 	ALL_UNUSED(param);
 	return AT_BLE_SUCCESS;
 }
-1000b9e8:	2000      	movs	r0, #0
-1000b9ea:	bd70      	pop	{r4, r5, r6, pc}
-1000b9ec:	10012054 	.word	0x10012054
-1000b9f0:	10010379 	.word	0x10010379
-1000b9f4:	1001207c 	.word	0x1001207c
-1000b9f8:	1000d081 	.word	0x1000d081
-1000b9fc:	10014af4 	.word	0x10014af4
-1000ba00:	100120b0 	.word	0x100120b0
+1000b9ec:	2000      	movs	r0, #0
+1000b9ee:	bd70      	pop	{r4, r5, r6, pc}
+1000b9f0:	10012054 	.word	0x10012054
+1000b9f4:	10010379 	.word	0x10010379
+1000b9f8:	1001207c 	.word	0x1001207c
+1000b9fc:	1000d081 	.word	0x1000d081
+1000ba00:	10014af4 	.word	0x10014af4
+1000ba04:	100120b0 	.word	0x100120b0
 
-1000ba04 <configure_gpio_pins>:
+1000ba08 <configure_gpio_pins>:
 }
 //! [setup_callback]
 
 //! [setup]
 void configure_gpio_pins(void)
 {
-1000ba04:	b570      	push	{r4, r5, r6, lr}
-1000ba06:	b082      	sub	sp, #8
+1000ba08:	b570      	push	{r4, r5, r6, lr}
+1000ba0a:	b082      	sub	sp, #8
 	//! [setup_1]
 	struct gpio_config config_gpio_pin;
 	//! [setup_1]
 	//! [setup_2]
 	gpio_get_config_defaults(&config_gpio_pin);
-1000ba08:	ac01      	add	r4, sp, #4
-1000ba0a:	0020      	movs	r0, r4
-1000ba0c:	4b07      	ldr	r3, [pc, #28]	; (1000ba2c <configure_gpio_pins+0x28>)
-1000ba0e:	4798      	blx	r3
+1000ba0c:	ac01      	add	r4, sp, #4
+1000ba0e:	0020      	movs	r0, r4
+1000ba10:	4b07      	ldr	r3, [pc, #28]	; (1000ba30 <configure_gpio_pins+0x28>)
+1000ba12:	4798      	blx	r3
 	//! [setup_2]
 
 	//! [setup_3]
 	config_gpio_pin.direction  = GPIO_PIN_DIR_INPUT;
-1000ba10:	2300      	movs	r3, #0
-1000ba12:	7023      	strb	r3, [r4, #0]
+1000ba14:	2300      	movs	r3, #0
+1000ba16:	7023      	strb	r3, [r4, #0]
 	config_gpio_pin.input_pull = GPIO_PIN_PULL_UP;
-1000ba14:	2601      	movs	r6, #1
-1000ba16:	7066      	strb	r6, [r4, #1]
+1000ba18:	2601      	movs	r6, #1
+1000ba1a:	7066      	strb	r6, [r4, #1]
 	//! [setup_3]
 	//! [setup_4]
 	gpio_pin_set_config(BUTTON_0_PIN, &config_gpio_pin);
-1000ba18:	0021      	movs	r1, r4
-1000ba1a:	2017      	movs	r0, #23
-1000ba1c:	4d04      	ldr	r5, [pc, #16]	; (1000ba30 <configure_gpio_pins+0x2c>)
-1000ba1e:	47a8      	blx	r5
+1000ba1c:	0021      	movs	r1, r4
+1000ba1e:	2017      	movs	r0, #23
+1000ba20:	4d04      	ldr	r5, [pc, #16]	; (1000ba34 <configure_gpio_pins+0x2c>)
+1000ba22:	47a8      	blx	r5
 	//! [setup_4]
 
 	//! [setup_5]
 	config_gpio_pin.direction = GPIO_PIN_DIR_OUTPUT;
-1000ba20:	7026      	strb	r6, [r4, #0]
+1000ba24:	7026      	strb	r6, [r4, #0]
 	//! [setup_5]
 	//! [setup_6]
 	gpio_pin_set_config(LED_0_PIN, &config_gpio_pin);
-1000ba22:	0021      	movs	r1, r4
-1000ba24:	2016      	movs	r0, #22
-1000ba26:	47a8      	blx	r5
+1000ba26:	0021      	movs	r1, r4
+1000ba28:	2016      	movs	r0, #22
+1000ba2a:	47a8      	blx	r5
 	//! [setup_6]
 }
-1000ba28:	b002      	add	sp, #8
-1000ba2a:	bd70      	pop	{r4, r5, r6, pc}
-1000ba2c:	10008a81 	.word	0x10008a81
-1000ba30:	10008a91 	.word	0x10008a91
+1000ba2c:	b002      	add	sp, #8
+1000ba2e:	bd70      	pop	{r4, r5, r6, pc}
+1000ba30:	10008a81 	.word	0x10008a81
+1000ba34:	10008a91 	.word	0x10008a91
 
-1000ba34 <main>:
+1000ba38 <main>:
 	}
 }
 
 
 int main (void)
 {
-1000ba34:	b5f0      	push	{r4, r5, r6, r7, lr}
-1000ba36:	465f      	mov	r7, fp
-1000ba38:	4656      	mov	r6, sl
-1000ba3a:	464d      	mov	r5, r9
-1000ba3c:	4644      	mov	r4, r8
-1000ba3e:	b4f0      	push	{r4, r5, r6, r7}
-1000ba40:	b08f      	sub	sp, #60	; 0x3c
+1000ba38:	b5f0      	push	{r4, r5, r6, r7, lr}
+1000ba3a:	465f      	mov	r7, fp
+1000ba3c:	4656      	mov	r6, sl
+1000ba3e:	464d      	mov	r5, r9
+1000ba40:	4644      	mov	r4, r8
+1000ba42:	b4f0      	push	{r4, r5, r6, r7}
+1000ba44:	b08f      	sub	sp, #60	; 0x3c
 	platform_driver_init();
-1000ba42:	4b7c      	ldr	r3, [pc, #496]	; (1000bc34 <main+0x200>)
-1000ba44:	4798      	blx	r3
-	acquire_sleep_lock();
-1000ba46:	4b7c      	ldr	r3, [pc, #496]	; (1000bc38 <main+0x204>)
+1000ba46:	4b7b      	ldr	r3, [pc, #492]	; (1000bc34 <main+0x1fc>)
 1000ba48:	4798      	blx	r3
+	acquire_sleep_lock();
+1000ba4a:	4b7b      	ldr	r3, [pc, #492]	; (1000bc38 <main+0x200>)
+1000ba4c:	4798      	blx	r3
 	/* Initialize serial console */
 	serial_console_init();
-1000ba4a:	4b7c      	ldr	r3, [pc, #496]	; (1000bc3c <main+0x208>)
-1000ba4c:	4798      	blx	r3
+1000ba4e:	4b7b      	ldr	r3, [pc, #492]	; (1000bc3c <main+0x204>)
+1000ba50:	4798      	blx	r3
 	/* Register the callback */
 	hw_timer_register_callback(timer_callback_handler);
-1000ba4e:	487c      	ldr	r0, [pc, #496]	; (1000bc40 <main+0x20c>)
-1000ba50:	4b7c      	ldr	r3, [pc, #496]	; (1000bc44 <main+0x210>)
-1000ba52:	4798      	blx	r3
+1000ba52:	487b      	ldr	r0, [pc, #492]	; (1000bc40 <main+0x208>)
+1000ba54:	4b7b      	ldr	r3, [pc, #492]	; (1000bc44 <main+0x20c>)
+1000ba56:	4798      	blx	r3
 	/* Start timer */
 	hw_timer_start(1);
-1000ba54:	2001      	movs	r0, #1
-1000ba56:	4b7c      	ldr	r3, [pc, #496]	; (1000bc48 <main+0x214>)
-1000ba58:	4798      	blx	r3
+1000ba58:	2001      	movs	r0, #1
+1000ba5a:	4b7b      	ldr	r3, [pc, #492]	; (1000bc48 <main+0x210>)
+1000ba5c:	4798      	blx	r3
 
 	/* Hardware timer */
 	hw_timer_init();
-1000ba5a:	4b7c      	ldr	r3, [pc, #496]	; (1000bc4c <main+0x218>)
-1000ba5c:	4798      	blx	r3
+1000ba5e:	4b7b      	ldr	r3, [pc, #492]	; (1000bc4c <main+0x214>)
+1000ba60:	4798      	blx	r3
 	//! [setup_config]
 	struct uart_config config_uart;
 	//! [setup_config]
 
 	//! [setup_config_defaults]
 	uart_get_config_defaults(&config_uart);
-1000ba5e:	a804      	add	r0, sp, #16
-1000ba60:	4b7b      	ldr	r3, [pc, #492]	; (1000bc50 <main+0x21c>)
-1000ba62:	4798      	blx	r3
+1000ba62:	a804      	add	r0, sp, #16
+1000ba64:	4b7a      	ldr	r3, [pc, #488]	; (1000bc50 <main+0x218>)
+1000ba66:	4798      	blx	r3
 	//! [setup_config_defaults]
 
 	//! [setup_change_config]
 	config_uart.baud_rate = 9600;
-1000ba64:	2396      	movs	r3, #150	; 0x96
-1000ba66:	019b      	lsls	r3, r3, #6
-1000ba68:	9304      	str	r3, [sp, #16]
+1000ba68:	2396      	movs	r3, #150	; 0x96
+1000ba6a:	019b      	lsls	r3, r3, #6
+1000ba6c:	9304      	str	r3, [sp, #16]
 	config_uart.pin_number_pad[0] = EDBG_CDC_SERCOM_PIN_PAD0;
-1000ba6a:	2302      	movs	r3, #2
-1000ba6c:	9306      	str	r3, [sp, #24]
+1000ba6e:	2306      	movs	r3, #6
+1000ba70:	9306      	str	r3, [sp, #24]
 	config_uart.pin_number_pad[1] = EDBG_CDC_SERCOM_PIN_PAD1;
-1000ba6e:	2203      	movs	r2, #3
-1000ba70:	9207      	str	r2, [sp, #28]
+1000ba72:	3301      	adds	r3, #1
+1000ba74:	9307      	str	r3, [sp, #28]
 	config_uart.pin_number_pad[2] = EDBG_CDC_SERCOM_PIN_PAD2;
-1000ba72:	3201      	adds	r2, #1
-1000ba74:	9208      	str	r2, [sp, #32]
+1000ba76:	3307      	adds	r3, #7
+1000ba78:	9308      	str	r3, [sp, #32]
 	config_uart.pin_number_pad[3] = EDBG_CDC_SERCOM_PIN_PAD3;
-1000ba76:	3201      	adds	r2, #1
-1000ba78:	9209      	str	r2, [sp, #36]	; 0x24
+1000ba7a:	3301      	adds	r3, #1
+1000ba7c:	9309      	str	r3, [sp, #36]	; 0x24
 	config_uart.pinmux_sel_pad[0] = EDBG_CDC_SERCOM_MUX_PAD0;
-1000ba7a:	930a      	str	r3, [sp, #40]	; 0x28
+1000ba7e:	3b0d      	subs	r3, #13
+1000ba80:	930a      	str	r3, [sp, #40]	; 0x28
 	config_uart.pinmux_sel_pad[1] = EDBG_CDC_SERCOM_MUX_PAD1;
-1000ba7c:	930b      	str	r3, [sp, #44]	; 0x2c
+1000ba82:	930b      	str	r3, [sp, #44]	; 0x2c
 	config_uart.pinmux_sel_pad[2] = EDBG_CDC_SERCOM_MUX_PAD2;
-1000ba7e:	930c      	str	r3, [sp, #48]	; 0x30
+1000ba84:	930c      	str	r3, [sp, #48]	; 0x30
 	config_uart.pinmux_sel_pad[3] = EDBG_CDC_SERCOM_MUX_PAD3;
-1000ba80:	930d      	str	r3, [sp, #52]	; 0x34
+1000ba86:	930d      	str	r3, [sp, #52]	; 0x34
 	//! [setup_change_config]
 
 	//! [setup_set_config]
 	while (uart_init(&uart_instance,
-1000ba82:	4d74      	ldr	r5, [pc, #464]	; (1000bc54 <main+0x220>)
-1000ba84:	4c74      	ldr	r4, [pc, #464]	; (1000bc58 <main+0x224>)
-1000ba86:	aa04      	add	r2, sp, #16
-1000ba88:	4974      	ldr	r1, [pc, #464]	; (1000bc5c <main+0x228>)
-1000ba8a:	0028      	movs	r0, r5
-1000ba8c:	47a0      	blx	r4
-1000ba8e:	2800      	cmp	r0, #0
-1000ba90:	d1f9      	bne.n	1000ba86 <main+0x52>
+1000ba88:	4d72      	ldr	r5, [pc, #456]	; (1000bc54 <main+0x21c>)
+1000ba8a:	4c73      	ldr	r4, [pc, #460]	; (1000bc58 <main+0x220>)
+1000ba8c:	aa04      	add	r2, sp, #16
+1000ba8e:	4973      	ldr	r1, [pc, #460]	; (1000bc5c <main+0x224>)
+1000ba90:	0028      	movs	r0, r5
+1000ba92:	47a0      	blx	r4
+1000ba94:	2800      	cmp	r0, #0
+1000ba96:	d1f9      	bne.n	1000ba8c <main+0x54>
 	EDBG_CDC_MODULE, &config_uart) != STATUS_OK) {
 	}
 	//! [setup_set_config]
 
 	//! [enable_interrupt]
 	uart_enable_transmit_dma(&uart_instance);
-1000ba92:	4b70      	ldr	r3, [pc, #448]	; (1000bc54 <main+0x220>)
-1000ba94:	469a      	mov	sl, r3
-1000ba96:	0018      	movs	r0, r3
-1000ba98:	4b71      	ldr	r3, [pc, #452]	; (1000bc60 <main+0x22c>)
-1000ba9a:	4798      	blx	r3
-	uart_enable_receive_dma(&uart_instance);
-1000ba9c:	4650      	mov	r0, sl
-1000ba9e:	4b71      	ldr	r3, [pc, #452]	; (1000bc64 <main+0x230>)
+1000ba98:	4b6e      	ldr	r3, [pc, #440]	; (1000bc54 <main+0x21c>)
+1000ba9a:	469a      	mov	sl, r3
+1000ba9c:	0018      	movs	r0, r3
+1000ba9e:	4b70      	ldr	r3, [pc, #448]	; (1000bc60 <main+0x228>)
 1000baa0:	4798      	blx	r3
+	uart_enable_receive_dma(&uart_instance);
+1000baa2:	4650      	mov	r0, sl
+1000baa4:	4b6f      	ldr	r3, [pc, #444]	; (1000bc64 <main+0x22c>)
+1000baa6:	4798      	blx	r3
 	/* Do the initialization for the GPIO */
 	configure_usart();
 	//! [setup_usart]
 
 	// Configure the GPIO pins for the LED
 	configure_gpio_pins();
-1000baa2:	4b71      	ldr	r3, [pc, #452]	; (1000bc68 <main+0x234>)
-1000baa4:	4798      	blx	r3
+1000baa8:	4b6f      	ldr	r3, [pc, #444]	; (1000bc68 <main+0x230>)
+1000baaa:	4798      	blx	r3
 	//! [setup_tx_1]
 	struct dma_resource_config config;
 	//! [setup_tx_1]
 
 	//! [setup_tx_2]
 	dma_get_config_defaults(&config);
-1000baa6:	ac04      	add	r4, sp, #16
-1000baa8:	0020      	movs	r0, r4
-1000baaa:	4d70      	ldr	r5, [pc, #448]	; (1000bc6c <main+0x238>)
-1000baac:	47a8      	blx	r5
+1000baac:	ac04      	add	r4, sp, #16
+1000baae:	0020      	movs	r0, r4
+1000bab0:	4e6e      	ldr	r6, [pc, #440]	; (1000bc6c <main+0x234>)
+1000bab2:	47b0      	blx	r6
 	//! [setup_tx_2]
 
 	//! [setup_tx_3]
-	config.des.periph = UART0TX_DMA_PERIPHERAL;
-1000baae:	2302      	movs	r3, #2
-1000bab0:	2202      	movs	r2, #2
-1000bab2:	4691      	mov	r9, r2
-1000bab4:	7323      	strb	r3, [r4, #12]
+	config.des.periph = UART1TX_DMA_PERIPHERAL;
+1000bab4:	2304      	movs	r3, #4
+1000bab6:	7323      	strb	r3, [r4, #12]
 	config.des.enable_inc_addr = false;
-1000bab6:	2600      	movs	r6, #0
-1000bab8:	72e6      	strb	r6, [r4, #11]
-	config.src.periph = UART0TX_DMA_PERIPHERAL;
-1000baba:	70e3      	strb	r3, [r4, #3]
+1000bab8:	2500      	movs	r5, #0
+1000baba:	72e5      	strb	r5, [r4, #11]
+	config.src.periph = UART1TX_DMA_PERIPHERAL;
+1000babc:	70e3      	strb	r3, [r4, #3]
 	//! [setup_tx_3]
 
 	//! [setup_tx_4]
 	dma_allocate(resource, &config);
-1000babc:	4f6c      	ldr	r7, [pc, #432]	; (1000bc70 <main+0x23c>)
-1000babe:	0021      	movs	r1, r4
-1000bac0:	0038      	movs	r0, r7
-1000bac2:	4b6c      	ldr	r3, [pc, #432]	; (1000bc74 <main+0x240>)
-1000bac4:	469b      	mov	fp, r3
-1000bac6:	4798      	blx	r3
+1000babe:	4f6c      	ldr	r7, [pc, #432]	; (1000bc70 <main+0x238>)
+1000bac0:	0021      	movs	r1, r4
+1000bac2:	0038      	movs	r0, r7
+1000bac4:	4b6b      	ldr	r3, [pc, #428]	; (1000bc74 <main+0x23c>)
+1000bac6:	469b      	mov	fp, r3
+1000bac8:	4798      	blx	r3
 	//! [setup_rx_1]
 	struct dma_resource_config config;
 	//! [setup_rx_1]
 
 	//! [setup_rx_2]
 	dma_get_config_defaults(&config);
-1000bac8:	0020      	movs	r0, r4
-1000baca:	47a8      	blx	r5
+1000baca:	0020      	movs	r0, r4
+1000bacc:	47b0      	blx	r6
 	//! [setup_rx_2]
 
 	//! [setup_rx_3]
-	config.src.periph = UART0RX_DMA_PERIPHERAL;
-1000bacc:	2301      	movs	r3, #1
-1000bace:	4698      	mov	r8, r3
-1000bad0:	2501      	movs	r5, #1
+	config.src.periph = UART1RX_DMA_PERIPHERAL;
+1000bace:	2303      	movs	r3, #3
+1000bad0:	4699      	mov	r9, r3
 1000bad2:	70e3      	strb	r3, [r4, #3]
 	config.src.enable_inc_addr = false;
-1000bad4:	70a6      	strb	r6, [r4, #2]
+1000bad4:	70a5      	strb	r5, [r4, #2]
 	config.src.periph_delay = 1;
-1000bad6:	7123      	strb	r3, [r4, #4]
+1000bad6:	2301      	movs	r3, #1
+1000bad8:	4698      	mov	r8, r3
+1000bada:	2501      	movs	r5, #1
+1000badc:	7123      	strb	r3, [r4, #4]
 	//! [setup_rx_3]
 
 	//! [setup_rx_4]
 	dma_allocate(resource, &config);
-1000bad8:	4e67      	ldr	r6, [pc, #412]	; (1000bc78 <main+0x244>)
-1000bada:	0021      	movs	r1, r4
-1000badc:	0030      	movs	r0, r6
-1000bade:	47d8      	blx	fp
+1000bade:	4e66      	ldr	r6, [pc, #408]	; (1000bc78 <main+0x240>)
+1000bae0:	0021      	movs	r1, r4
+1000bae2:	0030      	movs	r0, r6
+1000bae4:	47d8      	blx	fp
 	/* Default write buffer size is set to 0 */
 	config->write_start_addr = 0;
 	/* Set beat size to one byte */
 	config->buffer_size = 1;
 	/* Enable transferred interrupt */
 	config->cmd.set_interrupt = 1;
-1000bae0:	4966      	ldr	r1, [pc, #408]	; (1000bc7c <main+0x248>)
-1000bae2:	7b0b      	ldrb	r3, [r1, #12]
-1000bae4:	432b      	orrs	r3, r5
+1000bae6:	4965      	ldr	r1, [pc, #404]	; (1000bc7c <main+0x244>)
+1000bae8:	7b0b      	ldrb	r3, [r1, #12]
+1000baea:	432b      	orrs	r3, r5
 	/* Channel stops when buffer done */
 	config->cmd.last = 1;
-1000bae6:	464a      	mov	r2, r9
-1000bae8:	4313      	orrs	r3, r2
-1000baea:	730b      	strb	r3, [r1, #12]
+1000baec:	2002      	movs	r0, #2
+1000baee:	4303      	orrs	r3, r0
+1000baf0:	730b      	strb	r3, [r1, #12]
 	/* Set next command to 0 */
 	config->cmd.next_addr = 0;
-1000baec:	2303      	movs	r3, #3
-1000baee:	469c      	mov	ip, r3
-1000baf0:	68cb      	ldr	r3, [r1, #12]
-1000baf2:	4662      	mov	r2, ip
-1000baf4:	4013      	ands	r3, r2
-1000baf6:	60cb      	str	r3, [r1, #12]
+1000baf2:	68cb      	ldr	r3, [r1, #12]
+1000baf4:	464a      	mov	r2, r9
+1000baf6:	4013      	ands	r3, r2
+1000baf8:	60cb      	str	r3, [r1, #12]
 	//! [setup_tx_5]
 	dma_descriptor_get_config_defaults(descriptor);
 	//! [setup_tx_5]
 
 	//! [setup_tx_6]
 	descriptor->buffer_size = BUFFER_LEN;
-1000baf8:	2305      	movs	r3, #5
-1000bafa:	469b      	mov	fp, r3
-1000bafc:	608b      	str	r3, [r1, #8]
+1000bafa:	2305      	movs	r3, #5
+1000bafc:	469b      	mov	fp, r3
+1000bafe:	608b      	str	r3, [r1, #8]
 	descriptor->read_start_addr = (uint32_t)string_tx;
-1000bafe:	4b60      	ldr	r3, [pc, #384]	; (1000bc80 <main+0x24c>)
-1000bb00:	600b      	str	r3, [r1, #0]
+1000bb00:	4b5f      	ldr	r3, [pc, #380]	; (1000bc80 <main+0x248>)
+1000bb02:	600b      	str	r3, [r1, #0]
 	descriptor->write_start_addr =
 	(uint32_t)(&uart_instance.hw->TRANSMIT_DATA.reg);
-1000bb02:	4653      	mov	r3, sl
-1000bb04:	681b      	ldr	r3, [r3, #0]
+1000bb04:	4653      	mov	r3, sl
+1000bb06:	681b      	ldr	r3, [r3, #0]
 	//! [setup_tx_5]
 
 	//! [setup_tx_6]
 	descriptor->buffer_size = BUFFER_LEN;
 	descriptor->read_start_addr = (uint32_t)string_tx;
 	descriptor->write_start_addr =
-1000bb06:	604b      	str	r3, [r1, #4]
+1000bb08:	604b      	str	r3, [r1, #4]
 	/* Default write buffer size is set to 0 */
 	config->write_start_addr = 0;
 	/* Set beat size to one byte */
 	config->buffer_size = 1;
 	/* Enable transferred interrupt */
 	config->cmd.set_interrupt = 1;
-1000bb08:	4c5e      	ldr	r4, [pc, #376]	; (1000bc84 <main+0x250>)
-1000bb0a:	7b22      	ldrb	r2, [r4, #12]
-1000bb0c:	432a      	orrs	r2, r5
+1000bb0a:	4c5e      	ldr	r4, [pc, #376]	; (1000bc84 <main+0x24c>)
+1000bb0c:	7b22      	ldrb	r2, [r4, #12]
+1000bb0e:	432a      	orrs	r2, r5
 	/* Channel stops when buffer done */
 	config->cmd.last = 1;
-1000bb0e:	4648      	mov	r0, r9
 1000bb10:	4302      	orrs	r2, r0
 1000bb12:	7322      	strb	r2, [r4, #12]
 	/* Set next command to 0 */
 	config->cmd.next_addr = 0;
-1000bb14:	4662      	mov	r2, ip
+1000bb14:	464a      	mov	r2, r9
 1000bb16:	68e0      	ldr	r0, [r4, #12]
 1000bb18:	4002      	ands	r2, r0
 1000bb1a:	60e2      	str	r2, [r4, #12]
@@ -14145,7 +14145,7 @@ int main (void)
 1000bb22:	6023      	str	r3, [r4, #0]
 	(uint32_t)(&uart_instance.hw->RECEIVE_DATA.reg);
 	descriptor->write_start_addr = (uint32_t)string_rx;
-1000bb24:	4b58      	ldr	r3, [pc, #352]	; (1000bc88 <main+0x254>)
+1000bb24:	4b58      	ldr	r3, [pc, #352]	; (1000bc88 <main+0x250>)
 1000bb26:	6063      	str	r3, [r4, #4]
 	setup_transfer_descriptor_tx(&example_descriptor_tx);
 	setup_transfer_descriptor_rx(&example_descriptor_rx);
@@ -14154,7 +14154,7 @@ int main (void)
 	//! [add_descriptor_to_resource]
 	dma_add_descriptor(&uart_dma_resource_tx, &example_descriptor_tx);
 1000bb28:	0038      	movs	r0, r7
-1000bb2a:	4b58      	ldr	r3, [pc, #352]	; (1000bc8c <main+0x258>)
+1000bb2a:	4b58      	ldr	r3, [pc, #352]	; (1000bc8c <main+0x254>)
 1000bb2c:	4699      	mov	r9, r3
 1000bb2e:	4798      	blx	r3
 	dma_add_descriptor(&uart_dma_resource_rx, &example_descriptor_rx);
@@ -14167,9 +14167,9 @@ static inline void dma_register_callback(struct dma_resource *resource,
 		dma_callback_t callback, enum dma_callback_type type)
 {
 	resource->callback[type] = callback;
-1000bb36:	4b56      	ldr	r3, [pc, #344]	; (1000bc90 <main+0x25c>)
+1000bb36:	4b56      	ldr	r3, [pc, #344]	; (1000bc90 <main+0x258>)
 1000bb38:	607b      	str	r3, [r7, #4]
-1000bb3a:	4b56      	ldr	r3, [pc, #344]	; (1000bc94 <main+0x260>)
+1000bb3a:	4b56      	ldr	r3, [pc, #344]	; (1000bc94 <main+0x25c>)
 1000bb3c:	6073      	str	r3, [r6, #4]
  *
  */
@@ -14192,7 +14192,7 @@ __STATIC_INLINE void NVIC_EnableIRQ(IRQn_Type IRQn)
   NVIC->ISER[0] = (1 << ((uint32_t)(IRQn) & 0x1F));
 1000bb4c:	2280      	movs	r2, #128	; 0x80
 1000bb4e:	0212      	lsls	r2, r2, #8
-1000bb50:	4b51      	ldr	r3, [pc, #324]	; (1000bc98 <main+0x264>)
+1000bb50:	4b51      	ldr	r3, [pc, #324]	; (1000bc98 <main+0x260>)
 1000bb52:	601a      	str	r2, [r3, #0]
 	//! [main_1]
 	//for(int i=0; i<2; i++) {
@@ -14200,24 +14200,24 @@ __STATIC_INLINE void NVIC_EnableIRQ(IRQn_Type IRQn)
 	//dma_start_transfer_job(&uart_dma_resource_rx);
 	
 	printf("\n\rSAMB11 BLE Application");
-1000bb54:	4851      	ldr	r0, [pc, #324]	; (1000bc9c <main+0x268>)
-1000bb56:	4c52      	ldr	r4, [pc, #328]	; (1000bca0 <main+0x26c>)
+1000bb54:	4851      	ldr	r0, [pc, #324]	; (1000bc9c <main+0x264>)
+1000bb56:	4c52      	ldr	r4, [pc, #328]	; (1000bca0 <main+0x268>)
 1000bb58:	47a0      	blx	r4
 	/* initialize the BLE chip and Set the Device Address */
 	ble_device_init(NULL); 
 1000bb5a:	2000      	movs	r0, #0
-1000bb5c:	4b51      	ldr	r3, [pc, #324]	; (1000bca4 <main+0x270>)
+1000bb5c:	4b51      	ldr	r3, [pc, #324]	; (1000bca4 <main+0x26c>)
 1000bb5e:	4798      	blx	r3
 	
 	/* Initialize the temperature sensor */
 	at30tse_init();
-1000bb60:	4b51      	ldr	r3, [pc, #324]	; (1000bca8 <main+0x274>)
+1000bb60:	4b51      	ldr	r3, [pc, #324]	; (1000bca8 <main+0x270>)
 1000bb62:	4798      	blx	r3
 	/* configure the temperature sensor ADC */
 	at30tse_write_config_register(AT30TSE_CONFIG_RES(AT30TSE_CONFIG_RES_12_bit));
 1000bb64:	20c0      	movs	r0, #192	; 0xc0
 1000bb66:	01c0      	lsls	r0, r0, #7
-1000bb68:	4b50      	ldr	r3, [pc, #320]	; (1000bcac <main+0x278>)
+1000bb68:	4b50      	ldr	r3, [pc, #320]	; (1000bcac <main+0x274>)
 1000bb6a:	4798      	blx	r3
 };
 
@@ -14225,11 +14225,11 @@ __STATIC_INLINE void NVIC_EnableIRQ(IRQn_Type IRQn)
 static void htp_init (void)
 {
 	printf("\nAssignment 4.1: Init Health temperature service ");
-1000bb6c:	4850      	ldr	r0, [pc, #320]	; (1000bcb0 <main+0x27c>)
+1000bb6c:	4850      	ldr	r0, [pc, #320]	; (1000bcb0 <main+0x278>)
 1000bb6e:	47a0      	blx	r4
 	/* Create htp service in GATT database*/
 	status = at_ble_htpt_create_db(
-1000bb70:	4b50      	ldr	r3, [pc, #320]	; (1000bcb4 <main+0x280>)
+1000bb70:	4b50      	ldr	r3, [pc, #320]	; (1000bcb4 <main+0x27c>)
 1000bb72:	9302      	str	r3, [sp, #8]
 1000bb74:	230c      	movs	r3, #12
 1000bb76:	9301      	str	r3, [sp, #4]
@@ -14239,9 +14239,9 @@ static void htp_init (void)
 1000bb7e:	2201      	movs	r2, #1
 1000bb80:	2101      	movs	r1, #1
 1000bb82:	2001      	movs	r0, #1
-1000bb84:	4c4c      	ldr	r4, [pc, #304]	; (1000bcb8 <main+0x284>)
+1000bb84:	4c4c      	ldr	r4, [pc, #304]	; (1000bcb8 <main+0x280>)
 1000bb86:	47a0      	blx	r4
-1000bb88:	4b4c      	ldr	r3, [pc, #304]	; (1000bcbc <main+0x288>)
+1000bb88:	4b4c      	ldr	r3, [pc, #304]	; (1000bcbc <main+0x284>)
 1000bb8a:	7018      	strb	r0, [r3, #0]
 	1,
 	30,
@@ -14251,24 +14251,24 @@ static void htp_init (void)
 	if (status != AT_BLE_SUCCESS){
 1000bb8c:	781b      	ldrb	r3, [r3, #0]
 1000bb8e:	2b00      	cmp	r3, #0
-1000bb90:	d003      	beq.n	1000bb9a <main+0x166>
+1000bb90:	d003      	beq.n	1000bb9a <main+0x162>
 		printf("HTP Data Base creation failed");
-1000bb92:	484b      	ldr	r0, [pc, #300]	; (1000bcc0 <main+0x28c>)
-1000bb94:	4b42      	ldr	r3, [pc, #264]	; (1000bca0 <main+0x26c>)
+1000bb92:	484b      	ldr	r0, [pc, #300]	; (1000bcc0 <main+0x288>)
+1000bb94:	4b42      	ldr	r3, [pc, #264]	; (1000bca0 <main+0x268>)
 1000bb96:	4798      	blx	r3
-1000bb98:	e7fe      	b.n	1000bb98 <main+0x164>
+1000bb98:	e7fe      	b.n	1000bb98 <main+0x160>
 	//htp_temperature_read();
 	/* Initialize the htp service */
 	htp_init();
 	
 	/* Start Advertising process */
 	ble_advertise();
-1000bb9a:	4b4a      	ldr	r3, [pc, #296]	; (1000bcc4 <main+0x290>)
+1000bb9a:	4b4a      	ldr	r3, [pc, #296]	; (1000bcc4 <main+0x28c>)
 1000bb9c:	4798      	blx	r3
 	
 	dma_start_transfer_job(&uart_dma_resource_rx);
-1000bb9e:	4836      	ldr	r0, [pc, #216]	; (1000bc78 <main+0x244>)
-1000bba0:	4b49      	ldr	r3, [pc, #292]	; (1000bcc8 <main+0x294>)
+1000bb9e:	4836      	ldr	r0, [pc, #216]	; (1000bc78 <main+0x240>)
+1000bba0:	4b49      	ldr	r3, [pc, #292]	; (1000bcc8 <main+0x290>)
 1000bba2:	4798      	blx	r3
 
 
@@ -14276,43 +14276,43 @@ static void register_ble_callbacks (void)
 {
 	/* Register GAP Callbacks */
 	printf("\nAssignment 3.2: Register bluetooth events callbacks");
-1000bba4:	4849      	ldr	r0, [pc, #292]	; (1000bccc <main+0x298>)
-1000bba6:	4b3e      	ldr	r3, [pc, #248]	; (1000bca0 <main+0x26c>)
+1000bba4:	4849      	ldr	r0, [pc, #292]	; (1000bccc <main+0x294>)
+1000bba6:	4b3e      	ldr	r3, [pc, #248]	; (1000bca0 <main+0x268>)
 1000bba8:	4798      	blx	r3
 	status = ble_mgr_events_callback_handler(REGISTER_CALL_BACK,\
-1000bbaa:	4a49      	ldr	r2, [pc, #292]	; (1000bcd0 <main+0x29c>)
+1000bbaa:	4a49      	ldr	r2, [pc, #292]	; (1000bcd0 <main+0x298>)
 1000bbac:	2100      	movs	r1, #0
 1000bbae:	2000      	movs	r0, #0
-1000bbb0:	4b48      	ldr	r3, [pc, #288]	; (1000bcd4 <main+0x2a0>)
+1000bbb0:	4b48      	ldr	r3, [pc, #288]	; (1000bcd4 <main+0x29c>)
 1000bbb2:	4798      	blx	r3
-1000bbb4:	4b41      	ldr	r3, [pc, #260]	; (1000bcbc <main+0x288>)
+1000bbb4:	4b41      	ldr	r3, [pc, #260]	; (1000bcbc <main+0x284>)
 1000bbb6:	7018      	strb	r0, [r3, #0]
 	BLE_GAP_EVENT_TYPE,app_gap_cb);
 	if (status != true) {
 1000bbb8:	781b      	ldrb	r3, [r3, #0]
 1000bbba:	2b01      	cmp	r3, #1
-1000bbbc:	d002      	beq.n	1000bbc4 <main+0x190>
+1000bbbc:	d002      	beq.n	1000bbc4 <main+0x18c>
 		printf("\n##Error when Registering SAMB11 gap callbacks");
-1000bbbe:	4846      	ldr	r0, [pc, #280]	; (1000bcd8 <main+0x2a4>)
-1000bbc0:	4b37      	ldr	r3, [pc, #220]	; (1000bca0 <main+0x26c>)
+1000bbbe:	4846      	ldr	r0, [pc, #280]	; (1000bcd8 <main+0x2a0>)
+1000bbc0:	4b37      	ldr	r3, [pc, #220]	; (1000bca0 <main+0x268>)
 1000bbc2:	4798      	blx	r3
 	}
 	status = ble_mgr_events_callback_handler(REGISTER_CALL_BACK,\
-1000bbc4:	4a45      	ldr	r2, [pc, #276]	; (1000bcdc <main+0x2a8>)
+1000bbc4:	4a45      	ldr	r2, [pc, #276]	; (1000bcdc <main+0x2a4>)
 1000bbc6:	2104      	movs	r1, #4
 1000bbc8:	2000      	movs	r0, #0
-1000bbca:	4b42      	ldr	r3, [pc, #264]	; (1000bcd4 <main+0x2a0>)
+1000bbca:	4b42      	ldr	r3, [pc, #264]	; (1000bcd4 <main+0x29c>)
 1000bbcc:	4798      	blx	r3
-1000bbce:	4b3b      	ldr	r3, [pc, #236]	; (1000bcbc <main+0x288>)
+1000bbce:	4b3b      	ldr	r3, [pc, #236]	; (1000bcbc <main+0x284>)
 1000bbd0:	7018      	strb	r0, [r3, #0]
 	BLE_GATT_HTPT_EVENT_TYPE,app_htpt_handle);
 	if (status != true) {
 1000bbd2:	781b      	ldrb	r3, [r3, #0]
 1000bbd4:	2b01      	cmp	r3, #1
-1000bbd6:	d002      	beq.n	1000bbde <main+0x1aa>
+1000bbd6:	d002      	beq.n	1000bbde <main+0x1a6>
 		printf("\n##Error when Registering SAMB11 htpt callbacks");
-1000bbd8:	4841      	ldr	r0, [pc, #260]	; (1000bce0 <main+0x2ac>)
-1000bbda:	4b31      	ldr	r3, [pc, #196]	; (1000bca0 <main+0x26c>)
+1000bbd8:	4841      	ldr	r0, [pc, #260]	; (1000bce0 <main+0x2a8>)
+1000bbda:	4b31      	ldr	r3, [pc, #196]	; (1000bca0 <main+0x268>)
 1000bbdc:	4798      	blx	r3
 
 	/* Register Bluetooth events Callbacks */
@@ -14320,26 +14320,26 @@ static void register_ble_callbacks (void)
 	
 	while(true) {
 		ble_event_task(655);
-1000bbde:	4f41      	ldr	r7, [pc, #260]	; (1000bce4 <main+0x2b0>)
+1000bbde:	4f41      	ldr	r7, [pc, #260]	; (1000bce4 <main+0x2ac>)
 		if (Timer_Flag & Temp_Notification_Flag)
-1000bbe0:	4e41      	ldr	r6, [pc, #260]	; (1000bce8 <main+0x2b4>)
-1000bbe2:	4d42      	ldr	r5, [pc, #264]	; (1000bcec <main+0x2b8>)
+1000bbe0:	4e41      	ldr	r6, [pc, #260]	; (1000bce8 <main+0x2b0>)
+1000bbe2:	4d42      	ldr	r5, [pc, #264]	; (1000bcec <main+0x2b4>)
 
 	/* Register Bluetooth events Callbacks */
 	register_ble_callbacks();
 	
 	while(true) {
 		ble_event_task(655);
-1000bbe4:	4842      	ldr	r0, [pc, #264]	; (1000bcf0 <main+0x2bc>)
+1000bbe4:	4842      	ldr	r0, [pc, #264]	; (1000bcf0 <main+0x2b8>)
 1000bbe6:	47b8      	blx	r7
 		if (Timer_Flag & Temp_Notification_Flag)
 1000bbe8:	7832      	ldrb	r2, [r6, #0]
 1000bbea:	782b      	ldrb	r3, [r5, #0]
 1000bbec:	b2db      	uxtb	r3, r3
 1000bbee:	2a00      	cmp	r2, #0
-1000bbf0:	d0f8      	beq.n	1000bbe4 <main+0x1b0>
+1000bbf0:	d0f8      	beq.n	1000bbe4 <main+0x1ac>
 1000bbf2:	2b00      	cmp	r3, #0
-1000bbf4:	d0f6      	beq.n	1000bbe4 <main+0x1b0>
+1000bbf4:	d0f6      	beq.n	1000bbe4 <main+0x1ac>
 	temp = &string_rx;
 	#ifdef HTPT_FAHRENHEIT
 	temperature = (((temperature * 9.0)/5.0) + 32.0);
@@ -14366,12 +14366,12 @@ static void register_ble_callbacks (void)
 1000bc0e:	802b      	strh	r3, [r5, #0]
 	/* Read Temperature Value from IO1 Xplained Pro */
 	if(at_ble_htpt_temp_send(convert_ieee754_ieee11073_float((float)*temp),
-1000bc10:	4938      	ldr	r1, [pc, #224]	; (1000bcf4 <main+0x2c0>)
-1000bc12:	4b1d      	ldr	r3, [pc, #116]	; (1000bc88 <main+0x254>)
+1000bc10:	4938      	ldr	r1, [pc, #224]	; (1000bcf4 <main+0x2bc>)
+1000bc12:	4b1d      	ldr	r3, [pc, #116]	; (1000bc88 <main+0x250>)
 1000bc14:	6818      	ldr	r0, [r3, #0]
-1000bc16:	4b38      	ldr	r3, [pc, #224]	; (1000bcf8 <main+0x2c4>)
+1000bc16:	4b38      	ldr	r3, [pc, #224]	; (1000bcf8 <main+0x2c0>)
 1000bc18:	4798      	blx	r3
-1000bc1a:	4b38      	ldr	r3, [pc, #224]	; (1000bcfc <main+0x2c8>)
+1000bc1a:	4b38      	ldr	r3, [pc, #224]	; (1000bcfc <main+0x2c4>)
 1000bc1c:	4798      	blx	r3
 1000bc1e:	23ff      	movs	r3, #255	; 0xff
 1000bc20:	061b      	lsls	r3, r3, #24
@@ -14380,24 +14380,24 @@ static void register_ble_callbacks (void)
 1000bc26:	2301      	movs	r3, #1
 1000bc28:	2204      	movs	r2, #4
 1000bc2a:	0029      	movs	r1, r5
-1000bc2c:	4d34      	ldr	r5, [pc, #208]	; (1000bd00 <main+0x2cc>)
+1000bc2c:	4d34      	ldr	r5, [pc, #208]	; (1000bd00 <main+0x2c8>)
 1000bc2e:	47a8      	blx	r5
-1000bc30:	e7d7      	b.n	1000bbe2 <main+0x1ae>
+1000bc30:	e7d7      	b.n	1000bbe2 <main+0x1aa>
 1000bc32:	46c0      	nop			; (mov r8, r8)
-1000bc34:	1000b1b9 	.word	0x1000b1b9
-1000bc38:	1000b6cd 	.word	0x1000b6cd
+1000bc34:	1000b1bd 	.word	0x1000b1bd
+1000bc38:	1000b6d1 	.word	0x1000b6d1
 1000bc3c:	1000aead 	.word	0x1000aead
-1000bc40:	1000b90d 	.word	0x1000b90d
+1000bc40:	1000b911 	.word	0x1000b911
 1000bc44:	1000adb9 	.word	0x1000adb9
 1000bc48:	1000aded 	.word	0x1000aded
 1000bc4c:	1000ad8d 	.word	0x1000ad8d
 1000bc50:	10009821 	.word	0x10009821
 1000bc54:	1001472c 	.word	0x1001472c
 1000bc58:	1000984d 	.word	0x1000984d
-1000bc5c:	40004000 	.word	0x40004000
+1000bc5c:	40005000 	.word	0x40005000
 1000bc60:	10009aa9 	.word	0x10009aa9
 1000bc64:	10009ae1 	.word	0x10009ae1
-1000bc68:	1000ba05 	.word	0x1000ba05
+1000bc68:	1000ba09 	.word	0x1000ba09
 1000bc6c:	10008295 	.word	0x10008295
 1000bc70:	10014a84 	.word	0x10014a84
 1000bc74:	100083e5 	.word	0x100083e5
@@ -14407,8 +14407,8 @@ static void register_ble_callbacks (void)
 1000bc84:	10014a74 	.word	0x10014a74
 1000bc88:	10013dd0 	.word	0x10013dd0
 1000bc8c:	100082c5 	.word	0x100082c5
-1000bc90:	1000b8f9 	.word	0x1000b8f9
-1000bc94:	1000b8c1 	.word	0x1000b8c1
+1000bc90:	1000b8fd 	.word	0x1000b8fd
+1000bc94:	1000b8c5 	.word	0x1000b8c5
 1000bc98:	e000e100 	.word	0xe000e100
 1000bc9c:	100120d4 	.word	0x100120d4
 1000bca0:	10010379 	.word	0x10010379
@@ -14420,7 +14420,7 @@ static void register_ble_callbacks (void)
 1000bcb8:	1000d061 	.word	0x1000d061
 1000bcbc:	10014af4 	.word	0x10014af4
 1000bcc0:	10012124 	.word	0x10012124
-1000bcc4:	1000b92d 	.word	0x1000b92d
+1000bcc4:	1000b931 	.word	0x1000b931
 1000bcc8:	1000836d 	.word	0x1000836d
 1000bccc:	10012144 	.word	0x10012144
 1000bcd0:	10011f38 	.word	0x10011f38
@@ -14934,7 +14934,7 @@ static void register_ble_callbacks (void)
 1000c0ee:	46c0      	nop			; (mov r8, r8)
 1000c0f0:	1000d1d1 	.word	0x1000d1d1
 1000c0f4:	10013df4 	.word	0x10013df4
-1000c0f8:	1000b469 	.word	0x1000b469
+1000c0f8:	1000b46d 	.word	0x1000b46d
 1000c0fc:	10013df8 	.word	0x10013df8
 1000c100:	10013df0 	.word	0x10013df0
 1000c104:	10013de0 	.word	0x10013de0
@@ -14942,7 +14942,7 @@ static void register_ble_callbacks (void)
 1000c10c:	10010369 	.word	0x10010369
 1000c110:	0000ffff 	.word	0x0000ffff
 1000c114:	0000fffe 	.word	0x0000fffe
-1000c118:	1000b6e1 	.word	0x1000b6e1
+1000c118:	1000b6e5 	.word	0x1000b6e5
 1000c11c:	1000d1d3 	.word	0x1000d1d3
 1000c120:	0000201e 	.word	0x0000201e
 1000c124:	0000201d 	.word	0x0000201d
@@ -15726,9 +15726,9 @@ static void register_ble_callbacks (void)
 1000c7ec:	1000cb41 	.word	0x1000cb41
 1000c7f0:	1000cd61 	.word	0x1000cd61
 1000c7f4:	1000cb7d 	.word	0x1000cb7d
-1000c7f8:	1000b1b9 	.word	0x1000b1b9
+1000c7f8:	1000b1bd 	.word	0x1000b1bd
 1000c7fc:	1000d0a9 	.word	0x1000d0a9
-1000c800:	1000b3fd 	.word	0x1000b3fd
+1000c800:	1000b401 	.word	0x1000b401
 1000c804:	1000d151 	.word	0x1000d151
 1000c808:	1000bd61 	.word	0x1000bd61
 1000c80c:	1000be1d 	.word	0x1000be1d
@@ -16865,7 +16865,7 @@ static void register_ble_callbacks (void)
 1000d122:	bdf7      	pop	{r0, r1, r2, r4, r5, r6, r7, pc}
 1000d124:	1000bd8d 	.word	0x1000bd8d
 1000d128:	1000bd05 	.word	0x1000bd05
-1000d12c:	1000b6e1 	.word	0x1000b6e1
+1000d12c:	1000b6e5 	.word	0x1000b6e5
 1000d130:	10014c70 	.word	0x10014c70
 1000d134:	10013e20 	.word	0x10013e20
 1000d138:	10013e1c 	.word	0x10013e1c
@@ -16878,7 +16878,7 @@ static void register_ble_callbacks (void)
 1000d146:	2000      	movs	r0, #0
 1000d148:	bd08      	pop	{r3, pc}
 1000d14a:	46c0      	nop			; (mov r8, r8)
-1000d14c:	1000b419 	.word	0x1000b419
+1000d14c:	1000b41d 	.word	0x1000b41d
 
 1000d150 <interface_init>:
 1000d150:	2280      	movs	r2, #128	; 0x80
@@ -16938,7 +16938,7 @@ static void register_ble_callbacks (void)
 1000d1c4:	7022      	strb	r2, [r4, #0]
 1000d1c6:	bd10      	pop	{r4, pc}
 1000d1c8:	10013e24 	.word	0x10013e24
-1000d1cc:	1000b469 	.word	0x1000b469
+1000d1cc:	1000b46d 	.word	0x1000b46d
 
 1000d1d0 <start_timer>:
 1000d1d0:	4770      	bx	lr
@@ -25792,7 +25792,7 @@ static void register_ble_callbacks (void)
 
 10011f38 <app_gap_cb>:
 	...
-10011f50:	1000b9a5 00000000 00000000 1000b9c1     ................
+10011f50:	1000b9a9 00000000 00000000 1000b9c5     ................
 	...
 10011f84:	72617453 20646574 20505448 706d6554     Started HTP Temp
 10011f94:	74617265 20657275 69746f4e 61636966     erature Notifica
@@ -25835,7 +25835,7 @@ static void register_ble_callbacks (void)
 
 100121dc <app_htpt_handle>:
 	...
-100121f0:	1000b889 00000000 00000000 00000000     ................
+100121f0:	1000b88d 00000000 00000000 00000000     ................
 10012200:	656d7441 6f43206c 002e7072                       Atmel Corp.
 
 1001220b <CSWTCH.47>:
